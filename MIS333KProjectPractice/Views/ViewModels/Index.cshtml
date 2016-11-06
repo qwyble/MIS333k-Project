@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MIS333KProjectPractice.Models.ViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.song.SongTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.song.SongPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.song.FeaturedSong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.genre.GenreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artist.ArtistName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album.AlbumTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.song.SongTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.song.SongPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.song.FeaturedSong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.genre.GenreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.artist.ArtistName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album.AlbumTitle)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ViewModelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ViewModelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ViewModelID })
+        </td>
+        </tr>
+    
+}
+
+</table>
