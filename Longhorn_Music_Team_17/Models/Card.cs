@@ -32,6 +32,6 @@ namespace Longhorn_Music_Team_17.Models
 
 
         //navigational properties
-        public virtual List<User> Users { get; set; }
+        public virtual List<AppUser> AppUsers { get; set; }
     }
 }

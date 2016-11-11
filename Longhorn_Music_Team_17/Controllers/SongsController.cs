@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Longhorn_Music_Team_17.DAL;
 using Longhorn_Music_Team_17.Models;
 
 namespace Longhorn_Music_Team_17.Controllers

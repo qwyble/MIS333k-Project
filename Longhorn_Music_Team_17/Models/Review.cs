@@ -36,7 +36,7 @@ namespace Longhorn_Music_Team_17.Models
         public virtual Song SongReview { get; set; }  //each review is for one song
         public virtual Album AlbumReview { get; set; }  //each review is for one album
         public virtual Artist ArtistReview { get; set; } //each review is for one artist 
-        public virtual User UserReview { get; set; }  //each review can have only one customer
+        //public virtual AppUser UserReview { get; set; }  //each review can have only one customer
 
 
     }
