@@ -10,107 +10,107 @@ using Longhorn_Music_Team_17.Models;
 
 namespace Longhorn_Music_Team_17.Controllers
 {
-    public class SongsController : Controller
+    public class AppUsersController : Controller
     {
         private AppDbContext db = new AppDbContext();
 
-        // GET: Songs
+        // GET: AppUsers
         public ActionResult Index()
         {
-            return View(db.Songs.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Songs/Details/5
-        public ActionResult Details(int? id)
+        // GET: AppUsers/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
-            if (song == null)
+            AppUser appUser = db.Users.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(song);
+            return View(appUser);
         }
 
-        // GET: Songs/Create
+        // GET: AppUsers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Songs/Create
+        // POST: AppUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
+        public ActionResult Create([Bind(Include = "Id,FirstName,MiddleInitial,LastName,StreetAddress,ZipCode,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
-                db.Songs.Add(song);
+                db.Users.Add(appUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(song);
+            return View(appUser);
         }
 
-        // GET: Songs/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: AppUsers/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
-            if (song == null)
+            AppUser appUser = db.Users.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(song);
+            return View(appUser);
         }
 
-        // POST: Songs/Edit/5
+        // POST: AppUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,StreetAddress,ZipCode,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(song).State = EntityState.Modified;
+                db.Entry(appUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(song);
+            return View(appUser);
         }
 
-        // GET: Songs/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: AppUsers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
-            if (song == null)
+            AppUser appUser = db.Users.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(song);
+            return View(appUser);
         }
 
-        // POST: Songs/Delete/5
+        // POST: AppUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Song song = db.Songs.Find(id);
-            db.Songs.Remove(song);
+            AppUser appUser = db.Users.Find(id);
+            db.Users.Remove(appUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -26,7 +26,7 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         //navigational properties
-        public virtual User User { get; set; }
+        public virtual AppUser AppUsers { get; set; }
         public virtual List<Song> Songs { get; set; }
         public virtual List<Album> Albums { get; set; }
         public virtual OrderDetail OrderDetail { get; set; } //each order can have only one order detail
