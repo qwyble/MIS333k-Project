@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Longhorn_Music_Team_17.Models.Artist>
+@using Longhorn_Music_Team_17.Controllers;
+@{
+    ViewBag.Title = "ArtistSearch";
+}
+
+<h2>Artists</h2>
+
+@using (Html.BeginForm("SearchResults", "Search", FormMethod.Get))
+{
+    <p class="form-group">
+
+        <ng-form class="form-inline">
+            <input type="submit" name="btn1" value="Songs" class="btn btn-default" />
+            <input type="submit" name="btn1" value="Albums" class="btn btn-default" />
+        </ng-form><br /><br /> <!--submit buttons for different search types-->
+
+
+        <ng-form class="form-inline">
+            @Html.TextBox("SearchArtist", null, new { @class = "form-control", Placeholder = "Artist Name" })
+            <button name="btn1" value="Artists" type="submit" , class="btn btn-primary">Search</button>
+
+        </ng-form>             <!--textboxes for search parameters-->
+        <br />
+
+        <div class="form-group">
+            @foreach (var item in ViewBag.GenreList)
+                {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="SelectedGenres" value="@item" /> @item
+                    </label>
+                </div>
+            }
+        </div>                      <!--dynamically generate genre list (checkboxes)-->
+
+
+        <div class="form-check">
+            <div class="in-line">
+                <label class="form-check-label">
+                    @Html.DropDownList("SelectedOrderType", EnumHelper.GetSelectList(typeof(OrderType2)), "-order by-", new { @class = "form-control", @style = "width:130px;" })
+                </label>
+                <label class="form-check-label">
+                    @Html.DropDownList("SelectedSortOrder", EnumHelper.GetSelectList(typeof(SortOrder)), new { @class = "form-control", @style = "width:130px;" })
+                </label>
+            </div>
+        </div>                      <!--order by parameters (dropdown)-->
+
+        <br />
+        Average Rating:
+        <div class="form-check">
+            <ng-form class="in-line">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "0", new { @class = "form-check-input" }) <br /> 0
+                </label>
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "1", new { @class = "form-check-input" }) <br /> 1
+                </label>
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "2", new { @class = "form-check-input" }) <br /> 2
+                </label>
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "3", new { @class = "form-check-input" }) <br /> 3
+                </label>
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "4", new { @class = "form-check-input" }) <br /> 4
+                </label>
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedRating", "5", new { @class = "form-check-input" }) <br /> 5
+                </label>
+                <label class="form-check-label">
+                    @Html.DropDownList("RatingSort", new SelectList(Enum.GetValues(typeof(ABRating))), new { @class = "form-control" })
+
+                </label>
+            </ng-form>
+        </div>                      <!--Rating parameters-->
+
+        <br />
+        <button name="btn1" value="Artists" type="submit" , class="btn btn-primary">Search</button>
+    </p>
+    <br />
+}
+@ViewBag.numResults results
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtistName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtistID)     <!--should be changed to rating when added to database-->
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.ActionLink(item.ArtistName ?? "-unknown-", "Details", "Details", new { id = item.ArtistID })  <!--should be updated when page is added-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistID)      <!--change to rating-->
+            </td>
+        </tr>
+    }
+
+</table>                        <!--table to display results-->
