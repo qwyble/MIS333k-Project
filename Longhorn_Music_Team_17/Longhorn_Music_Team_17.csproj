@@ -206,10 +206,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611110110358_132094.cs" />
-    <Compile Include="Migrations\201611110110358_132094.Designer.cs">
-      <DependentUpon>201611110110358_132094.cs</DependentUpon>
+    <Compile Include="Migrations\201611162212496_users1.cs" />
+    <Compile Include="Migrations\201611162212496_users1.Designer.cs">
+      <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\AppUsersSeed.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -255,8 +256,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611110110358_132094.resx">
-      <DependentUpon>201611110110358_132094.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611162212496_users1.resx">
+      <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

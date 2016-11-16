@@ -14,6 +14,11 @@ namespace Longhorn_Music_Team_17.Migrations
 
         protected override void Seed(Longhorn_Music_Team_17.Models.AppDbContext context)
         {
+            SeedAppUsers.AddAppUsers();
+
+            
+
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

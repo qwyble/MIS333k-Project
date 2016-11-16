@@ -20,13 +20,12 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         [Display(Name = "Type of Card")]
-        public Cards Cards1 { get; set; }
+        public Cards CardType { get; set; }
 
-        [CreditCard]
-        [Display(Name = "Credit Card #1")]
-        public Int32 Card1 { get; set; } //second credit card?
 
-        public DateTime ExpDate { get; set; }
+        [Display(Name = "Credit Card Number")]
+        public Int64 CardNum { get; set; }
+
 
         public Int32 CVV { get; set; }
 
