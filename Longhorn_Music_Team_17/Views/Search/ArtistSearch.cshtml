@@ -21,30 +21,32 @@
             <button name="btn1" value="Artists" type="submit" , class="btn btn-primary">Search</button>
 
         </ng-form>             <!--textboxes for search parameters-->
-        <br />
-
-        <div class="form-group">
-            @foreach (var item in ViewBag.GenreList)
-                {
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="SelectedGenres" value="@item" /> @item
-                    </label>
-                </div>
-            }
-        </div>                      <!--dynamically generate genre list (checkboxes)-->
 
 
         <div class="form-check">
             <div class="in-line">
                 <label class="form-check-label">
-                    @Html.DropDownList("SelectedOrderType", EnumHelper.GetSelectList(typeof(OrderType2)), "-order by-", new { @class = "form-control", @style = "width:130px;" })
+                    @Html.DropDownList("SelectedOrderTypeArtists", EnumHelper.GetSelectList(typeof(OrderTypeArtists)), "-order by-", new { @class = "form-control", @style = "width:130px;" })
                 </label>
                 <label class="form-check-label">
                     @Html.DropDownList("SelectedSortOrder", EnumHelper.GetSelectList(typeof(SortOrder)), new { @class = "form-control", @style = "width:130px;" })
                 </label>
             </div>
         </div>                      <!--order by parameters (dropdown)-->
+
+
+        <div class="form-group">
+            @foreach (var item in ViewBag.GenreList)
+                {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="SelectedGenres" value="@item.Key" /> @item.Value
+                    </label>
+                </div>
+            }
+        </div>                      <!--dynamically generate genre list (checkboxes)-->
+
+
 
         <br />
         Average Rating:
