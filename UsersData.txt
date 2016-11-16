@@ -1,0 +1,1219 @@
+using Longhorn_Music_Team_17.Models;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+
+namespace Longhorn_Music_Team_17.Migrations
+{
+    public class SeedAppUsers
+    {
+
+
+        public static AppDbContext db = new AppDbContext();
+
+        public static void AddCreditCards()
+        {
+            Card c1 = new Card();
+            c1.CardType = Card.Cards.Mastercard;
+            c1.CardNum = 5497163903436520;
+            db.Cards.AddOrUpdate(c => c.CardID, c1);
+
+            Card c2 = new Card();
+            c2.CardType = Card.Cards.Visa;
+            c2.CardNum = 4868476042647310;
+            db.Cards.AddOrUpdate(c => c.CardID, c2);
+
+            Card c3 = new Card();
+            c3.CardType = Card.Cards.Discover;
+            c3.CardNum = 6727398982004160;
+            db.Cards.AddOrUpdate(c => c.CardID, c3);
+
+            Card c4 = new Card();
+            c4.CardType = Card.Cards.AmericanExpress;
+            c4.CardNum = 545497452517418;
+            db.Cards.AddOrUpdate(c => c.CardID, c4);
+
+            Card c5 = new Card();
+            c5.CardType = Card.Cards.Mastercard;
+            c5.CardNum = 5414364986244200;
+            db.Cards.AddOrUpdate(c => c.CardID, c5);
+
+            Card c6 = new Card();
+            c6.CardType = Card.Cards.Visa;
+            c6.CardNum = 4093643507872300;
+            db.Cards.AddOrUpdate(c => c.CardID, c6);
+
+            Card c7 = new Card();
+            c7.CardType = Card.Cards.AmericanExpress;
+            c7.CardNum = 877527552236339;
+            db.Cards.AddOrUpdate(c => c.CardID, c7);
+
+            Card c8 = new Card();
+            c8.CardType = Card.Cards.Mastercard;
+            c8.CardNum = 5451814661069320;
+            db.Cards.AddOrUpdate(c => c.CardID, c8);
+
+
+            Card c9 = new Card();
+            c9.CardType = Card.Cards.Visa;
+            c9.CardNum = 4355077062414870;
+            db.Cards.AddOrUpdate(c => c.CardID, c9);
+
+            Card c10 = new Card();
+            c10.CardType = Card.Cards.Visa;
+            c10.CardNum = 4241928871243970;
+            db.Cards.AddOrUpdate(c => c.CardID, c10);
+
+            Card c11 = new Card();
+            c11.CardType = Card.Cards.Discover;
+            c11.CardNum = 6310804739616290;
+            db.Cards.AddOrUpdate(c => c.CardID, c11);
+
+            Card c12 = new Card();
+            c12.CardType = Card.Cards.AmericanExpress;
+            c12.CardNum = 782806865061369;
+            db.Cards.AddOrUpdate(c => c.CardID, c12);
+
+            Card c13 = new Card();
+            c13.CardType = Card.Cards.Mastercard;
+            c13.CardNum = 5458965973058220;
+            db.Cards.AddOrUpdate(c => c.CardID, c13);
+
+            Card c14 = new Card();
+            c14.CardType = Card.Cards.Discover;
+            c14.CardNum = 6420363774166000;
+            db.Cards.AddOrUpdate(c => c.CardID, c14);
+
+            Card c15 = new Card();
+            c15.CardType = Card.Cards.AmericanExpress;
+            c15.CardNum = 697656089924839;
+            db.Cards.AddOrUpdate(c => c.CardID, c15);
+
+            Card c16 = new Card();
+            c16.CardType = Card.Cards.Mastercard;
+            c16.CardNum = 5478875163529160;
+            db.Cards.AddOrUpdate(c => c.CardID, c16);
+
+            Card c17 = new Card();
+            c17.CardType = Card.Cards.Visa;
+            c17.CardNum = 4156646384501590;
+            db.Cards.AddOrUpdate(c => c.CardID, c17);
+
+            Card c18 = new Card();
+            c18.CardType = Card.Cards.Discover;
+            c18.CardNum = 6942941089010230;
+            db.Cards.AddOrUpdate(c => c.CardID, c18);
+
+            Card c19 = new Card();
+            c19.CardType = Card.Cards.AmericanExpress;
+            c19.CardNum = 915495411577097;
+            db.Cards.AddOrUpdate(c => c.CardID, c19);
+
+            Card c20 = new Card();
+            c20.CardType = Card.Cards.Mastercard;
+            c20.CardNum = 5469847618467190;
+            db.Cards.AddOrUpdate(c => c.CardID, c20);
+
+            Card c21 = new Card();
+            c21.CardType = Card.Cards.Visa;
+            c21.CardNum = 4906094629756390;
+            db.Cards.AddOrUpdate(c => c.CardID, c21);
+
+            Card c22 = new Card();
+            c22.CardType = Card.Cards.Discover;
+            c22.CardNum = 6857413205443210;
+            db.Cards.AddOrUpdate(c => c.CardID, c22);
+
+            Card c23 = new Card();
+            c23.CardType = Card.Cards.AmericanExpress;
+            c23.CardNum = 664039531388552;
+            db.Cards.AddOrUpdate(c => c.CardID, c23);
+
+            Card c24 = new Card();
+            c24.CardType = Card.Cards.Mastercard;
+            c24.CardNum = 5415140475671290;
+            db.Cards.AddOrUpdate(c => c.CardID, c24);
+
+            Card c25 = new Card();
+            c25.CardType = Card.Cards.Discover;
+            c25.CardNum = 6962592004533190;
+            db.Cards.AddOrUpdate(c => c.CardID, c25);
+
+
+            Card c26 = new Card();
+            c26.CardType = Card.Cards.AmericanExpress;
+            c26.CardNum = 717796136488089;
+            db.Cards.AddOrUpdate(c => c.CardID, c26);
+
+
+            Card c27 = new Card();
+            c27.CardType = Card.Cards.Mastercard;
+            c27.CardNum = 5468749400262880;
+            db.Cards.AddOrUpdate(c => c.CardID, c27);
+
+            Card c28 = new Card();
+            c28.CardType = Card.Cards.Discover;
+            c28.CardNum = 6780588472896630;
+            db.Cards.AddOrUpdate(c => c.CardID, c28);
+
+            Card c29 = new Card();
+            c29.CardType = Card.Cards.Visa;
+            c29.CardNum = 4981762270647820;
+            db.Cards.AddOrUpdate(c => c.CardID, c29);
+
+
+            Card c30 = new Card();
+            c30.CardType = Card.Cards.AmericanExpress;
+            c30.CardNum = 440279517306779;
+            db.Cards.AddOrUpdate(c => c.CardID, c30);
+
+            Card c31 = new Card();
+            c31.CardType = Card.Cards.AmericanExpress;
+            c31.CardNum = 714543621891322;
+            db.Cards.AddOrUpdate(c => c.CardID, c31);
+
+            Card c32 = new Card();
+            c32.CardType = Card.Cards.Mastercard;
+            c32.CardNum = 5422935985121310;
+            db.Cards.AddOrUpdate(c => c.CardID, c32);
+
+            Card c33 = new Card();
+            c33.CardType = Card.Cards.Mastercard;
+            c33.CardNum = 5477132658283840;
+            db.Cards.AddOrUpdate(c => c.CardID, c33);
+
+            Card c34 = new Card();
+            c34.CardType = Card.Cards.Visa;
+            c34.CardNum = 4247987109036310;
+            db.Cards.AddOrUpdate(c => c.CardID, c34);
+
+            Card c35 = new Card();
+            c35.CardType = Card.Cards.AmericanExpress;
+            c35.CardNum = 860245686047451;
+            db.Cards.AddOrUpdate(c => c.CardID, c35);
+
+            Card c36 = new Card();
+            c36.CardType = Card.Cards.Discover;
+            c36.CardNum = 6761707076925830;
+            db.Cards.AddOrUpdate(c => c.CardID, c36);
+
+            Card c37 = new Card();
+            c37.CardType = Card.Cards.Visa;
+            c37.CardNum = 4590566912856230;
+            db.Cards.AddOrUpdate(c => c.CardID, c37);
+
+            Card c38 = new Card();
+            c38.CardType = Card.Cards.AmericanExpress;
+            c38.CardNum = 168073130658754;
+            db.Cards.AddOrUpdate(c => c.CardID, c38);
+
+            Card c39 = new Card();
+            c39.CardType = Card.Cards.Discover;
+            c39.CardNum = 6167268833061390;
+            db.Cards.AddOrUpdate(c => c.CardID, c39);
+
+            Card c40 = new Card();
+            c40.CardType = Card.Cards.Mastercard;
+            c40.CardNum = 5432667042375460;
+            db.Cards.AddOrUpdate(c => c.CardID, c40);
+
+            Card c41 = new Card();
+            c41.CardType = Card.Cards.Discover;
+            c41.CardNum = 6465504285538790;
+            db.Cards.AddOrUpdate(c => c.CardID, c41);
+
+            Card c42 = new Card();
+            c42.CardType = Card.Cards.Visa;
+            c42.CardNum = 4368667972354250;
+            db.Cards.AddOrUpdate(c => c.CardID, c42);
+
+            Card c43 = new Card();
+            c43.CardType = Card.Cards.AmericanExpress;
+            c43.CardNum = 351777302204025;
+            db.Cards.AddOrUpdate(c => c.CardID, c43);
+
+            Card c44 = new Card();
+            c44.CardType = Card.Cards.Discover;
+            c44.CardNum = 6589854795728270;
+            db.Cards.AddOrUpdate(c => c.CardID, c44);
+
+            Card c45 = new Card();
+            c45.CardType = Card.Cards.Visa;
+            c45.CardNum = 4579224077662870;
+            db.Cards.AddOrUpdate(c => c.CardID, c45);
+
+            Card c46 = new Card();
+            c46.CardType = Card.Cards.AmericanExpress;
+            c46.CardNum = 238153423810050;
+            db.Cards.AddOrUpdate(c => c.CardID, c46);
+
+            Card c47 = new Card();
+            c47.CardType = Card.Cards.Discover;
+            c47.CardNum = 6270385324417050;
+            db.Cards.AddOrUpdate(c => c.CardID, c47);
+
+            Card c48 = new Card();
+            c48.CardType = Card.Cards.Mastercard;
+            c48.CardNum = 5448275652910170;
+            db.Cards.AddOrUpdate(c => c.CardID, c48);
+
+            Card c49 = new Card();
+            c49.CardType = Card.Cards.Discover;
+            c49.CardNum = 6294260418333300;
+            db.Cards.AddOrUpdate(c => c.CardID, c49);
+
+        }
+
+        public static void AddAppUsers()
+        {
+            if (!(db.Users.Any(u => u.UserName == "cbaker@freezing.co.uk")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                { UserName = "cbaker@freezing.co.uk",
+                    Email = "cbaker@freezing.co.uk",
+                    LastName = "Baker",
+                    FirstName = "Christopher",
+                    MiddleInitial = "L",
+                    StreetAddress = "1245 Lake Austin Blvd",
+                    ZipCode = 78733,
+                    PhoneNumber = "5125571146"
+                };
+                userManager.Create(userToInsert, "hello");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "mb@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "mb@aool.com",
+                    Email = "mb@aool.com",
+                    LastName = "Banks",
+                    FirstName = "Michelle",
+                    StreetAddress = "1300 Tall Pine Lane",
+                    ZipCode = 78261,
+                    PhoneNumber = "2102678873"
+                };
+                userManager.Create(userToInsert, "555555");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "fd@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "fd@aool.com",
+                    Email = "fd@aool.com",
+                    LastName = "Broccolo",
+                    FirstName = "Franco",
+                    MiddleInitial = "V",
+                    StreetAddress = "62 Browning Rd",
+                    ZipCode = 77019,
+                    PhoneNumber = "8175659699"
+                };
+                userManager.Create(userToInsert, "666666");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "wendy@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "wendy@ggmail.com",
+                    Email = "wendy@ggmail.com",
+                    LastName = "Chang",
+                    FirstName = "Wendy",
+                    MiddleInitial = "L",
+                    StreetAddress = "202 Bellmont Hall",
+                    ZipCode = 78713,
+                    PhoneNumber = "5125943222"
+                };
+                userManager.Create(userToInsert, "texas");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "limchou@yaho.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "limchou@yaho.com",
+                    Email = "limchou@yaho.com",
+                    LastName = "Chou",
+                    FirstName = "Lim",
+                    MiddleInitial = "",
+                    StreetAddress = "1600 Teresa Lane",
+                    ZipCode = 78266,
+                    PhoneNumber = "2107724599"
+                };
+                userManager.Create(userToInsert, "austin");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "11111111.Dixon@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "11111111.Dixon@aool.com",
+                    Email = "11111111.Dixon@aool.com",
+                    LastName = "Dixon",
+                    FirstName = "Shan",
+                    MiddleInitial = "D",
+                    StreetAddress = "234 Holston Circle",
+                    ZipCode = 75208,
+                    PhoneNumber = "2142643255"
+                };
+                userManager.Create(userToInsert, "11111111");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "louann@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "louann@ggmail.com",
+                    Email = "louann@ggmail.com",
+                    LastName = "Feeley",
+                    FirstName = "Lou Ann",
+                    MiddleInitial = "K",
+                    StreetAddress = "600 S 8th Street W",
+                    ZipCode = 77010,
+                    PhoneNumber = "8172556749"
+                };
+                userManager.Create(userToInsert, "aggies");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "tfreeley@minntonka.ci.state.mn.us")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "tfreeley@minntonka.ci.state.mn.us",
+                    Email = "tfreeley@minntonka.ci.state.mn.us",
+                    LastName = "Freeley",
+                    FirstName = "Tesa",
+                    MiddleInitial = "P",
+                    StreetAddress = "4448 Fairview Ave.",
+                    ZipCode = 77009,
+                    PhoneNumber = "8173255687"
+                };
+                userManager.Create(userToInsert, "raiders");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "mgar@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "mgar@aool.com",
+                    Email = "mgar@aool.com",
+                    LastName = "Garcia",
+                    FirstName = "Margaret",
+                    MiddleInitial = "L",
+                    StreetAddress = "594 Longview",
+                    ZipCode = 77003,
+                    PhoneNumber = "8176593544"
+                };
+                userManager.Create(userToInsert, "mustangs");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "chaley@thug.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "chaley@thug.com",
+                    Email = "chaley@thug.com",
+                    LastName = "Haley",
+                    FirstName = "Charles",
+                    MiddleInitial = "E",
+                    StreetAddress = "One Cowboy Pkwy",
+                    ZipCode = 75261,
+                    PhoneNumber = "2148475583"
+                };
+                userManager.Create(userToInsert, "mydog");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "jeff@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "jeff@ggmail.com",
+                    Email = "jeff@ggmail.com",
+                    LastName = "Hampton",
+                    FirstName = "Jeffrey",
+                    MiddleInitial = "T",
+                    StreetAddress = "337 38th St.",
+                    ZipCode = 78705,
+                    PhoneNumber = "5126978613"
+                };
+                userManager.Create(userToInsert, "jeffh");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "wjhearniii@umch.edu")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "wjhearniii@umch.edu",
+                    Email = "wjhearniii@umch.edu",
+                    LastName = "Hearn",
+                    FirstName = "John",
+                    MiddleInitial = "B",
+                    StreetAddress = "4225 North First",
+                    ZipCode = 75237,
+                    PhoneNumber = "2148965621",
+                    
+                };
+                userManager.Create(userToInsert, "logicon");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "hicks43@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "hicks43@ggmail.com",
+                    Email = "hicks43@ggmail.com",
+                    LastName = "Hicks",
+                    FirstName = "Anthony",
+                    MiddleInitial = "J",
+                    StreetAddress = "32 NE Garden Ln., Ste 910",
+                    ZipCode = 78239,
+                    PhoneNumber = "2105788965"
+
+                };
+                userManager.Create(userToInsert, "doofus");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "bradsingram@mall.utexas.edu")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "bradsingram@mall.utexas.edu",
+                    Email = "bradsingram@mall.utexas.edu",
+                    LastName = "Ingram",
+                    FirstName = "Brad",
+                    MiddleInitial = "S",
+                    StreetAddress = "6548 La Posada Ct.",
+                    ZipCode = 78736,
+                    PhoneNumber = "5124678821"
+
+                };
+                userManager.Create(userToInsert, "mother");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "mother.Ingram@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "mother.Ingram@aool.com",
+                    Email = "mother.Ingram@aool.com",
+                    LastName = "Jacobs",
+                    FirstName = "Todd",
+                    MiddleInitial = "L",
+                    StreetAddress = "4564 Elm St.",
+                    ZipCode = 78731,
+                    PhoneNumber = "5124653365"
+
+                };
+                userManager.Create(userToInsert, "12345");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "victoria@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "victoria@aool.com",
+                    Email = "victoria@aool.com",
+                    LastName = "Lawrence",
+                    FirstName = "Victoria",
+                    MiddleInitial = "M",
+                    StreetAddress = "6639 Butterfly Ln.",
+                    ZipCode = 78761,
+                    PhoneNumber = "5129457399"
+
+                };
+                userManager.Create(userToInsert, "nothing");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "lineback@flush.net")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "lineback@flush.net",
+                    Email = "lineback@flush.net",
+                    LastName = "Lineback",
+                    FirstName = "Erik",
+                    MiddleInitial = "W",
+                    StreetAddress = "1300 Netherland St",
+                    ZipCode = 78293,
+                    PhoneNumber = "2102449976"
+
+                };
+                userManager.Create(userToInsert, "GoodFellow");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "elowe@netscrape.net")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "elowe@netscrape.net",
+                    Email = "elowe@netscrape.net",
+                    LastName = "Lowe",
+                    FirstName = "Ernest",
+                    MiddleInitial = "S",
+                    StreetAddress = "3201 Pine Drive",
+                    ZipCode = 78279,
+                    PhoneNumber = "2105344627"
+
+                };
+                userManager.Create(userToInsert, "Elbow");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "luce_chuck@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "luce_chuck@ggmail.com",
+                    Email = "luce_chuck@ggmail.com",
+                    LastName = "Luce",
+                    FirstName = "Chuck",
+                    MiddleInitial = "B",
+                    StreetAddress = "2345 Rolling Clouds",
+                    ZipCode = 78268,
+                    PhoneNumber = "2106983548"
+
+                };
+                userManager.Create(userToInsert, "LuceyDucey");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "mackcloud@pimpdaddy.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "mackcloud@pimpdaddy.com",
+                    Email = "mackcloud@pimpdaddy.com",
+                    LastName = "MacLeod",
+                    FirstName = "Jennifer",
+                    MiddleInitial = "D",
+                    StreetAddress = "2504 Far West Blvd.",
+                    ZipCode = 78731,
+                    PhoneNumber = "5124748138"
+
+                };
+                userManager.Create(userToInsert, "cloudyday");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "liz@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "liz@ggmail.com",
+                    Email = "liz@ggmail.com",
+                    LastName = "Markham",
+                    FirstName = "Elizabeth",
+                    MiddleInitial = "P",
+                    StreetAddress = "7861 Chevy Chase",
+                    ZipCode = 78732,
+                    PhoneNumber = "5124579845"
+
+                };
+                userManager.Create(userToInsert, "emarkbark");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "mclarence@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "mclarence@aool.com",
+                    Email = "mclarence@aool.com",
+                    LastName = "Martin",
+                    FirstName = "Clarence",
+                    MiddleInitial = "A",
+                    StreetAddress = "87 Alcedo St.",
+                    ZipCode = 77045,
+                    PhoneNumber = "8174955201"
+
+                };
+                userManager.Create(userToInsert, "smartinmartin");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "smartinmartin.Martin@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "smartinmartin.Martin@aool.com",
+                    Email = "smartinmartin.Martin@aool.com",
+                    LastName = "Martinez",
+                    FirstName = "Gregory",
+                    MiddleInitial = "R",
+                    StreetAddress = "8295 Sunset Blvd.",
+                    ZipCode = 77030,
+                    PhoneNumber = "8178746718"
+
+                };
+                userManager.Create(userToInsert, "grego");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "cmiller@mapster.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "cmiller@mapster.com",
+                    Email = "cmiller@mapster.com",
+                    LastName = "Miller",
+                    FirstName = "Charles",
+                    MiddleInitial = "R",
+                    StreetAddress = "8962 Main St.",
+                    ZipCode = 77031,
+                    PhoneNumber = "8177458615"
+
+                };
+                userManager.Create(userToInsert, "chucky33");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "nelson.Kelly@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "nelson.Kelly@aool.com",
+                    Email = "nelson.Kelly@aool.com",
+                    LastName = "Nelson",
+                    FirstName = "Kelly",
+                    MiddleInitial = "T",
+                    StreetAddress = "2601 Red River",
+                    ZipCode = 78703,
+                    PhoneNumber = "5122926966"
+
+                };
+                userManager.Create(userToInsert, "kn1010");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "jojoe@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "jojoe@ggmail.com",
+                    Email = "jojoe@ggmail.com",
+                    LastName = "Nguyen",
+                    FirstName = "Joe",
+                    MiddleInitial = "C",
+                    StreetAddress = "1249 4th SW St.",
+                    ZipCode = 75238,
+                    PhoneNumber = "2143125897"
+
+                };
+                userManager.Create(userToInsert, "984365dfiop6");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "orielly@foxnets.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "orielly@foxnets.com",
+                    Email = "orielly@foxnets.com",
+                    LastName = "O'Reilly",
+                    FirstName = "Bill",
+                    MiddleInitial = "T",
+                    StreetAddress = "8800 Gringo Drive",
+                    ZipCode = 78260,
+                    PhoneNumber = "2103450925"
+
+                };
+                userManager.Create(userToInsert, "billyboy");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "or@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "or@aool.com",
+                    Email = "or@aool.com",
+                    LastName = "Radkovich",
+                    FirstName = "Anka",
+                    MiddleInitial = "L",
+                    StreetAddress = "1300 Elliott Pl",
+                    ZipCode = 75260,
+                    PhoneNumber = "2142345566"
+
+                };
+                userManager.Create(userToInsert, "radicalone");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "megrhodes@freezing.co.uk")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "megrhodes@freezing.co.uk",
+                    Email = "megrhodes@freezing.co.uk",
+                    LastName = "Rhodes",
+                    FirstName = "Megan",
+                    MiddleInitial = "C",
+                    StreetAddress = "4587 Enfield Rd.",
+                    ZipCode = 78707,
+                    PhoneNumber = "5123744746"
+
+                };
+                userManager.Create(userToInsert, "gohorns");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "erynrice@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "erynrice@aool.com",
+                    Email = "erynrice@aool.com",
+                    LastName = "Rice",
+                    FirstName = "Eryn",
+                    MiddleInitial = "M",
+                    StreetAddress = "3405 Rio Grande",
+                    ZipCode = 78705,
+                    PhoneNumber = "5123876657"
+
+                };
+                userManager.Create(userToInsert, "iloveme");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "jorge@hootmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "jorge@hootmail.com",
+                    Email = "jorge@hootmail.com",
+                    LastName = "Rodriguez",
+                    FirstName = "Jorge",
+                    MiddleInitial = "",
+                    StreetAddress = "6788 Cotter Street",
+                    ZipCode = 77057,
+                    PhoneNumber = "8178904374"
+
+                };
+                userManager.Create(userToInsert, "454545");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "ra@aoo.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "ra@aoo.com",
+                    Email = "ra@aoo.com",
+                    LastName = "Rogers",
+                    FirstName = "Allen",
+                    MiddleInitial = "B",
+                    StreetAddress = "4965 Oak Hill",
+                    ZipCode = 78732,
+                    PhoneNumber = "5128752943"
+
+                };
+                userManager.Create(userToInsert, "hpoi8t244");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "o_st-jean@home.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "o_st-jean@home.com",
+                    Email = "o_st-jean@home.com",
+                    LastName = "Saint-Jean",
+                    FirstName = "Olivier",
+                    MiddleInitial = "M",
+                    StreetAddress = "255 Toncray Dr.",
+                    ZipCode = 78292,
+                    PhoneNumber = "2104145678"
+
+                };
+                userManager.Create(userToInsert, "vb235843");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "ss34@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "ss34@ggmail.com",
+                    Email = "ss34@ggmail.com",
+                    LastName = "Saunders",
+                    FirstName = "Sarah",
+                    MiddleInitial = "J",
+                    StreetAddress = "332 Avenue C",
+                    ZipCode = 78705,
+                    PhoneNumber = "5123497810"
+
+                };
+                userManager.Create(userToInsert, "8f45896");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "willsheff@email.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "willsheff@email.com",
+                    Email = "willsheff@email.com",
+                    LastName = "Sewell",
+                    FirstName = "William",
+                    MiddleInitial = "T",
+                    StreetAddress = "2365 51st St.",
+                    ZipCode = 78709,
+                    PhoneNumber = "5124510084"
+
+                };
+                userManager.Create(userToInsert, "409gtio23");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "sheff44@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "sheff44@ggmail.com",
+                    Email = "sheff44@ggmail.com",
+                    LastName = "Sheffield",
+                    FirstName = "Martin",
+                    MiddleInitial = "J",
+                    StreetAddress = "3886 Avenue A",
+                    ZipCode = 78705,
+                    PhoneNumber = "5125479167"
+
+                };
+                userManager.Create(userToInsert, "k4589h98cx");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "johnsmith187@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "johnsmith187@aool.com",
+                    Email = "johnsmith187@aool.com",
+                    LastName = "Smith",
+                    FirstName = "John",
+                    MiddleInitial = "A",
+                    StreetAddress = "23 Hidden Forge Dr.",
+                    ZipCode = 78280,
+                    PhoneNumber = "2108321888"
+
+                };
+                userManager.Create(userToInsert, "n98k03k9hh");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "dustroud@mail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "dustroud@mail.com",
+                    Email = "dustroud@mail.com",
+                    LastName = "Stroud",
+                    FirstName = "Dustin",
+                    MiddleInitial = "P",
+                    StreetAddress = "1212 Rita Rd",
+                    ZipCode = 75221,
+                    PhoneNumber = "2142346667"
+
+                };
+                userManager.Create(userToInsert, "d25k758e3");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "eric_stuart@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "eric_stuart@aool.com",
+                    Email = "eric_stuart@aool.com",
+                    LastName = "Stuart",
+                    FirstName = "Eric",
+                    MiddleInitial = "D",
+                    StreetAddress = "5576 Toro Ring",
+                    ZipCode = 78746,
+                    PhoneNumber = "5128178335"
+
+                };
+                userManager.Create(userToInsert, "e09rf0fk0f");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "peterstump@hootmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "peterstump@hootmail.com",
+                    Email = "peterstump@hootmail.com",
+                    LastName = "Stump",
+                    FirstName = "Peter",
+                    MiddleInitial = "L",
+                    StreetAddress = "1300 Kellen Circle",
+                    ZipCode = 77018,
+                    PhoneNumber = "8174560903"
+
+                };
+                userManager.Create(userToInsert, "l0j87j33jbv");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "tanner@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "tanner@ggmail.com",
+                    Email = "tanner@ggmail.com",
+                    LastName = "Tanner",
+                    FirstName = "Jeremy",
+                    MiddleInitial = "S",
+                    StreetAddress = "4347 Almstead",
+                    ZipCode = 77044,
+                    PhoneNumber = "8174590929"
+
+                };
+                userManager.Create(userToInsert, "iu73498dd");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "taylordjay@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "taylordjay@aool.com",
+                    Email = "taylordjay@aool.com",
+                    LastName = "Taylor",
+                    FirstName = "Allison",
+                    MiddleInitial = "R",
+                    StreetAddress = "467 Nueces St.",
+                    ZipCode = 78705,
+                    PhoneNumber = "5124748452"
+
+                };
+                userManager.Create(userToInsert, "y87hu9ik");
+            }
+
+
+
+            if (!(db.Users.Any(u => u.UserName == "y87hu9ik.Taylor@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "y87hu9ik.Taylor@aool.com",
+                    Email = "y87hu9ik.Taylor@aool.com",
+                    LastName = "Taylor",
+                    FirstName = "Rachel",
+                    MiddleInitial = "K",
+                    StreetAddress = "345 Longview Dr.",
+                    ZipCode = 78705,
+                    PhoneNumber = "5124512631"
+
+                };
+                userManager.Create(userToInsert, "fio076jfh");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "tee_frank@hootmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "tee_frank@hootmail.com",
+                    Email = "tee_frank@hootmail.com",
+                    LastName = "Tee",
+                    FirstName = "Frank",
+                    MiddleInitial = "J",
+                    StreetAddress = "5590 Lavell Dr",
+                    ZipCode = 77004,
+                    PhoneNumber = "8178765543"
+
+                };
+                userManager.Create(userToInsert, "q234k0jiee");
+            }
+
+            if (!(db.Users.Any(u => u.UserName == "tuck33@ggmail.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "tuck33@ggmail.com",
+                    Email = "tuck33@ggmail.com",
+                    LastName = "Tucker",
+                    FirstName = "Clent",
+                    MiddleInitial = "J",
+                    StreetAddress = "312 Main St.",
+                    ZipCode = 75315,
+                    PhoneNumber = "2148471154"
+
+                };
+                userManager.Create(userToInsert, "z98ytre38");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "avelasco@yaho.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "avelasco@yaho.com",
+                    Email = "avelasco@yaho.com",
+                    LastName = "Velasco",
+                    FirstName = "Allen",
+                    MiddleInitial = "G",
+                    StreetAddress = "679 W. 4th",
+                    ZipCode = 75207,
+                    PhoneNumber = "2143985638"
+
+                };
+                userManager.Create(userToInsert, "vq34yx34670");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "westj@pioneer.net")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "westj@pioneer.net",
+                    Email = "westj@pioneer.net",
+                    LastName = "West",
+                    FirstName = "Jake",
+                    MiddleInitial = "T",
+                    StreetAddress = "RR 3287",
+                    ZipCode = 75323,
+                    PhoneNumber = "2148475244"
+
+                };
+                userManager.Create(userToInsert, "ghr89i32k8");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "louielouie@aool.com")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "louielouie@aool.com",
+                    Email = "louielouie@aool.com",
+                    LastName = "Winthorpe",
+                    FirstName = "Louis",
+                    MiddleInitial = "L",
+                    StreetAddress = "2500 Padre Blvd",
+                    ZipCode = 78746,
+                    PhoneNumber = "2145650098"
+
+                };
+                userManager.Create(userToInsert, "kji0338jjg");
+            }
+
+
+            if (!(db.Users.Any(u => u.UserName == "rwood@voyager.net")))
+            {
+                var userStore = new UserStore<AppUser>(db);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser
+                {
+                    UserName = "rwood@voyager.net",
+                    Email = "rwood@voyager.net",
+                    LastName = "Wood",
+                    FirstName = "Reagan",
+                    MiddleInitial = "B",
+                    StreetAddress = "447 Westlake Dr.",
+                    ZipCode = 78746,
+                    PhoneNumber = "5124545242"
+
+                };
+                userManager.Create(userToInsert, "jz3i0q7");
+            }
+        }
+    }
+}
