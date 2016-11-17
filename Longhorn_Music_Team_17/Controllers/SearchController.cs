@@ -99,7 +99,10 @@ namespace Longhorn_Music_Team_17.Controllers
         {
 
             ViewBag.GenreList = GetAllGenres();
-
+            if (SelectedGenres != null)
+            {
+                ViewBag.trueGenres = SelectedGenres;
+            }
             //search for songs
             if (btn1.Equals("Songs"))
             {
