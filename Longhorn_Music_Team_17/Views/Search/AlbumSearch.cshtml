@@ -3,53 +3,120 @@
 @{
     ViewBag.Title = "AlbumSearch";
 }
-
-<h2>Albums</h2>
-
-@using (Html.BeginForm("SearchResults", "Search", FormMethod.Get))
-{
-    <p class="form-group">
-
-        <ng-form class="form-inline">
-            <input type="submit" name="btn1" value="Songs" class="btn btn-default" />
-            <input type="submit" name="btn1" value="Artists" class="btn btn-default" />
-        </ng-form><br /><br /> <!--submit buttons for different search types-->
-
-
-        <ng-form class="form-inline">
-            @Html.TextBox("SearchAlbum", null, new { @class = "form-control", Placeholder = "Album Title" })
-            @Html.TextBox("SearchArtist", null, new { @class = "form-control", Placeholder = "Artist Name" })
-            <button name="btn1" value="Albums" type="submit" , class="btn btn-primary">Search</button>
-        </ng-form>             <!--textboxes for search parameters-->
-
-        <div class="form-check">
-            <div class="in-line">
-                <label class="form-check-label">
-                    @Html.DropDownList("SelectedOrderType", EnumHelper.GetSelectList(typeof(OrderType)), "-order by-", new { @class = "form-control", @style = "width:130px;" })
-                </label>
-                <label class="form-check-label">
-                    @Html.DropDownList("SelectedSortOrder", EnumHelper.GetSelectList(typeof(SortOrder)), new { @class = "form-control", @style = "width:130px;" })
-                </label>
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("SearchResults", "Search", FormMethod.Get))
+        {
+            <br />
+            <div class="row">
+                    <!--submit buttons for different search types-->
+                    <ng-form class="form-inline">
+                        <div class="col-md-2">
+                            <font size="3"> Albums </font>
+                            <input type="submit" name="btn1" value="Songs" class="btn btn-xs btn-default" />
+                            <input type="submit" name="btn1" value="Artists" class="btn btn-xs btn-default" />                      
+                         </div>
+                        <div class="col-md-6">
+                            <!--textboxes for search parameters-->
+                            <button name="btn1" value="Albums" type="submit" , class="btn btn-primary btn-sm">Search</button>
+                            @Html.TextBox("SearchAlbum", null, new { @class = "form-control input-sm", Placeholder = "Album Title" })
+                            @Html.TextBox("SearchArtist", null, new { @class = "form-control input-sm", Placeholder = "Artist Name" })
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <!--order by parameters (dropdown)-->
+                            <label class="form-check-label">
+                                @Html.DropDownList("SelectedOrderType", EnumHelper.GetSelectList(typeof(OrderType)), "-order by-", new { @class = "form-control btn-sm", @style = "width:100px;" })
+                            </label>
+                            <label class="form-check-label">
+                                @Html.DropDownList("SelectedSortOrder", EnumHelper.GetSelectList(typeof(SortOrder)), new { @class = "form-control btn-sm", @style = "width:110px;" })
+                            </label>
+                        </div>
+                     </ng-form>
             </div>
-        </div>                      <!--order by parameters (dropdown)-->
+            <p class="form-group">
+                <div class="searchParams">
+                    <div class="col-md-2">
 
-
-        <div class="form-group">
-            @foreach (var item in ViewBag.GenreList)
-                {
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="SelectedGenres" value="@item.Key" /> @item.Value
-                    </label>
+                        <div class="checkboxes">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @foreach (var item in ViewBag.GenreList)
+                                        {
+                                            <div class="checkbox">
+                                                <label>
+                                                    @if (ViewBag.trueGenres != null)
+                                                    {
+                                                        if (ViewBag.trueGenres.Contains(@item.Key))
+                                                        {
+                                                            <input type="checkbox" name="SelectedGenres" value="@item.Key" checked /> @item.Value
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" name="SelectedGenres" value="@item.Key" /> @item.Value
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" name="SelectedGenres" value="@item.Key" /> @item.Value
+                                                    }
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>                      <!--dynamically generate genre list (checkboxes)-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            }
-        </div>                      <!--dynamically generate genre list (checkboxes)-->
+            </p>
+        }
+        <!--table to display results-->
+        <div class="searchResults col-md-10">
+            <table class="table table-hover" cellspacing="0" id="search" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th width="40%">
+                            Albums <font size="1" weight="-2">(@ViewBag.numResults results)</font>
+                        </th>
+                        <th width="30%">
+                            @Html.DisplayNameFor(model => model.Artists)
+                        </th>
+                        <th width="20%">
+                            Rating
+                        </th>
+                        <th width="10%">
+                            Price
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-
-        <br />
-        Average Rating:
-        <div class="form-check">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="filterable-cell" , width="40%">
+                                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Details", new { id = item.AlbumID })  <!--should be updated when page is added-->
+                            </td>
+                            <td class="filterable-cell" , width="30%">
+                                @Html.DisplayFor(modelItem => item.Artists.FirstOrDefault().ArtistName)
+                            </td>
+                            <td class="filterable-cell" , width="20%">
+                                @Html.DisplayFor(modelItem => item.AlbumID)
+                            </td>
+                            <td class="filterable-cell" , width="10%">
+                                @Html.DisplayFor(modelItem => item.AlbumPrice)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div> 
+        <div class="form-check col-md-5">
             <ng-form class="in-line">
+                <label class="form-check-label">
+                    @Html.DropDownList("RatingSort", new SelectList(Enum.GetValues(typeof(ABRating))), "-rating-", new { @class = "form-control btn-sm" })
+                </label>
                 <label class="form-check-label">
                     @Html.RadioButton("SelectedRating", "0", new { @class = "form-check-input" }) <br /> 0
                 </label>
@@ -68,53 +135,7 @@
                 <label class="form-check-label">
                     @Html.RadioButton("SelectedRating", "5", new { @class = "form-check-input" }) <br /> 5
                 </label>
-                <label class="form-check-label">
-                    @Html.DropDownList("RatingSort", new SelectList(Enum.GetValues(typeof(ABRating))), new { @class = "form-control" })
-
-                </label>
             </ng-form>
-        </div>                      <!--Rating parameters-->
-
-        <br />
-        <button name="btn1" value="Albums" type="submit" , class="btn btn-primary">Search</button>
-    </p>
-    <br />
-}
-@ViewBag.numResults results
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AlbumTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Artists)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AlbumID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AlbumPrice)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Details", new { id = item.AlbumID })  <!--should be updated when page is added-->
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artists.FirstOrDefault().ArtistName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlbumID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlbumPrice)
-            </td>
-        </tr>
-    }
-
-</table>                        <!--table to display results-->
+        </div>                      <!--Rating parameters-->                   
+    </div>
+</div>
