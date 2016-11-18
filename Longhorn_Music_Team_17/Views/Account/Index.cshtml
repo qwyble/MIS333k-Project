@@ -1,15 +1,39 @@
 ﻿@model Longhorn_Music_Team_17.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Account Details";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4></h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>First Name:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>Last Name:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>Email:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>Phone:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber, "{0:###-##-####}")
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+        <dt>ZipCode:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
         <dt>Password:</dt>
         <dd>
             [
@@ -23,5 +47,6 @@
             }
             ]
         </dd>
+        <dt>@Html.ActionLink("Edit", "Edit")</dt>
     </dl>
 </div>

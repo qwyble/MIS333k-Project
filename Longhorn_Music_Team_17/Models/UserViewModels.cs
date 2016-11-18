@@ -89,9 +89,44 @@ namespace Longhorn_Music_Team_17.Models
 
     public class IndexViewModel
     {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        //TODO: Add additional fields to register users here.
+
+        [Required(ErrorMessage = "First name is required.")]
+        [Display(Name = "First Name")]
+        public String FirstName { get; set; }
+
+        [StringLength(1)]
+        [Display(Name = "Middle Initial")]
+        public String MiddleInitial { get; set; }
+
+        [Required(ErrorMessage = "Last name is required.")]
+        [Display(Name = "Last Name")]
+        public String LastName { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public String PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Please enter street address.")]
+        [Display(Name = "Street Address")]
+        public String StreetAddress { get; set; }
+
+        [Required(ErrorMessage = "Please enter zip code.")]
+        [Display(Name = "Zip Code")]
+        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]  
+        public Int32 ZipCode { get; set; }
+
+        public virtual List<Order> Orders { get; set; }
+        public virtual List<Card> Cards { get; set; }
+
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
-        public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
