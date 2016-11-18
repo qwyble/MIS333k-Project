@@ -6,7 +6,7 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
 //Change the namespace here to match your project's name
 namespace Longhorn_Music_Team_17.Controllers
 {
@@ -26,6 +26,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
         private AppSignInManager _signInManager;
         private AppUserManager _userManager;
+        AppDbContext db = new AppDbContext();
 
         public AccountController()
         {
@@ -198,18 +199,80 @@ namespace Longhorn_Music_Team_17.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
+            
             var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
             var model = new IndexViewModel
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                StreetAddress = user.StreetAddress,
+                ZipCode = user.ZipCode,
+                Cards = user.Cards,
+                Orders = user.Orders,
+
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
             return View(model);
         }
+
+        // get: edit account details
+
+        public ActionResult Edit(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
+            var model = new IndexViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                StreetAddress = user.StreetAddress,
+                ZipCode = user.ZipCode,
+                Cards = user.Cards,
+                Orders = user.Orders,
+
+                HasPassword = HasPassword()
+            };
+            return View(model);
+        }
+
+        // post: edit account details
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,StreetAddress,ZipCode")] IndexViewModel @IndexViewModel)
+        {
+            @IndexViewModel.HasPassword = HasPassword();
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                user.FirstName = IndexViewModel.FirstName;
+                user.LastName = IndexViewModel.LastName;
+                user.Email = IndexViewModel.Email;
+                user.PhoneNumber = IndexViewModel.PhoneNumber;
+                user.StreetAddress = IndexViewModel.StreetAddress;
+                user.ZipCode = IndexViewModel.ZipCode;
+               
+                var result = await UserManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    AddErrors(result);
+                    return RedirectToAction("Edit");
+
+                }
+                return RedirectToAction("Index");
+            }
+            return View(@IndexViewModel);
+        }
+
+
 
         private bool HasPassword()
         {
