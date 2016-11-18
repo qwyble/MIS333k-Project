@@ -1,0 +1,54 @@
+﻿table#search tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table#search{
+    width: 900px;
+    border-bottom: 10px solid;
+    border-bottom-color: #f2f2f2 ;
+}
+
+table#search td{
+    font-size: 80%;
+}
+
+table#search thead, tbody, tr, td, th { display: block; text-align:left;}
+
+table#search tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+table#search thead th {
+    height: 30px;
+    font-size: 90%
+
+    /*text-align: left;*/
+}
+
+table#search tbody {
+    height: 400px;
+    width:102%;
+    overflow-y: auto;
+}
+
+table#search thead {
+    /* fallback */
+}
+table#search tbody td, thead th {
+    float: left;
+}
+    
+.checkboxes{
+    font-size: 10px;
+}
+.searchParms{
+    float:left;
+    width: 10%;
+        
+}
+searchResults{
+    float:right;
+    width:90%;
+}
