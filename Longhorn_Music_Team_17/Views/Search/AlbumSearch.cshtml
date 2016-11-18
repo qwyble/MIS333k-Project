@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "AlbumSearch";
 }
+
+<head>
+    <link href="~/Content/Search.css" rel="stylesheet" type="text/css" />
+</head>
 <div class="container">
     <div class="row">
         @using (Html.BeginForm("SearchResults", "Search", FormMethod.Get))
