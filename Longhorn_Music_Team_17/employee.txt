@@ -1,0 +1,475 @@
+String strEmail = "jacobs@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Jacobs",
+		FirstName = "Todd",
+		MiddleInitial = "L",
+		StreetAddress = "4564 Elm St.",
+		ZipCode = "77003",
+		PhoneNumber = "8176593544"
+	};
+	userManager.Create(userToInsert, "tj2222");
+}
+
+String strEmail = "rice@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Rice",
+		FirstName = "Eryn",
+		MiddleInitial = "M",
+		StreetAddress = "3405 Rio Grande",
+		ZipCode = "75261",
+		PhoneNumber = "2148475583"
+	};
+	userManager.Create(userToInsert, "ricearoni");
+}
+
+String strEmail = "ingram@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Ingram",
+		FirstName = "Brad",
+		MiddleInitial = "S",
+		StreetAddress = "6548 La Posada Ct.",
+		ZipCode = "78705",
+		PhoneNumber = "5126978613"
+	};
+	userManager.Create(userToInsert, "ingram45");
+}
+
+String strEmail = "taylor@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Taylor",
+		FirstName = "Allison",
+		MiddleInitial = "R",
+		StreetAddress = "467 Nueces St.",
+		ZipCode = "75237",
+		PhoneNumber = "2148965621"
+	};
+	userManager.Create(userToInsert, "BU9563");
+}
+
+String strEmail = "martinez@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Martinez",
+		FirstName = "Gregory",
+		MiddleInitial = "R",
+		StreetAddress = "8295 Sunset Blvd.",
+		ZipCode = "78239",
+		PhoneNumber = "2105788965"
+	};
+	userManager.Create(userToInsert, "marty");
+}
+
+String strEmail = "sheffield@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Sheffield",
+		FirstName = "Martin",
+		MiddleInitial = "J",
+		StreetAddress = "3886 Avenue A",
+		ZipCode = "78736",
+		PhoneNumber = "5124678821"
+	};
+	userManager.Create(userToInsert, "longhorns");
+}
+
+String strEmail = "macleod@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "MacLeod",
+		FirstName = "Jennifer",
+		MiddleInitial = "D",
+		StreetAddress = "2504 Far West Blvd.",
+		ZipCode = "78731",
+		PhoneNumber = "5124653365"
+	};
+	userManager.Create(userToInsert, "smitty");
+}
+
+String strEmail = "tanner@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Tanner",
+		FirstName = "Jeremy",
+		MiddleInitial = "S",
+		StreetAddress = "4347 Almstead",
+		ZipCode = "78761",
+		PhoneNumber = "5129457399"
+	};
+	userManager.Create(userToInsert, "tanman");
+}
+
+String strEmail = "rhodes@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Rhodes",
+		FirstName = "Megan",
+		MiddleInitial = "C",
+		StreetAddress = "4587 Enfield Rd.",
+		ZipCode = "78293",
+		PhoneNumber = "2102449976"
+	};
+	userManager.Create(userToInsert, "countryrhodes");
+}
+
+String strEmail = "stuart@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Stuart",
+		FirstName = "Eric",
+		MiddleInitial = "F",
+		StreetAddress = "5576 Toro Ring",
+		ZipCode = "78279",
+		PhoneNumber = "2105344627"
+	};
+	userManager.Create(userToInsert, "stewboy");
+}
+
+String strEmail = "chung@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Chung",
+		FirstName = "Lisa",
+		MiddleInitial = "N",
+		StreetAddress = "234 RR 12",
+		ZipCode = "78268",
+		PhoneNumber = "2106983548"
+	};
+	userManager.Create(userToInsert, "lisssa");
+}
+
+String strEmail = "swanson@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Swanson",
+		FirstName = "Leon",
+		MiddleInitial = "",
+		StreetAddress = "245 River Rd",
+		ZipCode = "78731",
+		PhoneNumber = "5124748138"
+	};
+	userManager.Create(userToInsert, "swansong");
+}
+
+String strEmail = "loter@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Loter",
+		FirstName = "Wanda",
+		MiddleInitial = "K",
+		StreetAddress = "3453 RR 3235",
+		ZipCode = "78732",
+		PhoneNumber = "5124579845"
+	};
+	userManager.Create(userToInsert, "lottery");
+}
+
+String strEmail = "white@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "White",
+		FirstName = "Jason",
+		MiddleInitial = "M",
+		StreetAddress = "12 Valley View",
+		ZipCode = "77045",
+		PhoneNumber = "8174955201"
+	};
+	userManager.Create(userToInsert, "123456");
+}
+
+String strEmail = "montgomery@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Montgomery",
+		FirstName = "Wilda",
+		MiddleInitial = "K",
+		StreetAddress = "210 Blanco Dr",
+		ZipCode = "77030",
+		PhoneNumber = "8178746718"
+	};
+	userManager.Create(userToInsert, "monty3");
+}
+
+String strEmail = "morales@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Morales",
+		FirstName = "Hector",
+		MiddleInitial = "N",
+		StreetAddress = "4501 RR 140",
+		ZipCode = "77031",
+		PhoneNumber = "8177458615"
+	};
+	userManager.Create(userToInsert, "hecktour");
+}
+
+String strEmail = "rankin@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Rankin",
+		FirstName = "Mary",
+		MiddleInitial = "T",
+		StreetAddress = "340 Second St",
+		ZipCode = "78703",
+		PhoneNumber = "5122926966"
+	};
+	userManager.Create(userToInsert, "rankmary");
+}
+
+String strEmail = "walker@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Walker",
+		FirstName = "Larry",
+		MiddleInitial = "G",
+		StreetAddress = "9 Bison Circle",
+		ZipCode = "75238",
+		PhoneNumber = "2143125897"
+	};
+	userManager.Create(userToInsert, "walkamile");
+}
+
+String strEmail = "chang@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Chang",
+		FirstName = "George",
+		MiddleInitial = "M",
+		StreetAddress = "9003 Joshua St",
+		ZipCode = "78260",
+		PhoneNumber = "2103450925"
+	};
+	userManager.Create(userToInsert, "changalang");
+}
+
+String strEmail = "gonzalez@longhornsmusic.com";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "Gonzalez",
+		FirstName = "Gwen",
+		MiddleInitial = "J",
+		StreetAddress = "103 Manor Rd",
+		ZipCode = "75260",
+		PhoneNumber = "2142345566"
+	};
+	userManager.Create(userToInsert, "gg2003");
+}
+
+String strEmail = "";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "",
+		FirstName = "",
+		MiddleInitial = "",
+		StreetAddress = "",
+		ZipCode = "",
+		PhoneNumber = ""
+	};
+	userManager.Create(userToInsert, "");
+}
+
+String strEmail = "";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "",
+		FirstName = "",
+		MiddleInitial = "",
+		StreetAddress = "",
+		ZipCode = "",
+		PhoneNumber = ""
+	};
+	userManager.Create(userToInsert, "");
+}
+
+String strEmail = "";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "",
+		FirstName = "",
+		MiddleInitial = "",
+		StreetAddress = "",
+		ZipCode = "",
+		PhoneNumber = ""
+	};
+	userManager.Create(userToInsert, "");
+}
+
+String strEmail = "";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "",
+		FirstName = "",
+		MiddleInitial = "",
+		StreetAddress = "",
+		ZipCode = "",
+		PhoneNumber = ""
+	};
+	userManager.Create(userToInsert, "");
+}
+
+String strEmail = "";
+if (!(db.Users.Any(u => u.UserName == strEmail)))
+{
+	var userStore == new UserStore<AppUser>(db);
+	var userManager = new UserManager<AppUser>(userStore);
+	var userToInsert = new AppUser
+{
+		UserName = strEmail,
+		Email = strEmail,
+		LastName = "",
+		FirstName = "",
+		MiddleInitial = "",
+		StreetAddress = "",
+		ZipCode = "",
+		PhoneNumber = ""
+	};
+	userManager.Create(userToInsert, "");
+}
+
