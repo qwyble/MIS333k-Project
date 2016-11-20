@@ -1,0 +1,63 @@
+﻿@model Longhorn_Music_Team_17.Models.IndexViewModel
+@{
+    ViewBag.Title = "Edit Account";
+}
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>First Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </dd>
+            <dt>Last Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </dd>
+            <dt>Email:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </dd>
+            <dt>Phone:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </dd>
+            <dt>Address:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
+            </dd>
+            <dt>ZipCode:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+            </dd>
+            <dt>Password:</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Change your password", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Create", "SetPassword")
+                }
+                ]
+            </dd>
+            
+        </dl>
+    </div>
+<input type="submit" />
+}
