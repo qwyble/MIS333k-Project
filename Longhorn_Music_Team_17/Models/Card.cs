@@ -24,7 +24,7 @@ namespace Longhorn_Music_Team_17.Models
 
 
         [Display(Name = "Credit Card Number")]
-        public Int64 CardNum { get; set; }
+        public string CardNum { get; set; }
 
 
         public Int32 CVV { get; set; }
