@@ -2,9 +2,7 @@
 @{
     ViewBag.Title = "Account Details";
 }
-
 <h2>@ViewBag.Title.</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4></h4>
@@ -47,6 +45,24 @@
             }
             ]
         </dd>
-        <dt>@Html.ActionLink("Edit", "Edit")</dt>
-    </dl>
+        <dt>Credit Cards:</dt>
+        <dd>
+            @if (@ViewBag.CardInfo != null)
+            {
+                <i>@ViewBag.CardInfo[0]</i> @:  ************@ViewBag.CardInfo[1]
+            }
+        </dd>
+        <dd>
+            @if (ViewBag.CardInfo.Count > 2)
+            {
+            <i>@ViewBag.CardInfo[2]</i> @:  ************@ViewBag.CardInfo[3]
+            }
+    </dd>
+    <dd>
+        [
+        @Html.ActionLink("Add/Remove", "CardEdit")
+        ]
+    </dd>
+    <dt>@Html.ActionLink("Edit", "Edit")</dt>
+</dl>
 </div>

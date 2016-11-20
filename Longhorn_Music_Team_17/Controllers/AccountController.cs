@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Linq;
+using System.Collections.Generic;
 //Change the namespace here to match your project's name
 namespace Longhorn_Music_Team_17.Controllers
 {
@@ -32,7 +34,7 @@ namespace Longhorn_Music_Team_17.Controllers
         {
         }
 
-        public AccountController(AppUserManager userManager, AppSignInManager signInManager )
+        public AccountController(AppUserManager userManager, AppSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -44,9 +46,9 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<AppSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -100,7 +102,7 @@ namespace Longhorn_Music_Team_17.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
-        }  
+        }
 
         //
         // GET: /Account/Register
@@ -121,7 +123,7 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 //TODO: Add fields to user here so they will be saved to the database
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode  };
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode };
 
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -134,7 +136,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 if (result.Succeeded) //user was created successfully
                 {
                     //sign the user in
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     //send them to the home page
                     return RedirectToAction("Index", "Home");
@@ -199,9 +201,25 @@ namespace Longhorn_Music_Team_17.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-            
+
             var userId = User.Identity.GetUserId();
             var user = UserManager.FindById(userId);
+            //get the credit cards
+            var cardQuery = from c in user.Cards
+                            from cd in db.Cards
+                            where cd.CardID == c.CardID
+                            select cd;
+            var Cards = cardQuery.ToList();
+            List<string> CardsList = new List<string>();
+            //mask the cardnumber and add to viewbag        
+            foreach (Card c in Cards)
+            {
+                string cardNumString = c.CardNum.ToString();
+                CardsList.Add(c.CardType.ToString());
+                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
+            }
+            ViewBag.CardInfo = CardsList;
+            //create user viewmodel
             var model = new IndexViewModel
             {
                 FirstName = user.FirstName,
@@ -210,7 +228,6 @@ namespace Longhorn_Music_Team_17.Controllers
                 PhoneNumber = user.PhoneNumber,
                 StreetAddress = user.StreetAddress,
                 ZipCode = user.ZipCode,
-                Cards = user.Cards,
                 Orders = user.Orders,
 
                 HasPassword = HasPassword(),
@@ -228,6 +245,23 @@ namespace Longhorn_Music_Team_17.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = UserManager.FindById(userId);
+            //get the credit cards
+            var cardQuery = from c in user.Cards
+                            from cd in db.Cards
+                            where cd.CardID == c.CardID
+                            select cd;
+            var Cards = cardQuery.ToList();
+            List<string> CardsList = new List<string>();
+            //mask the cardnumber and add to viewbag
+
+            foreach (Card c in Cards)
+            {
+                string cardNumString = c.CardNum.ToString();
+                CardsList.Add(c.CardType.ToString());
+                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
+            }
+            ViewBag.CardInfo = CardsList;
+            //set up the view model
             var model = new IndexViewModel
             {
                 FirstName = user.FirstName,
@@ -236,7 +270,6 @@ namespace Longhorn_Music_Team_17.Controllers
                 PhoneNumber = user.PhoneNumber,
                 StreetAddress = user.StreetAddress,
                 ZipCode = user.ZipCode,
-                Cards = user.Cards,
                 Orders = user.Orders,
 
                 HasPassword = HasPassword()
@@ -259,7 +292,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 user.PhoneNumber = IndexViewModel.PhoneNumber;
                 user.StreetAddress = IndexViewModel.StreetAddress;
                 user.ZipCode = IndexViewModel.ZipCode;
-               
+
                 var result = await UserManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
@@ -270,6 +303,13 @@ namespace Longhorn_Music_Team_17.Controllers
                 return RedirectToAction("Index");
             }
             return View(@IndexViewModel);
+        }
+
+        //method to edit card information
+        public ActionResult CardEdit()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View();
         }
 
 
@@ -304,7 +344,7 @@ namespace Longhorn_Music_Team_17.Controllers
             base.Dispose(disposing);
         }
 
-       
+
         private IAuthenticationManager AuthenticationManager
         {
             get
