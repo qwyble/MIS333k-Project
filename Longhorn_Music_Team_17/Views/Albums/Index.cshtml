@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Longhorn_Music_Team_17.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" }) <br />
+        <input type="submit" value="Search" class="btn btn-default" />
+        @Html.ActionLink("Advanced Search", "DetailedSearch", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
+    </p>
+} 
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Artists)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ratings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumPrice)
+        </th>
+       @* <th>
+        @Html.DisplayNameFor(model => model.FeaturedAlbum)
+    </th>*@
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.AlbumTitle, "Details", "Albums", new { id = item.AlbumID }, null)
+        </td>
+
+        <td>
+            @foreach (var genre in item.Genres)
+                {
+                @Html.DisplayFor(modelitem => genre.GenreName)  if (item.Genres.IndexOf(genre) < item.Genres.Count - 1)
+                    {
+                    <span> &amp;</span> <br />
+                }
+            }
+        </td>
+      
+        @*<td>
+        @Html.DisplayFor(modelItem => item.Genres.FirstOrDefault().GenreName)
+          </td> *@
+
+        <td>
+            @foreach (var artist in item.Artists)
+                {
+                @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Artists.IndexOf(artist) < item.Artists.Count - 1)
+                    {
+                    <span> &amp;</span> <br />
+                }
+            }
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountedPrice)
+        </td>
+
+        
+       
+         @*<td>
+        @Html.DisplayFor(modelItem => item.FeaturedAlbum)
+    </td>*@
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
+        </td>
+    </tr>
+}
+
+</table>
+

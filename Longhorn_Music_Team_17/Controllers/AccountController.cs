@@ -123,20 +123,26 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 //TODO: Add fields to user here so they will be saved to the database
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode };
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode, City = model.City, State = model.State };
 
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //TODO: Once you get roles working, you may want to add users to roles upon creation
-                //await UserManager.AddToRoleAsync(user.Id, "User"); //adds user to role called "User"
-                // --OR--
-                //await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+
 
                 if (result.Succeeded) //user was created successfully
                 {
-                    //sign the user in
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    if (User.IsInRole("Manager"))
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Employee");
+                    }
+                    else
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Customer");
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+
 
                     //send them to the home page
                     return RedirectToAction("Index", "Home");

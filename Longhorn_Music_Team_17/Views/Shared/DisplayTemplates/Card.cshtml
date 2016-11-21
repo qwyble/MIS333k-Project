@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Longhorn_Music_Team_17.Models.Card>
+
+<table class="table">
+  
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CVV)
+        </td>       
+    </tr>
+}
+
+</table>

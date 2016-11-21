@@ -1,0 +1,118 @@
+﻿@model Longhorn_Music_Team_17.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumTitle) 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumTitle) (@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artists)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artists.FirstOrDefault().ArtistName)
+        </dd>  
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+      
+        <dd>
+            @Html.DisplayFor(model => model.Genres.FirstOrDefault().GenreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ratings.FirstOrDefault().RatingScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumPrice)
+        </dt>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.AlbumPrice)
+        </dd> *@
+        <dd>
+            @if (Model.AlbumPrice != Model.DiscountedPrice)
+            {
+        <strike>@Html.DisplayFor(model => model.AlbumPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
+             }
+    else
+    {
+        @Html.DisplayFor(model => model.AlbumPrice)
+    }
+</dd>
+ @if (Model.AlbumPrice != Model.DiscountedPrice)
+ {
+    <dt>
+        Savings
+    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiscountAmount)
+        </dd>
+
+        @*<dt>
+        @Html.DisplayNameFor(model => model.FeaturedAlbum)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FeaturedAlbum)
+    </dd> *@
+ }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) |
+    @Html.ActionLink("Back to Song Search", "Index", "Songs") |
+    @Html.ActionLink("Back to Album Search", "Index", "Albums") |
+    @Html.ActionLink("Back to Artist Search", "Index", "Artists")
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Artist Information
+        </th>
+    </tr>
+    @foreach (var artist in Model.Artists)
+    {
+        <tr>
+            <td>@Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null)</td>
+        </tr>
+    }
+</table>
+
+<table class="table table-bordered">
+    <tr>       
+        <th>
+            Album Songs and Information
+        </th>
+                
+    </tr>
+        @foreach (var item in Model.Songs)
+        {
+        <tr>                   
+                    <td>@Html.ActionLink(item.SongTitle, "Details", "Songs", new { id = item.SongID }, null)</td>           
+        </tr>
+        }
+</table>
+

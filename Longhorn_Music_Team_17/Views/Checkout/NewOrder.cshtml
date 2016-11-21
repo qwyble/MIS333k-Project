@@ -1,0 +1,134 @@
+﻿@model Longhorn_Music_Team_17.ViewModels.CheckoutViewModel
+
+@{
+    ViewBag.Title = "NewOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style type="text/css">
+    .none {
+        display: none;
+    }
+</style>
+
+<h2>New Order</h2>
+<br />
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    
+        <h4>Order Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Subtotal</dt>
+            <dd>@Html.DisplayFor(model => model.Subtotal)</dd>
+            <dt>Tax</dt>
+            <dd>@Html.DisplayFor(model => model.Tax)</dd>
+            <dt>Total</dt>
+            <dd>@Html.DisplayFor(model => model.Total)</dd>
+        </dl>
+        
+        <h4>Payment Detail</h4>
+        <hr />
+        <div class="form-horizontal">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script type="text/javascript">
+
+                $(function () {
+                    $('.form-horizontal input[type="radio"]').change(function () {
+                        var option = $(this).val();
+                        $('.card-option').addClass('none');
+                        $('#' + option).removeClass('none');
+                    });
+                });
+
+
+            </script>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <span class="control-label col-md-2">Payment Option</span>
+
+                <div class="col-md-10">
+                    <input type="radio" name="CardOption" value="ExistingCard" checked> Existing Card
+                    <input type="radio" name="CardOption" value="NewCard"> New Card
+                </div>
+            </div>
+
+
+
+            <div id="ExistingCard" class="card-option">
+                <div class="form-group">
+                    <span class="control-label col-md-2">Select Card</span>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.SelectedCardNumber, Model.ListOfCards, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div id="NewCard" class="card-option none">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CardNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExpDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ExpDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExpDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CVV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <h4>Gift</h4>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsGift, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsGift)
+                        @Html.ValidationMessageFor(model => model.IsGift, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GiftEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GiftEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GiftEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Review Order" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

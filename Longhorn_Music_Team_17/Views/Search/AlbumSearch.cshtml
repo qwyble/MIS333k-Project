@@ -100,16 +100,22 @@
                     {
                         <tr>
                             <td class="filterable-cell" , width="40%">
-                                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Details", new { id = item.AlbumID })  <!--should be updated when page is added-->
+                                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Albums", new { id = item.AlbumID })  <!--should be updated when page is added-->
                             </td>
                             <td class="filterable-cell" , width="30%">
-                                @Html.DisplayFor(modelItem => item.Artists.FirstOrDefault().ArtistName)
+                                @foreach (var artist in item.Artists)
+                                 {
+                                    @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Artists.IndexOf(artist) < item.Artists.Count - 1)
+                                 {
+                                        <span> &amp;</span> <br />
+                                    }
+                                }
                             </td>
                             <td class="filterable-cell" , width="20%">
-                                @Html.DisplayFor(modelItem => item.AlbumID)
+                                 @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore) @*TODO: change to show average*@
                             </td>
                             <td class="filterable-cell" , width="10%">
-                                @Html.DisplayFor(modelItem => item.AlbumPrice)
+                                @Html.DisplayFor(modelItem => item.DiscountedPrice)
                             </td>
                         </tr>
                     }
