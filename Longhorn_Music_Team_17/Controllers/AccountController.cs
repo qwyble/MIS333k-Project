@@ -214,8 +214,8 @@ namespace Longhorn_Music_Team_17.Controllers
             //mask the cardnumber and add to viewbag        
             foreach (Card c in Cards)
             {
-                string cardNumString = c.CardNum.ToString();
-                CardsList.Add(c.CardType.ToString());
+                string cardNumString = c.CardNumber.ToString();
+                CardsList.Add(c.Type.ToString());
                 CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
             }
             ViewBag.CardInfo = CardsList;
@@ -256,8 +256,8 @@ namespace Longhorn_Music_Team_17.Controllers
 
             foreach (Card c in Cards)
             {
-                string cardNumString = c.CardNum.ToString();
-                CardsList.Add(c.CardType.ToString());
+                string cardNumString = c.CardNumber.ToString();
+                CardsList.Add(c.Type.ToString());
                 CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
             }
             ViewBag.CardInfo = CardsList;

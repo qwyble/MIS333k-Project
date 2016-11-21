@@ -5,6 +5,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 //Change the namespace here to match your project's name
 namespace Longhorn_Music_Team_17.Models
@@ -18,7 +20,9 @@ namespace Longhorn_Music_Team_17.Models
         public String MiddleInitial { get; set; }
         public String LastName { get; set; }
         public String StreetAddress { get; set; }
-        public Int32 ZipCode { get; set; }
+        public String ZipCode { get; set; }
+        public String City { get; set; }
+        public String State { get; set; }
 
         //navigational properties 
         //TODO: DO THESE GO HERE?
@@ -39,7 +43,30 @@ namespace Longhorn_Music_Team_17.Models
 
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        //TODO: Add your dbSets here.  As an example, I've included one for products
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+            }
+        }
+        
         //Remember - the IdentityDbContext already contains a db set for Users.  If you add another one, your code will break
         public DbSet<Song> Songs { get; set; }
         public DbSet<Album> Albums { get; set; }
@@ -50,8 +77,9 @@ namespace Longhorn_Music_Team_17.Models
         public DbSet<Card> Cards { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
-        //public System.Data.Entity.DbSet<Longhorn_Music_Team_17.Models.ViewModel> ViewModels { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
+        
 
         public AppDbContext()
             : base("MyDbConnection", throwIfV1Schema: false)
@@ -62,7 +90,6 @@ namespace Longhorn_Music_Team_17.Models
         {
             return new AppDbContext();
         }
-
-       // public System.Data.Entity.DbSet<Longhorn_Music_Team_17.Models.AppUser> AppUsers { get; set; }
+       
     }
 }

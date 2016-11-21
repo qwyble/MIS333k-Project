@@ -62,10 +62,16 @@ namespace Longhorn_Music_Team_17.Models
         [Display(Name = "Street Address")]
         public String StreetAddress { get; set; }
 
+        [Required(ErrorMessage = "Please enter city.")]
+        public String City { get; set; }
+
+        [Required(ErrorMessage = "Please enter state.")]
+        public String State { get; set; }
+
         [Required(ErrorMessage = "Please enter zip code.")]
         [Display(Name = "Zip Code")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
-        public Int32 ZipCode { get; set; }
+        public String ZipCode { get; set; }
     }
 
     public class ChangePasswordViewModel
@@ -120,7 +126,7 @@ namespace Longhorn_Music_Team_17.Models
         [Required(ErrorMessage = "Please enter zip code.")]
         [Display(Name = "Zip Code")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]  
-        public Int32 ZipCode { get; set; }
+        public String ZipCode { get; set; }
 
         public virtual List<Order> Orders { get; set; }
         public virtual List<Card> Cards { get; set; }

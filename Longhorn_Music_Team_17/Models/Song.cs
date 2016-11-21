@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Longhorn_Music_Team_17.Models
 {
@@ -16,10 +17,12 @@ namespace Longhorn_Music_Team_17.Models
         [Display(Name = "Song Price")]
         public Decimal SongPrice { get; set; }
 
-        /*public Song()
-        {
-            Genres = new List<Genre>();
-        }  */
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public Decimal DiscountAmount { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public Decimal DiscountedPrice { get { return SongPrice - DiscountAmount; } private set { } }
 
         [Display(Name = "Featured Song")]
         public bool FeaturedSong { get; set; }
@@ -37,9 +40,7 @@ namespace Longhorn_Music_Team_17.Models
 
         [Display(Name = "Rating")]
         public virtual List<Review> Reviews { get; set; }
-
-        public virtual OrderDetail OrderDetail { get; set; } //each song can have only one order detail; bridge table with payload
-
+      
         public virtual List<Rating> Ratings { get; set; }
     }
 }
