@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Longhorn_Music_Team_17.Models.Artist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" }) <br />
+        <input type="submit" value="Search" class="btn btn-default" />
+        @Html.ActionLink("Advanced Search", "DetailedSearch", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
+    </p>
+} 
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtistName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ratings)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>           
+            @Html.ActionLink(item.ArtistName, "Details", "Artists", new { id = item.ArtistID }, null)
+        </td>
+
+        <td>
+            @foreach (var genre in item.Genres)
+                {
+                @Html.DisplayFor(modelitem => genre.GenreName)  if (item.Genres.IndexOf(genre) < item.Genres.Count - 1)
+                    {
+                    <span> &amp;</span> <br />
+                }
+            }
+        </td>
+
+       @* <td>
+        @Html.DisplayFor(modelItem => item.Genres.FirstOrDefault().GenreName) 
+          </td> *@
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtistID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtistID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtistID })
+        </td>
+    </tr>
+}
+
+</table>

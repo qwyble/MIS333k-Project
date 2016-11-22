@@ -1,0 +1,190 @@
+﻿@model Longhorn_Music_Team_17.ViewModels.ReviewViewModel
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Order Details</div>
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <th>
+                Album/Song Title
+            </th>
+
+            <th>
+                Artist
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Price (each)
+            </th>
+           
+           
+
+        </tr>
+
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.RecordID">
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        @Html.ActionLink(item.Album.AlbumTitle, "Details", "Albums", new { id = item.AlbumID }, null)
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.Song.SongTitle, "Details", "Songs", new { id = item.SongID }, null)
+                    }
+                </td>
+
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        foreach (var artist in item.Album.Artists)
+                        {
+                            @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Album.Artists.IndexOf(artist) < item.Album.Artists.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var artist in item.Song.Artists)
+                        {
+                            @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Song.Artists.IndexOf(artist) < item.Song.Artists.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+                    }
+                </td>
+
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        foreach (var rating in item.Album.Ratings)
+                        {
+                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Album.Ratings.IndexOf(rating) < item.Album.Ratings.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var rating in item.Song.Ratings)
+
+                        {
+                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Song.Ratings.IndexOf(rating) < item.Song.Ratings.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+                    }
+                </td>
+
+             
+                <td id="item-count-@item.RecordID">
+                    @item.Count
+                </td>
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        @item.Album.DiscountedPrice
+                    }
+                    else
+                    {
+                        @item.Song.DiscountedPrice 
+                    }
+                </td>
+
+               
+            </tr>
+        }
+        <tr>
+            <td colspan="4">
+                Subtotal
+            </td>
+            <td id="cart-total">
+                @Model.CartTotal
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                Tax
+            </td>
+
+            <td id="cart-total">
+                @Model.Tax
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <strong>Total</strong>
+            </td>
+
+            <td id="cart-total">
+                <strong>@Model.Total</strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+   
+    </div>
+    <br />
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Payment and Gift Details</div>
+        <dl class="dl-horizontal">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CardNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CardNumber)
+            </dd>
+
+            @if (Model.IsGift)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.GiftEmail)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GiftEmail)
+                    @Html.HiddenFor(model => model.GiftEmail)
+                </dd>
+            }
+
+        </dl>
+
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <input type="submit" value="Complete Order" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+
+
+}

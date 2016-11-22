@@ -1,0 +1,199 @@
+﻿@model Longhorn_Music_Team_17.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+       
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/RemoveFromCart", {"id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+    });
+
+</script>
+
+<h3>
+    Review your cart:
+</h3>
+
+<p class="button">
+    @Html.ActionLink("Checkout", "NewOrder", "Checkout")
+</p>
+
+<div id="update-message">
+</div>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Shopping Cart</div>
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <th>
+                Album/Song Title
+            </th>
+
+            <th>
+                Artist
+            </th>
+            <th>
+                Rating
+            </th>                 
+            <th>
+                Price (each)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+            <th></th>
+            
+        </tr>
+
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.RecordID">
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        @Html.ActionLink(item.Album.AlbumTitle, "Details", "Albums", new { id = item.AlbumID }, null)
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.Song.SongTitle, "Details", "Songs", new { id = item.SongID }, null)
+                    }
+                </td>
+
+                <td>      
+                     @if (item.AlbumID != null)
+                     {
+                         foreach (var artist in item.Album.Artists)
+                         {
+                            @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Album.Artists.IndexOf(artist) < item.Album.Artists.Count - 1)
+                             {
+                                <span> &amp;</span> <br />
+                             }
+                         }
+                     }
+                     else
+                     {
+                         foreach (var artist in item.Song.Artists)
+                         {
+                        @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Song.Artists.IndexOf(artist) < item.Song.Artists.Count - 1)
+                             {
+                            <span> &amp;</span> <br />
+                             }
+                         }
+                     }
+                </td>
+
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        foreach (var rating in item.Album.Ratings)
+                        {
+                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Album.Ratings.IndexOf(rating) < item.Album.Ratings.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var rating in item.Song.Ratings)
+
+                        {
+                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Song.Ratings.IndexOf(rating) < item.Song.Ratings.Count - 1)
+                            {
+                                <span> &amp;</span> <br />
+                            }
+                        }
+                    }
+                </td>
+                       
+              @*  <td>
+        @if (item.AlbumID != null)
+        {
+            @item.Album.DiscountedPrice
+        }
+        else
+
+        {
+            @item.Song.DiscountedPrice
+        }
+    </td> *@
+
+                <td id="item-count-@item.RecordID">
+                    @item.Count
+                </td>
+                <td>
+                    @if (item.AlbumID != null)
+                    {
+                        @(item.Album.DiscountedPrice * item.Count)
+                    }
+                    else
+                    {
+                        @(item.Song.DiscountedPrice * @item.Count)
+                    }
+                </td>
+
+                <td>
+                    <a href="#" class="RemoveLink"
+                       data-id="@item.RecordID">
+                        Remove from cart
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="5">
+                Subtotal
+            </td>                         
+            <td id="cart-total">
+                @Model.CartTotal
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td colspan="5">
+                Tax
+            </td>
+          
+            <td id="cart-total">
+                @Model.Tax
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <strong>Total</strong>
+            </td>
+     
+            <td id="cart-total">
+                <strong>@Model.Total</strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+ </div>

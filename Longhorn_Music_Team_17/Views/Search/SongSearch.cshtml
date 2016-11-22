@@ -105,19 +105,34 @@
                     {
                         <tr>
                             <td class="filterable-cell" width="30%">
-                                @Html.ActionLink(item.SongTitle ?? "-untitled", "Details", "Details", new { it = item.SongID })
+                                @Html.ActionLink(item.SongTitle ?? "-untitled", "Details", "Songs", new { id = item.SongID }, null)
                             </td>
                             <td class="filterable-cell" width="25%">
-                                @Html.DisplayFor(modelItem => item.Artists.FirstOrDefault().ArtistName)
+                                @foreach (var artist in item.Artists)
+                                {
+                                    @Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null)  if (item.Artists.IndexOf(artist) < item.Artists.Count - 1)
+                                    {
+                                        <span> &amp;</span> <br />
+                                    }
+                                }
                             </td>
                             <td class="filterable-cell" width="10%">
-                                @Html.DisplayFor(modelItem => item.SongPrice)
+                               @Html.DisplayFor(modelItem => item.DiscountedPrice)
                             </td>
                             <td class="filterable-cell" width="10%">
-                                @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore)
+                              @if (item.Ratings.ToList().Any())
+                                {
+                                 @item.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
+                                }
                             </td>
                             <td class="filterable-cell" width="25%">
-                                @Html.DisplayFor(modelItem => item.Albums.FirstOrDefault().AlbumTitle)
+                                @foreach (var album in item.Albums)
+                                {
+                                    @Html.ActionLink(album.AlbumTitle, "Details", "Albums", new { id = album.AlbumID }, null)  if (item.Albums.IndexOf(album) < item.Albums.Count - 1)
+                                    {
+                                        <span> &amp;</span> <br />
+                                    }
+                                }
                             </td>
                         </tr>
                     }

@@ -28,7 +28,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Christopher",
                     MiddleInitial = "L",
                     StreetAddress = "1245 Lake Austin Blvd",
-                    ZipCode = 78733,
+                    ZipCode = "78733",
                     PhoneNumber = "5125571146"
                 };
                 userManager.Create(userToInsert, "hello");
@@ -45,7 +45,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     LastName = "Banks",
                     FirstName = "Michelle",
                     StreetAddress = "1300 Tall Pine Lane",
-                    ZipCode = 78261,
+                    ZipCode = "78261",
                     PhoneNumber = "2102678873"
                 };
                 userManager.Create(userToInsert, "555555");
@@ -63,7 +63,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Franco",
                     MiddleInitial = "V",
                     StreetAddress = "62 Browning Rd",
-                    ZipCode = 77019,
+                    ZipCode = "77019",
                     PhoneNumber = "8175659699"
                 };
                 userManager.Create(userToInsert, "666666");
@@ -81,7 +81,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Wendy",
                     MiddleInitial = "L",
                     StreetAddress = "202 Bellmont Hall",
-                    ZipCode = 78713,
+                    ZipCode = "78713",
                     PhoneNumber = "5125943222"
                 };
                 userManager.Create(userToInsert, "texas");
@@ -99,7 +99,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Lim",
                     MiddleInitial = "",
                     StreetAddress = "1600 Teresa Lane",
-                    ZipCode = 78266,
+                    ZipCode = "78266",
                     PhoneNumber = "2107724599"
                 };
                 userManager.Create(userToInsert, "austin");
@@ -117,7 +117,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Shan",
                     MiddleInitial = "D",
                     StreetAddress = "234 Holston Circle",
-                    ZipCode = 75208,
+                    ZipCode = "75208",
                     PhoneNumber = "2142643255"
                 };
                 userManager.Create(userToInsert, "11111111");
@@ -136,7 +136,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Lou Ann",
                     MiddleInitial = "K",
                     StreetAddress = "600 S 8th Street W",
-                    ZipCode = 77010,
+                    ZipCode = "77010",
                     PhoneNumber = "8172556749"
                 };
                 userManager.Create(userToInsert, "aggies");
@@ -155,7 +155,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Tesa",
                     MiddleInitial = "P",
                     StreetAddress = "4448 Fairview Ave.",
-                    ZipCode = 77009,
+                    ZipCode = "77009",
                     PhoneNumber = "8173255687"
                 };
                 userManager.Create(userToInsert, "raiders");
@@ -173,7 +173,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Margaret",
                     MiddleInitial = "L",
                     StreetAddress = "594 Longview",
-                    ZipCode = 77003,
+                    ZipCode = "77003",
                     PhoneNumber = "8176593544"
                 };
                 userManager.Create(userToInsert, "mustangs");
@@ -191,7 +191,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Charles",
                     MiddleInitial = "E",
                     StreetAddress = "One Cowboy Pkwy",
-                    ZipCode = 75261,
+                    ZipCode = "75261",
                     PhoneNumber = "2148475583"
                 };
                 userManager.Create(userToInsert, "mydog");
@@ -210,7 +210,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Jeffrey",
                     MiddleInitial = "T",
                     StreetAddress = "337 38th St.",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5126978613"
                 };
                 userManager.Create(userToInsert, "jeffh");
@@ -229,7 +229,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "John",
                     MiddleInitial = "B",
                     StreetAddress = "4225 North First",
-                    ZipCode = 75237,
+                    ZipCode = "75237",
                     PhoneNumber = "2148965621",
 
                 };
@@ -248,7 +248,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Anthony",
                     MiddleInitial = "J",
                     StreetAddress = "32 NE Garden Ln., Ste 910",
-                    ZipCode = 78239,
+                    ZipCode = "78239",
                     PhoneNumber = "2105788965"
 
                 };
@@ -268,7 +268,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Brad",
                     MiddleInitial = "S",
                     StreetAddress = "6548 La Posada Ct.",
-                    ZipCode = 78736,
+                    ZipCode = "78736",
                     PhoneNumber = "5124678821"
 
                 };
@@ -287,7 +287,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Todd",
                     MiddleInitial = "L",
                     StreetAddress = "4564 Elm St.",
-                    ZipCode = 78731,
+                    ZipCode = "78731",
                     PhoneNumber = "5124653365"
 
                 };
@@ -306,7 +306,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Victoria",
                     MiddleInitial = "M",
                     StreetAddress = "6639 Butterfly Ln.",
-                    ZipCode = 78761,
+                    ZipCode = "78761",
                     PhoneNumber = "5129457399"
 
                 };
@@ -325,7 +325,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Erik",
                     MiddleInitial = "W",
                     StreetAddress = "1300 Netherland St",
-                    ZipCode = 78293,
+                    ZipCode = "78293",
                     PhoneNumber = "2102449976"
 
                 };
@@ -344,7 +344,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Ernest",
                     MiddleInitial = "S",
                     StreetAddress = "3201 Pine Drive",
-                    ZipCode = 78279,
+                    ZipCode = "78279",
                     PhoneNumber = "2105344627"
 
                 };
@@ -363,7 +363,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Chuck",
                     MiddleInitial = "B",
                     StreetAddress = "2345 Rolling Clouds",
-                    ZipCode = 78268,
+                    ZipCode = "78268",
                     PhoneNumber = "2106983548"
 
                 };
@@ -382,7 +382,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Jennifer",
                     MiddleInitial = "D",
                     StreetAddress = "2504 Far West Blvd.",
-                    ZipCode = 78731,
+                    ZipCode = "78731",
                     PhoneNumber = "5124748138"
 
                 };
@@ -402,7 +402,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Elizabeth",
                     MiddleInitial = "P",
                     StreetAddress = "7861 Chevy Chase",
-                    ZipCode = 78732,
+                    ZipCode = "78732",
                     PhoneNumber = "5124579845"
 
                 };
@@ -421,7 +421,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Clarence",
                     MiddleInitial = "A",
                     StreetAddress = "87 Alcedo St.",
-                    ZipCode = 77045,
+                    ZipCode = "77045",
                     PhoneNumber = "8174955201"
 
                 };
@@ -440,7 +440,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Gregory",
                     MiddleInitial = "R",
                     StreetAddress = "8295 Sunset Blvd.",
-                    ZipCode = 77030,
+                    ZipCode = "77030",
                     PhoneNumber = "8178746718"
 
                 };
@@ -460,7 +460,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Charles",
                     MiddleInitial = "R",
                     StreetAddress = "8962 Main St.",
-                    ZipCode = 77031,
+                    ZipCode = "77031",
                     PhoneNumber = "8177458615"
 
                 };
@@ -480,7 +480,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Kelly",
                     MiddleInitial = "T",
                     StreetAddress = "2601 Red River",
-                    ZipCode = 78703,
+                    ZipCode = "78703",
                     PhoneNumber = "5122926966"
 
                 };
@@ -500,7 +500,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Joe",
                     MiddleInitial = "C",
                     StreetAddress = "1249 4th SW St.",
-                    ZipCode = 75238,
+                    ZipCode = "75238",
                     PhoneNumber = "2143125897"
 
                 };
@@ -520,7 +520,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Bill",
                     MiddleInitial = "T",
                     StreetAddress = "8800 Gringo Drive",
-                    ZipCode = 78260,
+                    ZipCode = "78260",
                     PhoneNumber = "2103450925"
 
                 };
@@ -539,7 +539,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Anka",
                     MiddleInitial = "L",
                     StreetAddress = "1300 Elliott Pl",
-                    ZipCode = 75260,
+                    ZipCode = "75260",
                     PhoneNumber = "2142345566"
 
                 };
@@ -559,7 +559,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Megan",
                     MiddleInitial = "C",
                     StreetAddress = "4587 Enfield Rd.",
-                    ZipCode = 78707,
+                    ZipCode = "78707",
                     PhoneNumber = "5123744746"
 
                 };
@@ -579,7 +579,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Eryn",
                     MiddleInitial = "M",
                     StreetAddress = "3405 Rio Grande",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5123876657"
 
                 };
@@ -598,7 +598,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Jorge",
                     MiddleInitial = "",
                     StreetAddress = "6788 Cotter Street",
-                    ZipCode = 77057,
+                    ZipCode = "77057",
                     PhoneNumber = "8178904374"
 
                 };
@@ -618,7 +618,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Allen",
                     MiddleInitial = "B",
                     StreetAddress = "4965 Oak Hill",
-                    ZipCode = 78732,
+                    ZipCode = "78732",
                     PhoneNumber = "5128752943"
 
                 };
@@ -638,7 +638,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Olivier",
                     MiddleInitial = "M",
                     StreetAddress = "255 Toncray Dr.",
-                    ZipCode = 78292,
+                    ZipCode = "78292",
                     PhoneNumber = "2104145678"
 
                 };
@@ -658,7 +658,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Sarah",
                     MiddleInitial = "J",
                     StreetAddress = "332 Avenue C",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5123497810"
 
                 };
@@ -678,7 +678,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "William",
                     MiddleInitial = "T",
                     StreetAddress = "2365 51st St.",
-                    ZipCode = 78709,
+                    ZipCode = "78709",
                     PhoneNumber = "5124510084"
 
                 };
@@ -698,7 +698,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Martin",
                     MiddleInitial = "J",
                     StreetAddress = "3886 Avenue A",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5125479167"
 
                 };
@@ -717,7 +717,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "John",
                     MiddleInitial = "A",
                     StreetAddress = "23 Hidden Forge Dr.",
-                    ZipCode = 78280,
+                    ZipCode = "78280",
                     PhoneNumber = "2108321888"
 
                 };
@@ -736,7 +736,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Dustin",
                     MiddleInitial = "P",
                     StreetAddress = "1212 Rita Rd",
-                    ZipCode = 75221,
+                    ZipCode = "75221",
                     PhoneNumber = "2142346667"
 
                 };
@@ -756,7 +756,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Eric",
                     MiddleInitial = "D",
                     StreetAddress = "5576 Toro Ring",
-                    ZipCode = 78746,
+                    ZipCode = "78746",
                     PhoneNumber = "5128178335"
 
                 };
@@ -776,7 +776,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Peter",
                     MiddleInitial = "L",
                     StreetAddress = "1300 Kellen Circle",
-                    ZipCode = 77018,
+                    ZipCode = "77018",
                     PhoneNumber = "8174560903"
 
                 };
@@ -796,7 +796,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Jeremy",
                     MiddleInitial = "S",
                     StreetAddress = "4347 Almstead",
-                    ZipCode = 77044,
+                    ZipCode = "77044",
                     PhoneNumber = "8174590929"
 
                 };
@@ -816,7 +816,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Allison",
                     MiddleInitial = "R",
                     StreetAddress = "467 Nueces St.",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5124748452"
 
                 };
@@ -837,7 +837,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Rachel",
                     MiddleInitial = "K",
                     StreetAddress = "345 Longview Dr.",
-                    ZipCode = 78705,
+                    ZipCode = "78705",
                     PhoneNumber = "5124512631"
 
                 };
@@ -857,7 +857,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Frank",
                     MiddleInitial = "J",
                     StreetAddress = "5590 Lavell Dr",
-                    ZipCode = 77004,
+                    ZipCode = "77004",
                     PhoneNumber = "8178765543"
 
                 };
@@ -876,7 +876,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Clent",
                     MiddleInitial = "J",
                     StreetAddress = "312 Main St.",
-                    ZipCode = 75315,
+                    ZipCode = "75315",
                     PhoneNumber = "2148471154"
 
                 };
@@ -896,7 +896,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Allen",
                     MiddleInitial = "G",
                     StreetAddress = "679 W. 4th",
-                    ZipCode = 75207,
+                    ZipCode = "75207",
                     PhoneNumber = "2143985638"
 
                 };
@@ -916,7 +916,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Jake",
                     MiddleInitial = "T",
                     StreetAddress = "RR 3287",
-                    ZipCode = 75323,
+                    ZipCode = "75323",
                     PhoneNumber = "2148475244"
 
                 };
@@ -936,7 +936,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Louis",
                     MiddleInitial = "L",
                     StreetAddress = "2500 Padre Blvd",
-                    ZipCode = 78746,
+                    ZipCode = "78746",
                     PhoneNumber = "2145650098"
 
                 };
@@ -956,7 +956,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     FirstName = "Reagan",
                     MiddleInitial = "B",
                     StreetAddress = "447 Westlake Dr.",
-                    ZipCode = 78746,
+                    ZipCode = "78746",
                     PhoneNumber = "5124545242"
 
                 };
