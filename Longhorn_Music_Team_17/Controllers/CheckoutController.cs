@@ -7,6 +7,7 @@ using Longhorn_Music_Team_17.Models;
 using Longhorn_Music_Team_17.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Longhorn_Music_Team_17.Controllers
 {
@@ -15,7 +16,43 @@ namespace Longhorn_Music_Team_17.Controllers
     {
         AppDbContext db = new AppDbContext();
 
+        private AppSignInManager _signInManager;
+        private AppUserManager _userManager;
+        
 
+        public CheckoutController()
+        {
+        }
+
+        public CheckoutController(AppUserManager userManager, AppSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        public AppSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<AppSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public AppUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: Checkout
         public ActionResult NewOrder()
@@ -111,6 +148,16 @@ namespace Longhorn_Music_Team_17.Controllers
                 order = cart.CreateOrder(order);
                 db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
+               if (string.IsNullOrEmpty(model.GiftEmail))
+                {
+                    SendEmailToUser();
+                }
+                else
+                {
+                    SendEmailToGiftReciever(model.GiftEmail);
+                    SendEmailToGiftPurchaser();
+                }
+
                 return RedirectToAction("Complete",
                     new { id = order.OrderID });
 
@@ -123,6 +170,31 @@ namespace Longhorn_Music_Team_17.Controllers
 
             return View(model);
         }
+
+        private void SendEmailToGiftPurchaser()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var body = $@"Dear {user.FirstName}, Thanks for ordering! Your gift has been sent.";
+            EmailMessaging.SendEmail(user.Email, "Order Confirmation", body);
+        }
+
+        private void SendEmailToGiftReciever(string giftEmail)
+        {
+            var user = UserManager.FindByEmail(giftEmail);
+            var body = $@"Dear {user.FirstName}, You have recieved a gift.";
+            EmailMessaging.SendEmail(user.Email, "You have recieved a gift.", body);
+        }
+
+        private void SendEmailToUser()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());          
+            var body = $@"Dear {user.FirstName}, Thanks for ordering!";
+            EmailMessaging.SendEmail(user.Email, "Order Confirmation", body);
+
+
+
+        }
+
         // GET: /Checkout/Complete
 
         public ActionResult Complete(int id)

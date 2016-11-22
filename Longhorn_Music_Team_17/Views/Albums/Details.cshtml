@@ -24,7 +24,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Artists.FirstOrDefault().ArtistName)
+            @foreach (var artist in Model.Artists)
+            {
+                @Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null)  if (Model.Artists.IndexOf(artist) < Model.Artists.Count - 1)
+                {
+                    <span> &amp;</span> <br />
+                }
+            }
         </dd>  
 
         <dt>
@@ -32,7 +38,13 @@
         </dt>
       
         <dd>
-            @Html.DisplayFor(model => model.Genres.FirstOrDefault().GenreName)
+            @foreach (var genre in Model.Genres)
+            {
+                @Html.DisplayFor(model => genre.GenreName)  if (Model.Genres.IndexOf(genre) < Model.Genres.Count - 1)
+                {
+                    <span> &amp;</span> <br />
+                }
+            }
         </dd>
 
         <dt>
@@ -40,7 +52,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Ratings.FirstOrDefault().RatingScore)
+            @if (Model.Ratings.ToList().Any())
+            {
+                @Model.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
+            }
         </dd>
 
         <dt>

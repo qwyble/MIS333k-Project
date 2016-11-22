@@ -212,6 +212,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EmailMessaging.cs" />
     <Compile Include="Migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -219,6 +220,10 @@
     <Compile Include="Migrations\201611210116471_thomas1.cs" />
     <Compile Include="Migrations\201611210116471_thomas1.Designer.cs">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611220253208_Thomas2.cs" />
+    <Compile Include="Migrations\201611220253208_Thomas2.Designer.cs">
+      <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppUsersSeed.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -303,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611210116471_thomas1.resx">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220253208_Thomas2.resx">
+      <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

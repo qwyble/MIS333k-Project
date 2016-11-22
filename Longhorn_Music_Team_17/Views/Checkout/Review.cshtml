@@ -101,7 +101,7 @@
 
              
                 <td id="item-count-@item.RecordID">
-                    @item.Quantity
+                    @item.Count
                 </td>
                 <td>
                     @if (item.AlbumID != null)
@@ -173,6 +173,7 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.GiftEmail)
+                    @Html.HiddenFor(model => model.GiftEmail)
                 </dd>
             }
 

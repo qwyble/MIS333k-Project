@@ -32,6 +32,20 @@
                 @Html.ValidationMessageFor(model => model.SongPrice, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        @if (User.IsInRole("Manager"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiscountAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiscountAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiscountAmount, "", new { @class = "text-danger" })
+                </div>
+            </div> }
+        else
+        {
+            @Html.HiddenFor(model => model.DiscountAmount)
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.FeaturedSong, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -55,6 +69,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

@@ -105,14 +105,17 @@
                             <td class="filterable-cell" , width="30%">
                                 @foreach (var artist in item.Artists)
                                  {
-                                    @Html.DisplayFor(modelitem => artist.ArtistName)  if (item.Artists.IndexOf(artist) < item.Artists.Count - 1)
-                                 {
+                                    @Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null) if (item.Artists.IndexOf(artist) < item.Artists.Count - 1)
+                                    {
                                         <span> &amp;</span> <br />
                                     }
                                 }
                             </td>
                             <td class="filterable-cell" , width="20%">
-                                 @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore) @*TODO: change to show average*@
+                                @if (item.Ratings.ToList().Any())
+                                {
+                                    @item.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
+                                }
                             </td>
                             <td class="filterable-cell" , width="10%">
                                 @Html.DisplayFor(modelItem => item.DiscountedPrice)
