@@ -36,7 +36,8 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         public string ExpDate { get; set; }
-
+        
+        public virtual List<AppUser> AppUsers { get; set; } //i added this back in temporarily
         public Int32 CVV { get; set; }
     }
 }
