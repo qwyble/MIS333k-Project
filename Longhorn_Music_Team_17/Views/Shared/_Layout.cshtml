@@ -28,10 +28,7 @@
                 @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
-                {
-                    @Html.ActionLink("My Account", "Details", "Customer", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
-                }
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
