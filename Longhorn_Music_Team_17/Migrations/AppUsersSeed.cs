@@ -10,958 +10,473 @@ namespace Longhorn_Music_Team_17.Migrations
 {
     public class SeedAppUsers
     {
-
-
+        public static string email = "asdfjk";
         public static AppDbContext db = new AppDbContext();
-
         public static void AddAppUsers()
         {
-            if (!(db.Users.Any(u => u.UserName == "cbaker@freezing.co.uk")))
+            email = "Jacobs@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "cbaker@freezing.co.uk",
-                    Email = "cbaker@freezing.co.uk",
-                    LastName = "Baker",
-                    FirstName = "Christopher",
-                    MiddleInitial = "L",
-                    StreetAddress = "1245 Lake Austin Blvd",
-                    ZipCode = "78733",
-                    PhoneNumber = "5125571146"
-                };
-                userManager.Create(userToInsert, "hello");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "mb@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "mb@aool.com",
-                    Email = "mb@aool.com",
-                    LastName = "Banks",
-                    FirstName = "Michelle",
-                    StreetAddress = "1300 Tall Pine Lane",
-                    ZipCode = "78261",
-                    PhoneNumber = "2102678873"
-                };
-                userManager.Create(userToInsert, "555555");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "fd@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "fd@aool.com",
-                    Email = "fd@aool.com",
-                    LastName = "Broccolo",
-                    FirstName = "Franco",
-                    MiddleInitial = "V",
-                    StreetAddress = "62 Browning Rd",
-                    ZipCode = "77019",
-                    PhoneNumber = "8175659699"
-                };
-                userManager.Create(userToInsert, "666666");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "wendy@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "wendy@ggmail.com",
-                    Email = "wendy@ggmail.com",
-                    LastName = "Chang",
-                    FirstName = "Wendy",
-                    MiddleInitial = "L",
-                    StreetAddress = "202 Bellmont Hall",
-                    ZipCode = "78713",
-                    PhoneNumber = "5125943222"
-                };
-                userManager.Create(userToInsert, "texas");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "limchou@yaho.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "limchou@yaho.com",
-                    Email = "limchou@yaho.com",
-                    LastName = "Chou",
-                    FirstName = "Lim",
-                    MiddleInitial = "",
-                    StreetAddress = "1600 Teresa Lane",
-                    ZipCode = "78266",
-                    PhoneNumber = "2107724599"
-                };
-                userManager.Create(userToInsert, "austin");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "11111111.Dixon@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "11111111.Dixon@aool.com",
-                    Email = "11111111.Dixon@aool.com",
-                    LastName = "Dixon",
-                    FirstName = "Shan",
-                    MiddleInitial = "D",
-                    StreetAddress = "234 Holston Circle",
-                    ZipCode = "75208",
-                    PhoneNumber = "2142643255"
-                };
-                userManager.Create(userToInsert, "11111111");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "louann@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "louann@ggmail.com",
-                    Email = "louann@ggmail.com",
-                    LastName = "Feeley",
-                    FirstName = "Lou Ann",
-                    MiddleInitial = "K",
-                    StreetAddress = "600 S 8th Street W",
-                    ZipCode = "77010",
-                    PhoneNumber = "8172556749"
-                };
-                userManager.Create(userToInsert, "aggies");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "tfreeley@minntonka.ci.state.mn.us")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "tfreeley@minntonka.ci.state.mn.us",
-                    Email = "tfreeley@minntonka.ci.state.mn.us",
-                    LastName = "Freeley",
-                    FirstName = "Tesa",
-                    MiddleInitial = "P",
-                    StreetAddress = "4448 Fairview Ave.",
-                    ZipCode = "77009",
-                    PhoneNumber = "8173255687"
-                };
-                userManager.Create(userToInsert, "raiders");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "mgar@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "mgar@aool.com",
-                    Email = "mgar@aool.com",
-                    LastName = "Garcia",
-                    FirstName = "Margaret",
-                    MiddleInitial = "L",
-                    StreetAddress = "594 Longview",
-                    ZipCode = "77003",
-                    PhoneNumber = "8176593544"
-                };
-                userManager.Create(userToInsert, "mustangs");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "chaley@thug.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "chaley@thug.com",
-                    Email = "chaley@thug.com",
-                    LastName = "Haley",
-                    FirstName = "Charles",
-                    MiddleInitial = "E",
-                    StreetAddress = "One Cowboy Pkwy",
-                    ZipCode = "75261",
-                    PhoneNumber = "2148475583"
-                };
-                userManager.Create(userToInsert, "mydog");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "jeff@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "jeff@ggmail.com",
-                    Email = "jeff@ggmail.com",
-                    LastName = "Hampton",
-                    FirstName = "Jeffrey",
-                    MiddleInitial = "T",
-                    StreetAddress = "337 38th St.",
-                    ZipCode = "78705",
-                    PhoneNumber = "5126978613"
-                };
-                userManager.Create(userToInsert, "jeffh");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "wjhearniii@umch.edu")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "wjhearniii@umch.edu",
-                    Email = "wjhearniii@umch.edu",
-                    LastName = "Hearn",
-                    FirstName = "John",
-                    MiddleInitial = "B",
-                    StreetAddress = "4225 North First",
-                    ZipCode = "75237",
-                    PhoneNumber = "2148965621",
-
-                };
-                userManager.Create(userToInsert, "logicon");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "hicks43@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "hicks43@ggmail.com",
-                    Email = "hicks43@ggmail.com",
-                    LastName = "Hicks",
-                    FirstName = "Anthony",
-                    MiddleInitial = "J",
-                    StreetAddress = "32 NE Garden Ln., Ste 910",
-                    ZipCode = "78239",
-                    PhoneNumber = "2105788965"
-
-                };
-                userManager.Create(userToInsert, "doofus");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "bradsingram@mall.utexas.edu")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "bradsingram@mall.utexas.edu",
-                    Email = "bradsingram@mall.utexas.edu",
-                    LastName = "Ingram",
-                    FirstName = "Brad",
-                    MiddleInitial = "S",
-                    StreetAddress = "6548 La Posada Ct.",
-                    ZipCode = "78736",
-                    PhoneNumber = "5124678821"
-
-                };
-                userManager.Create(userToInsert, "mother");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "mother.Ingram@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "mother.Ingram@aool.com",
-                    Email = "mother.Ingram@aool.com",
+                    UserName = email,
+                    Email = email,
                     LastName = "Jacobs",
                     FirstName = "Todd",
                     MiddleInitial = "L",
                     StreetAddress = "4564 Elm St.",
-                    ZipCode = "78731",
-                    PhoneNumber = "5124653365"
-
+                    ZipCode = "77003",
+                    PhoneNumber = "8176593544"
                 };
-                userManager.Create(userToInsert, "12345");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-            if (!(db.Users.Any(u => u.UserName == "victoria@aool.com")))
+            email = "Rice@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "victoria@aool.com",
-                    Email = "victoria@aool.com",
-                    LastName = "Lawrence",
-                    FirstName = "Victoria",
+                    UserName = email,
+                    Email = email,
+                    LastName = "Rice",
+                    FirstName = "Eryn",
                     MiddleInitial = "M",
-                    StreetAddress = "6639 Butterfly Ln.",
-                    ZipCode = "78761",
-                    PhoneNumber = "5129457399"
-
+                    StreetAddress = "3405 Rio Grande",
+                    ZipCode = "75261",
+                    PhoneNumber = "2148475583"
                 };
-                userManager.Create(userToInsert, "nothing");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-            if (!(db.Users.Any(u => u.UserName == "lineback@flush.net")))
+            email = "Ingram@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "lineback@flush.net",
-                    Email = "lineback@flush.net",
-                    LastName = "Lineback",
-                    FirstName = "Erik",
-                    MiddleInitial = "W",
-                    StreetAddress = "1300 Netherland St",
-                    ZipCode = "78293",
-                    PhoneNumber = "2102449976"
-
-                };
-                userManager.Create(userToInsert, "GoodFellow");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "elowe@netscrape.net")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "elowe@netscrape.net",
-                    Email = "elowe@netscrape.net",
-                    LastName = "Lowe",
-                    FirstName = "Ernest",
+                    UserName = email,
+                    Email = email,
+                    LastName = "Ingram",
+                    FirstName = "Brad",
                     MiddleInitial = "S",
-                    StreetAddress = "3201 Pine Drive",
-                    ZipCode = "78279",
-                    PhoneNumber = "2105344627"
-
+                    StreetAddress = "6548 La Posada Ct.",
+                    ZipCode = "78705",
+                    PhoneNumber = "5126978613"
                 };
-                userManager.Create(userToInsert, "Elbow");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-            if (!(db.Users.Any(u => u.UserName == "luce_chuck@ggmail.com")))
+            email = "Taylor@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "luce_chuck@ggmail.com",
-                    Email = "luce_chuck@ggmail.com",
-                    LastName = "Luce",
-                    FirstName = "Chuck",
-                    MiddleInitial = "B",
-                    StreetAddress = "2345 Rolling Clouds",
-                    ZipCode = "78268",
-                    PhoneNumber = "2106983548"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Taylor",
+                    FirstName = "Allison",
+                    MiddleInitial = "R",
+                    StreetAddress = "467 Nueces St.",
+                    ZipCode = "75237",
+                    PhoneNumber = "2148965621"
                 };
-                userManager.Create(userToInsert, "LuceyDucey");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-            if (!(db.Users.Any(u => u.UserName == "mackcloud@pimpdaddy.com")))
+            email = "Martinez@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "mackcloud@pimpdaddy.com",
-                    Email = "mackcloud@pimpdaddy.com",
+                    UserName = email,
+                    Email = email,
+                    LastName = "Martinez",
+                    FirstName = "Gregory",
+                    MiddleInitial = "R",
+                    StreetAddress = "8295 Sunset Blvd.",
+                    ZipCode = "78239",
+                    PhoneNumber = "2105788965"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+            email = "Sheffield@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
+                    LastName = "Sheffield",
+                    FirstName = "Martin",
+                    MiddleInitial = "J",
+                    StreetAddress = "3886 Avenue A",
+                    ZipCode = "78736",
+                    PhoneNumber = "5124678821"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+            email = "MacLeod@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
                     LastName = "MacLeod",
                     FirstName = "Jennifer",
                     MiddleInitial = "D",
                     StreetAddress = "2504 Far West Blvd.",
                     ZipCode = "78731",
-                    PhoneNumber = "5124748138"
-
+                    PhoneNumber = "5124653365"
                 };
-                userManager.Create(userToInsert, "cloudyday");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "liz@ggmail.com")))
+            email = "Tanner@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "liz@ggmail.com",
-                    Email = "liz@ggmail.com",
-                    LastName = "Markham",
-                    FirstName = "Elizabeth",
-                    MiddleInitial = "P",
-                    StreetAddress = "7861 Chevy Chase",
-                    ZipCode = "78732",
-                    PhoneNumber = "5124579845"
-
-                };
-                userManager.Create(userToInsert, "emarkbark");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "mclarence@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "mclarence@aool.com",
-                    Email = "mclarence@aool.com",
-                    LastName = "Martin",
-                    FirstName = "Clarence",
-                    MiddleInitial = "A",
-                    StreetAddress = "87 Alcedo St.",
-                    ZipCode = "77045",
-                    PhoneNumber = "8174955201"
-
-                };
-                userManager.Create(userToInsert, "smartinmartin");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "smartinmartin.Martin@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "smartinmartin.Martin@aool.com",
-                    Email = "smartinmartin.Martin@aool.com",
-                    LastName = "Martinez",
-                    FirstName = "Gregory",
-                    MiddleInitial = "R",
-                    StreetAddress = "8295 Sunset Blvd.",
-                    ZipCode = "77030",
-                    PhoneNumber = "8178746718"
-
-                };
-                userManager.Create(userToInsert, "grego");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "cmiller@mapster.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "cmiller@mapster.com",
-                    Email = "cmiller@mapster.com",
-                    LastName = "Miller",
-                    FirstName = "Charles",
-                    MiddleInitial = "R",
-                    StreetAddress = "8962 Main St.",
-                    ZipCode = "77031",
-                    PhoneNumber = "8177458615"
-
-                };
-                userManager.Create(userToInsert, "chucky33");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "nelson.Kelly@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "nelson.Kelly@aool.com",
-                    Email = "nelson.Kelly@aool.com",
-                    LastName = "Nelson",
-                    FirstName = "Kelly",
-                    MiddleInitial = "T",
-                    StreetAddress = "2601 Red River",
-                    ZipCode = "78703",
-                    PhoneNumber = "5122926966"
-
-                };
-                userManager.Create(userToInsert, "kn1010");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "jojoe@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "jojoe@ggmail.com",
-                    Email = "jojoe@ggmail.com",
-                    LastName = "Nguyen",
-                    FirstName = "Joe",
-                    MiddleInitial = "C",
-                    StreetAddress = "1249 4th SW St.",
-                    ZipCode = "75238",
-                    PhoneNumber = "2143125897"
-
-                };
-                userManager.Create(userToInsert, "984365dfiop6");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "orielly@foxnets.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "orielly@foxnets.com",
-                    Email = "orielly@foxnets.com",
-                    LastName = "O'Reilly",
-                    FirstName = "Bill",
-                    MiddleInitial = "T",
-                    StreetAddress = "8800 Gringo Drive",
-                    ZipCode = "78260",
-                    PhoneNumber = "2103450925"
-
-                };
-                userManager.Create(userToInsert, "billyboy");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "or@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "or@aool.com",
-                    Email = "or@aool.com",
-                    LastName = "Radkovich",
-                    FirstName = "Anka",
-                    MiddleInitial = "L",
-                    StreetAddress = "1300 Elliott Pl",
-                    ZipCode = "75260",
-                    PhoneNumber = "2142345566"
-
-                };
-                userManager.Create(userToInsert, "radicalone");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "megrhodes@freezing.co.uk")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "megrhodes@freezing.co.uk",
-                    Email = "megrhodes@freezing.co.uk",
-                    LastName = "Rhodes",
-                    FirstName = "Megan",
-                    MiddleInitial = "C",
-                    StreetAddress = "4587 Enfield Rd.",
-                    ZipCode = "78707",
-                    PhoneNumber = "5123744746"
-
-                };
-                userManager.Create(userToInsert, "gohorns");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "erynrice@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "erynrice@aool.com",
-                    Email = "erynrice@aool.com",
-                    LastName = "Rice",
-                    FirstName = "Eryn",
-                    MiddleInitial = "M",
-                    StreetAddress = "3405 Rio Grande",
-                    ZipCode = "78705",
-                    PhoneNumber = "5123876657"
-
-                };
-                userManager.Create(userToInsert, "iloveme");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "jorge@hootmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "jorge@hootmail.com",
-                    Email = "jorge@hootmail.com",
-                    LastName = "Rodriguez",
-                    FirstName = "Jorge",
-                    MiddleInitial = "",
-                    StreetAddress = "6788 Cotter Street",
-                    ZipCode = "77057",
-                    PhoneNumber = "8178904374"
-
-                };
-                userManager.Create(userToInsert, "454545");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "ra@aoo.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "ra@aoo.com",
-                    Email = "ra@aoo.com",
-                    LastName = "Rogers",
-                    FirstName = "Allen",
-                    MiddleInitial = "B",
-                    StreetAddress = "4965 Oak Hill",
-                    ZipCode = "78732",
-                    PhoneNumber = "5128752943"
-
-                };
-                userManager.Create(userToInsert, "hpoi8t244");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "o_st-jean@home.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "o_st-jean@home.com",
-                    Email = "o_st-jean@home.com",
-                    LastName = "Saint-Jean",
-                    FirstName = "Olivier",
-                    MiddleInitial = "M",
-                    StreetAddress = "255 Toncray Dr.",
-                    ZipCode = "78292",
-                    PhoneNumber = "2104145678"
-
-                };
-                userManager.Create(userToInsert, "vb235843");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "ss34@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "ss34@ggmail.com",
-                    Email = "ss34@ggmail.com",
-                    LastName = "Saunders",
-                    FirstName = "Sarah",
-                    MiddleInitial = "J",
-                    StreetAddress = "332 Avenue C",
-                    ZipCode = "78705",
-                    PhoneNumber = "5123497810"
-
-                };
-                userManager.Create(userToInsert, "8f45896");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "willsheff@email.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "willsheff@email.com",
-                    Email = "willsheff@email.com",
-                    LastName = "Sewell",
-                    FirstName = "William",
-                    MiddleInitial = "T",
-                    StreetAddress = "2365 51st St.",
-                    ZipCode = "78709",
-                    PhoneNumber = "5124510084"
-
-                };
-                userManager.Create(userToInsert, "409gtio23");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "sheff44@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "sheff44@ggmail.com",
-                    Email = "sheff44@ggmail.com",
-                    LastName = "Sheffield",
-                    FirstName = "Martin",
-                    MiddleInitial = "J",
-                    StreetAddress = "3886 Avenue A",
-                    ZipCode = "78705",
-                    PhoneNumber = "5125479167"
-
-                };
-                userManager.Create(userToInsert, "k4589h98cx");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "johnsmith187@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "johnsmith187@aool.com",
-                    Email = "johnsmith187@aool.com",
-                    LastName = "Smith",
-                    FirstName = "John",
-                    MiddleInitial = "A",
-                    StreetAddress = "23 Hidden Forge Dr.",
-                    ZipCode = "78280",
-                    PhoneNumber = "2108321888"
-
-                };
-                userManager.Create(userToInsert, "n98k03k9hh");
-            }
-
-            if (!(db.Users.Any(u => u.UserName == "dustroud@mail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "dustroud@mail.com",
-                    Email = "dustroud@mail.com",
-                    LastName = "Stroud",
-                    FirstName = "Dustin",
-                    MiddleInitial = "P",
-                    StreetAddress = "1212 Rita Rd",
-                    ZipCode = "75221",
-                    PhoneNumber = "2142346667"
-
-                };
-                userManager.Create(userToInsert, "d25k758e3");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "eric_stuart@aool.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "eric_stuart@aool.com",
-                    Email = "eric_stuart@aool.com",
-                    LastName = "Stuart",
-                    FirstName = "Eric",
-                    MiddleInitial = "D",
-                    StreetAddress = "5576 Toro Ring",
-                    ZipCode = "78746",
-                    PhoneNumber = "5128178335"
-
-                };
-                userManager.Create(userToInsert, "e09rf0fk0f");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "peterstump@hootmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "peterstump@hootmail.com",
-                    Email = "peterstump@hootmail.com",
-                    LastName = "Stump",
-                    FirstName = "Peter",
-                    MiddleInitial = "L",
-                    StreetAddress = "1300 Kellen Circle",
-                    ZipCode = "77018",
-                    PhoneNumber = "8174560903"
-
-                };
-                userManager.Create(userToInsert, "l0j87j33jbv");
-            }
-
-
-            if (!(db.Users.Any(u => u.UserName == "tanner@ggmail.com")))
-            {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
-                {
-                    UserName = "tanner@ggmail.com",
-                    Email = "tanner@ggmail.com",
+                    UserName = email,
+                    Email = email,
                     LastName = "Tanner",
                     FirstName = "Jeremy",
                     MiddleInitial = "S",
                     StreetAddress = "4347 Almstead",
-                    ZipCode = "77044",
-                    PhoneNumber = "8174590929"
-
+                    ZipCode = "78761",
+                    PhoneNumber = "5129457399"
                 };
-                userManager.Create(userToInsert, "iu73498dd");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "taylordjay@aool.com")))
+            email = "Rhodes@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "taylordjay@aool.com",
-                    Email = "taylordjay@aool.com",
-                    LastName = "Taylor",
-                    FirstName = "Allison",
-                    MiddleInitial = "R",
-                    StreetAddress = "467 Nueces St.",
-                    ZipCode = "78705",
-                    PhoneNumber = "5124748452"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Rhodes",
+                    FirstName = "Megan",
+                    MiddleInitial = "C",
+                    StreetAddress = "4587 Enfield Rd.",
+                    ZipCode = "78293",
+                    PhoneNumber = "2102449976"
                 };
-                userManager.Create(userToInsert, "y87hu9ik");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-
-            if (!(db.Users.Any(u => u.UserName == "y87hu9ik.Taylor@aool.com")))
+            email = "Stuart@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "y87hu9ik.Taylor@aool.com",
-                    Email = "y87hu9ik.Taylor@aool.com",
-                    LastName = "Taylor",
-                    FirstName = "Rachel",
+                    UserName = email,
+                    Email = email,
+                    LastName = "Stuart",
+                    FirstName = "Eric",
+                    MiddleInitial = "F",
+                    StreetAddress = "5576 Toro Ring",
+                    ZipCode = "78279",
+                    PhoneNumber = "2105344627"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+            email = "Chung@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
+                    LastName = "Chung",
+                    FirstName = "Lisa",
+                    MiddleInitial = "N",
+                    StreetAddress = "234 RR 12",
+                    ZipCode = "78268",
+                    PhoneNumber = "2106983548"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+            email = "Swanson@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
+                    LastName = "Swanson",
+                    FirstName = "Leon",
+                    MiddleInitial = "",
+                    StreetAddress = "245 River Rd",
+                    ZipCode = "78731",
+                    PhoneNumber = "5124748138"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+            email = "Loter@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
+                    LastName = "Loter",
+                    FirstName = "Wanda",
                     MiddleInitial = "K",
-                    StreetAddress = "345 Longview Dr.",
-                    ZipCode = "78705",
-                    PhoneNumber = "5124512631"
-
+                    StreetAddress = "3453 RR 3235",
+                    ZipCode = "78732",
+                    PhoneNumber = "5124579845"
                 };
-                userManager.Create(userToInsert, "fio076jfh");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "tee_frank@hootmail.com")))
+            email = "White@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "tee_frank@hootmail.com",
-                    Email = "tee_frank@hootmail.com",
-                    LastName = "Tee",
-                    FirstName = "Frank",
-                    MiddleInitial = "J",
-                    StreetAddress = "5590 Lavell Dr",
-                    ZipCode = "77004",
-                    PhoneNumber = "8178765543"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "White",
+                    FirstName = "Jason",
+                    MiddleInitial = "M",
+                    StreetAddress = "12 Valley View",
+                    ZipCode = "77045",
+                    PhoneNumber = "8174955201"
                 };
-                userManager.Create(userToInsert, "q234k0jiee");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-            if (!(db.Users.Any(u => u.UserName == "tuck33@ggmail.com")))
+            email = "Montgomery@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "tuck33@ggmail.com",
-                    Email = "tuck33@ggmail.com",
-                    LastName = "Tucker",
-                    FirstName = "Clent",
-                    MiddleInitial = "J",
-                    StreetAddress = "312 Main St.",
-                    ZipCode = "75315",
-                    PhoneNumber = "2148471154"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Montgomery",
+                    FirstName = "Wilda",
+                    MiddleInitial = "K",
+                    StreetAddress = "210 Blanco Dr",
+                    ZipCode = "77030",
+                    PhoneNumber = "8178746718"
                 };
-                userManager.Create(userToInsert, "z98ytre38");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "avelasco@yaho.com")))
+            email = "Morales@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "avelasco@yaho.com",
-                    Email = "avelasco@yaho.com",
-                    LastName = "Velasco",
-                    FirstName = "Allen",
-                    MiddleInitial = "G",
-                    StreetAddress = "679 W. 4th",
-                    ZipCode = "75207",
-                    PhoneNumber = "2143985638"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Morales",
+                    FirstName = "Hector",
+                    MiddleInitial = "N",
+                    StreetAddress = "4501 RR 140",
+                    ZipCode = "77031",
+                    PhoneNumber = "8177458615"
                 };
-                userManager.Create(userToInsert, "vq34yx34670");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "westj@pioneer.net")))
+            email = "Rankin@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "westj@pioneer.net",
-                    Email = "westj@pioneer.net",
-                    LastName = "West",
-                    FirstName = "Jake",
+                    UserName = email,
+                    Email = email,
+                    LastName = "Rankin",
+                    FirstName = "Mary",
                     MiddleInitial = "T",
-                    StreetAddress = "RR 3287",
-                    ZipCode = "75323",
-                    PhoneNumber = "2148475244"
-
+                    StreetAddress = "340 Second St",
+                    ZipCode = "78703",
+                    PhoneNumber = "5122926966"
                 };
-                userManager.Create(userToInsert, "ghr89i32k8");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "louielouie@aool.com")))
+            email = "Walker@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "louielouie@aool.com",
-                    Email = "louielouie@aool.com",
-                    LastName = "Winthorpe",
-                    FirstName = "Louis",
-                    MiddleInitial = "L",
-                    StreetAddress = "2500 Padre Blvd",
-                    ZipCode = "78746",
-                    PhoneNumber = "2145650098"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Walker",
+                    FirstName = "Larry",
+                    MiddleInitial = "G",
+                    StreetAddress = "9 Bison Circle",
+                    ZipCode = "75238",
+                    PhoneNumber = "2143125897"
                 };
-                userManager.Create(userToInsert, "kji0338jjg");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
-
-
-            if (!(db.Users.Any(u => u.UserName == "rwood@voyager.net")))
+            email = "Chang@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
             {
-                var userStore = new UserStore<AppUser>(db);
-                var userManager = new UserManager<AppUser>(userStore);
-                var userToInsert = new AppUser
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Manager";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
                 {
-                    UserName = "rwood@voyager.net",
-                    Email = "rwood@voyager.net",
-                    LastName = "Wood",
-                    FirstName = "Reagan",
-                    MiddleInitial = "B",
-                    StreetAddress = "447 Westlake Dr.",
-                    ZipCode = "78746",
-                    PhoneNumber = "5124545242"
-
+                    UserName = email,
+                    Email = email,
+                    LastName = "Chang",
+                    FirstName = "George",
+                    MiddleInitial = "M",
+                    StreetAddress = "9003 Joshua St",
+                    ZipCode = "78260",
+                    PhoneNumber = "2103450925"
                 };
-                userManager.Create(userToInsert, "jz3i0q7");
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
             }
+            email = "Gonzalez@longhornsmusic.com";
+            if (!(db.Users.Any(u => u.UserName == email)))
+            {
+                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
+                string roleName = "Employee";
+                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
+                var userToInsert = new AppUser()
+                {
+                    UserName = email,
+                    Email = email,
+                    LastName = "Gonzalez",
+                    FirstName = "Gwen",
+                    MiddleInitial = "J",
+                    StreetAddress = "103 Manor Rd",
+                    ZipCode = "75260",
+                    PhoneNumber = "2142345566"
+                };
+                AppUser userToAdd = userManager.FindByName(email);
+                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
+                db.SaveChanges();
+            }
+
+
+
         }
     }
 }
