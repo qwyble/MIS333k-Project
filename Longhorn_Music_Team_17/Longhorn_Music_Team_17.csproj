@@ -213,17 +213,137 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EmailMessaging.cs" />
-    <Compile Include="Migrations\201611162212496_users1.cs" />
-    <Compile Include="Migrations\201611162212496_users1.Designer.cs">
+    <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
+    <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611210116471_thomas1.cs" />
-    <Compile Include="Migrations\201611210116471_thomas1.Designer.cs">
+    <Compile Include="Migrations\old migrations\201611210116471_thomas1.cs" />
+    <Compile Include="Migrations\old migrations\201611210116471_thomas1.Designer.cs">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611220253208_Thomas2.cs" />
-    <Compile Include="Migrations\201611220253208_Thomas2.Designer.cs">
+    <Compile Include="Migrations\old migrations\201611220253208_Thomas2.cs" />
+    <Compile Include="Migrations\old migrations\201611220253208_Thomas2.Designer.cs">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611230717528_creditcards.cs" />
+    <Compile Include="Migrations\old migrations\201611230717528_creditcards.Designer.cs">
+      <DependentUpon>201611230717528_creditcards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611230720353_creditcards2.cs" />
+    <Compile Include="Migrations\old migrations\201611230720353_creditcards2.Designer.cs">
+      <DependentUpon>201611230720353_creditcards2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611230739135_customerSeed.cs" />
+    <Compile Include="Migrations\old migrations\201611230739135_customerSeed.Designer.cs">
+      <DependentUpon>201611230739135_customerSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611230749303_customersSeed2.cs" />
+    <Compile Include="Migrations\old migrations\201611230749303_customersSeed2.Designer.cs">
+      <DependentUpon>201611230749303_customersSeed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611230751513_customersSeed3.cs" />
+    <Compile Include="Migrations\old migrations\201611230751513_customersSeed3.Designer.cs">
+      <DependentUpon>201611230751513_customersSeed3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231623559_scustomersSeed4.cs" />
+    <Compile Include="Migrations\old migrations\201611231623559_scustomersSeed4.Designer.cs">
+      <DependentUpon>201611231623559_scustomersSeed4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231631461_customerSeedTest1.cs" />
+    <Compile Include="Migrations\old migrations\201611231631461_customerSeedTest1.Designer.cs">
+      <DependentUpon>201611231631461_customerSeedTest1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231634029_customerSeedTest2.cs" />
+    <Compile Include="Migrations\old migrations\201611231634029_customerSeedTest2.Designer.cs">
+      <DependentUpon>201611231634029_customerSeedTest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231705243_customerSeedTest3.cs" />
+    <Compile Include="Migrations\old migrations\201611231705243_customerSeedTest3.Designer.cs">
+      <DependentUpon>201611231705243_customerSeedTest3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231726468_customersSeedTest4.cs" />
+    <Compile Include="Migrations\old migrations\201611231726468_customersSeedTest4.Designer.cs">
+      <DependentUpon>201611231726468_customersSeedTest4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231733141_customerSeedTest5.cs" />
+    <Compile Include="Migrations\old migrations\201611231733141_customerSeedTest5.Designer.cs">
+      <DependentUpon>201611231733141_customerSeedTest5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231744282_customerSeedTest6.cs" />
+    <Compile Include="Migrations\old migrations\201611231744282_customerSeedTest6.Designer.cs">
+      <DependentUpon>201611231744282_customerSeedTest6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231800426_customerSeedTest7.cs" />
+    <Compile Include="Migrations\old migrations\201611231800426_customerSeedTest7.Designer.cs">
+      <DependentUpon>201611231800426_customerSeedTest7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231804547_customerSeedTest8.cs" />
+    <Compile Include="Migrations\old migrations\201611231804547_customerSeedTest8.Designer.cs">
+      <DependentUpon>201611231804547_customerSeedTest8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231823431_customerSeedTest9.cs" />
+    <Compile Include="Migrations\old migrations\201611231823431_customerSeedTest9.Designer.cs">
+      <DependentUpon>201611231823431_customerSeedTest9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231830548_customerSeedTest10.cs" />
+    <Compile Include="Migrations\old migrations\201611231830548_customerSeedTest10.Designer.cs">
+      <DependentUpon>201611231830548_customerSeedTest10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231832312_customerSeedTest11.cs" />
+    <Compile Include="Migrations\old migrations\201611231832312_customerSeedTest11.Designer.cs">
+      <DependentUpon>201611231832312_customerSeedTest11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231834402_customerSeedTest12.cs" />
+    <Compile Include="Migrations\old migrations\201611231834402_customerSeedTest12.Designer.cs">
+      <DependentUpon>201611231834402_customerSeedTest12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231836517_customerSeedTest13.cs" />
+    <Compile Include="Migrations\old migrations\201611231836517_customerSeedTest13.Designer.cs">
+      <DependentUpon>201611231836517_customerSeedTest13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231838448_customerSeedTest14.cs" />
+    <Compile Include="Migrations\old migrations\201611231838448_customerSeedTest14.Designer.cs">
+      <DependentUpon>201611231838448_customerSeedTest14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231936093_employeeSeed1.cs" />
+    <Compile Include="Migrations\old migrations\201611231936093_employeeSeed1.Designer.cs">
+      <DependentUpon>201611231936093_employeeSeed1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231943487_EmployeeSeed2.cs" />
+    <Compile Include="Migrations\old migrations\201611231943487_EmployeeSeed2.Designer.cs">
+      <DependentUpon>201611231943487_EmployeeSeed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231946291_employeeSeed3.cs" />
+    <Compile Include="Migrations\old migrations\201611231946291_employeeSeed3.Designer.cs">
+      <DependentUpon>201611231946291_employeeSeed3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231952032_test.cs" />
+    <Compile Include="Migrations\old migrations\201611231952032_test.Designer.cs">
+      <DependentUpon>201611231952032_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231953386_test2.cs" />
+    <Compile Include="Migrations\old migrations\201611231953386_test2.Designer.cs">
+      <DependentUpon>201611231953386_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231955036_test3.cs" />
+    <Compile Include="Migrations\old migrations\201611231955036_test3.Designer.cs">
+      <DependentUpon>201611231955036_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611231959560_test4.cs" />
+    <Compile Include="Migrations\old migrations\201611231959560_test4.Designer.cs">
+      <DependentUpon>201611231959560_test4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611232002467_test5.cs" />
+    <Compile Include="Migrations\old migrations\201611232002467_test5.Designer.cs">
+      <DependentUpon>201611232002467_test5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611232006305_test6.cs" />
+    <Compile Include="Migrations\old migrations\201611232006305_test6.Designer.cs">
+      <DependentUpon>201611232006305_test6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611232100035_seedEmployees1.cs" />
+    <Compile Include="Migrations\old migrations\201611232100035_seedEmployees1.Designer.cs">
+      <DependentUpon>201611232100035_seedEmployees1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppUsersSeed.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -306,14 +426,104 @@
     <Folder Include="Content\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611162212496_users1.resx">
+    <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611210116471_thomas1.resx">
+    <EmbeddedResource Include="Migrations\old migrations\201611210116471_thomas1.resx">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220253208_Thomas2.resx">
+    <EmbeddedResource Include="Migrations\old migrations\201611220253208_Thomas2.resx">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611230717528_creditcards.resx">
+      <DependentUpon>201611230717528_creditcards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611230720353_creditcards2.resx">
+      <DependentUpon>201611230720353_creditcards2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611230739135_customerSeed.resx">
+      <DependentUpon>201611230739135_customerSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611230749303_customersSeed2.resx">
+      <DependentUpon>201611230749303_customersSeed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611230751513_customersSeed3.resx">
+      <DependentUpon>201611230751513_customersSeed3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231623559_scustomersSeed4.resx">
+      <DependentUpon>201611231623559_scustomersSeed4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231631461_customerSeedTest1.resx">
+      <DependentUpon>201611231631461_customerSeedTest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231634029_customerSeedTest2.resx">
+      <DependentUpon>201611231634029_customerSeedTest2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231705243_customerSeedTest3.resx">
+      <DependentUpon>201611231705243_customerSeedTest3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231726468_customersSeedTest4.resx">
+      <DependentUpon>201611231726468_customersSeedTest4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231733141_customerSeedTest5.resx">
+      <DependentUpon>201611231733141_customerSeedTest5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231744282_customerSeedTest6.resx">
+      <DependentUpon>201611231744282_customerSeedTest6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231800426_customerSeedTest7.resx">
+      <DependentUpon>201611231800426_customerSeedTest7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231804547_customerSeedTest8.resx">
+      <DependentUpon>201611231804547_customerSeedTest8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231823431_customerSeedTest9.resx">
+      <DependentUpon>201611231823431_customerSeedTest9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231830548_customerSeedTest10.resx">
+      <DependentUpon>201611231830548_customerSeedTest10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231832312_customerSeedTest11.resx">
+      <DependentUpon>201611231832312_customerSeedTest11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231834402_customerSeedTest12.resx">
+      <DependentUpon>201611231834402_customerSeedTest12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231836517_customerSeedTest13.resx">
+      <DependentUpon>201611231836517_customerSeedTest13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231838448_customerSeedTest14.resx">
+      <DependentUpon>201611231838448_customerSeedTest14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231936093_employeeSeed1.resx">
+      <DependentUpon>201611231936093_employeeSeed1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231943487_EmployeeSeed2.resx">
+      <DependentUpon>201611231943487_EmployeeSeed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231946291_employeeSeed3.resx">
+      <DependentUpon>201611231946291_employeeSeed3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231952032_test.resx">
+      <DependentUpon>201611231952032_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231953386_test2.resx">
+      <DependentUpon>201611231953386_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231955036_test3.resx">
+      <DependentUpon>201611231955036_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611231959560_test4.resx">
+      <DependentUpon>201611231959560_test4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611232002467_test5.resx">
+      <DependentUpon>201611232002467_test5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611232006305_test6.resx">
+      <DependentUpon>201611232006305_test6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611232100035_seedEmployees1.resx">
+      <DependentUpon>201611232100035_seedEmployees1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
