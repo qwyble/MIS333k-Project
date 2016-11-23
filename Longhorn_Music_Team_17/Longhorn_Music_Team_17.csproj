@@ -167,12 +167,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -267,7 +267,7 @@
     <Content Include="Views\AppUsers\Delete.cshtml" />
     <Content Include="Views\AppUsers\Details.cshtml" />
     <Content Include="Views\AppUsers\Edit.cshtml" />
-    <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\CardEdit.cshtml" />
     <Content Include="Views\Albums\Create.cshtml" />
@@ -291,6 +291,9 @@
     <Content Include="Views\Shared\DisplayTemplates\UserModel.cshtml" />
     <Content Include="Views\Shared\EditTemplates\UserModel.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Account\RegisterEmployee.cshtml" />
+    <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
+    <Content Include="Views\AppUsers\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -128,21 +128,12 @@ namespace Longhorn_Music_Team_17.Controllers
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-
+                await UserManager.AddToRoleAsync(user.Id, "Customer"); //adds user to role called "Customer"
 
                 if (result.Succeeded) //user was created successfully
                 {
-
-                    if (User.IsInRole("Manager"))
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "Employee");
-                    }
-                    else
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "Customer");
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    }
-
+                    //sign the user in
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     //send them to the home page
                     return RedirectToAction("Index", "Home");
@@ -154,6 +145,39 @@ namespace Longhorn_Music_Team_17.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        //register employees
+        [HttpPost]
+        [Authorize(Roles = "Manager")]
+        public async Task<ActionResult> RegisterEmployee(RegisterEmployeeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: Add fields to user here so they will be saved to the database
+                //Create a new user with all the properties you need for the class
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode };
+
+                //Add the new user to the database
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                //TODO: Once you get roles working, you may want to add users to roles upon creation
+                await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+
+                if (result.Succeeded) //user was created successfully
+                {
+
+                    //send them to the home page
+                    return RedirectToAction("Index", "Home");
+                }
+
+                //if there was a problem, add the error messages to what we will display
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+
         }
 
         // POST: /Account/LogOff
