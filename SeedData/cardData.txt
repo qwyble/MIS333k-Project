@@ -1,0 +1,246 @@
+Card c1 = new Card();
+c1.Type = Card.CardType.Mastercard;
+c1.CardNumber = "5497163903436520";
+db.Cards.AddOrUpdate(c => c.CardID, c1);
+
+Card c2 = new Card();
+c2.Type = Card.CardType.Visa;
+c2.CardNumber = "4868476042647310";
+db.Cards.AddOrUpdate(c => c.CardID, c2);
+
+Card c3 = new Card();
+c3.Type = Card.CardType.Discover;
+c3.CardNumber = "6727398982004160";
+db.Cards.AddOrUpdate(c => c.CardID, c3);
+
+Card c4 = new Card();
+c4.Type = Card.CardType.AmericanExpress;
+c4.CardNumber = "545497452517418";
+db.Cards.AddOrUpdate(c => c.CardID, c4);
+
+Card c5 = new Card();
+c5.Type = Card.CardType.Mastercard;
+c5.CardNumber = "5414364986244200";
+db.Cards.AddOrUpdate(c => c.CardID, c5);
+
+Card c6 = new Card();
+c6.Type = Card.CardType.Visa;
+c6.CardNumber = "4093643507872300";
+db.Cards.AddOrUpdate(c => c.CardID, c6);
+
+Card c7 = new Card();
+c7.Type = Card.CardType.AmericanExpress;
+c7.CardNumber = "877527552236339";
+db.Cards.AddOrUpdate(c => c.CardID, c7);
+
+Card c8 = new Card();
+c8.Type = Card.CardType.Mastercard;
+c8.CardNumber = "5451814661069320";
+db.Cards.AddOrUpdate(c => c.CardID, c8);
+
+Card c9 = new Card();
+c9.Type = Card.CardType.Visa;
+c9.CardNumber = "4355077062414870";
+db.Cards.AddOrUpdate(c => c.CardID, c9);
+
+Card c10 = new Card();
+c10.Type = Card.CardType.Visa;
+c10.CardNumber = "4241928871243970";
+db.Cards.AddOrUpdate(c => c.CardID, c10);
+
+Card c11 = new Card();
+c11.Type = Card.CardType.Discover;
+c11.CardNumber = "6310804739616290";
+db.Cards.AddOrUpdate(c => c.CardID, c11);
+
+Card c12 = new Card();
+c12.Type = Card.CardType.AmericanExpress;
+c12.CardNumber = "782806865061369";
+db.Cards.AddOrUpdate(c => c.CardID, c12);
+
+Card c13 = new Card();
+c13.Type = Card.CardType.Mastercard;
+c13.CardNumber = "5458965973058220";
+db.Cards.AddOrUpdate(c => c.CardID, c13);
+
+Card c14 = new Card();
+c14.Type = Card.CardType.Discover;
+c14.CardNumber = "6420363774166000";
+db.Cards.AddOrUpdate(c => c.CardID, c14);
+
+Card c15 = new Card();
+c15.Type = Card.CardType.AmericanExpress;
+c15.CardNumber = "697656089924839";
+db.Cards.AddOrUpdate(c => c.CardID, c15);
+
+Card c16 = new Card();
+c16.Type = Card.CardType.Mastercard;
+c16.CardNumber = "5478875163529160";
+db.Cards.AddOrUpdate(c => c.CardID, c16);
+
+Card c17 = new Card();
+c17.Type = Card.CardType.Visa;
+c17.CardNumber = "4156646384501590";
+db.Cards.AddOrUpdate(c => c.CardID, c17);
+
+Card c18 = new Card();
+c18.Type = Card.CardType.Discover;
+c18.CardNumber = "6942941089010230";
+db.Cards.AddOrUpdate(c => c.CardID, c18);
+
+Card c19 = new Card();
+c19.Type = Card.CardType.AmericanExpress;
+c19.CardNumber = "915495411577097";
+db.Cards.AddOrUpdate(c => c.CardID, c19);
+
+Card c20 = new Card();
+c20.Type = Card.CardType.Mastercard;
+c20.CardNumber = "5469847618467190";
+db.Cards.AddOrUpdate(c => c.CardID, c20);
+
+Card c21 = new Card();
+c21.Type = Card.CardType.Visa;
+c21.CardNumber = "4906094629756390";
+db.Cards.AddOrUpdate(c => c.CardID, c21);
+
+Card c22 = new Card();
+c22.Type = Card.CardType.Discover;
+c22.CardNumber = "6857413205443210";
+db.Cards.AddOrUpdate(c => c.CardID, c22);
+
+Card c23 = new Card();
+c23.Type = Card.CardType.AmericanExpress;
+c23.CardNumber = "664039531388552";
+db.Cards.AddOrUpdate(c => c.CardID, c23);
+
+Card c24 = new Card();
+c24.Type = Card.CardType.Mastercard;
+c24.CardNumber = "5415140475671290";
+db.Cards.AddOrUpdate(c => c.CardID, c24);
+
+Card c25 = new Card();
+c25.Type = Card.CardType.Discover;
+c25.CardNumber = "6962592004533190";
+db.Cards.AddOrUpdate(c => c.CardID, c25);
+
+Card c26 = new Card();
+c26.Type = Card.CardType.AmericanExpress;
+c26.CardNumber = "717796136488089";
+db.Cards.AddOrUpdate(c => c.CardID, c26);
+
+Card c27 = new Card();
+c27.Type = Card.CardType.Mastercard;
+c27.CardNumber = "5468749400262880";
+db.Cards.AddOrUpdate(c => c.CardID, c27);
+
+Card c28 = new Card();
+c28.Type = Card.CardType.Discover;
+c28.CardNumber = "6780588472896630";
+db.Cards.AddOrUpdate(c => c.CardID, c28);
+
+Card c29 = new Card();
+c29.Type = Card.CardType.Visa;
+c29.CardNumber = "4981762270647820";
+db.Cards.AddOrUpdate(c => c.CardID, c29);
+
+Card c30 = new Card();
+c30.Type = Card.CardType.AmericanExpress;
+c30.CardNumber = "440279517306779";
+db.Cards.AddOrUpdate(c => c.CardID, c30);
+
+Card c31 = new Card();
+c31.Type = Card.CardType.AmericanExpress;
+c31.CardNumber = "714543621891322";
+db.Cards.AddOrUpdate(c => c.CardID, c31);
+
+Card c32 = new Card();
+c32.Type = Card.CardType.Mastercard;
+c32.CardNumber = "5422935985121310";
+db.Cards.AddOrUpdate(c => c.CardID, c32);
+
+Card c33 = new Card();
+c33.Type = Card.CardType.Mastercard;
+c33.CardNumber = "5477132658283840";
+db.Cards.AddOrUpdate(c => c.CardID, c33);
+
+Card c34 = new Card();
+c34.Type = Card.CardType.Visa;
+c34.CardNumber = "4247987109036310";
+db.Cards.AddOrUpdate(c => c.CardID, c34);
+
+Card c35 = new Card();
+c35.Type = Card.CardType.AmericanExpress;
+c35.CardNumber = "860245686047451";
+db.Cards.AddOrUpdate(c => c.CardID, c35);
+
+Card c36 = new Card();
+c36.Type = Card.CardType.Discover;
+c36.CardNumber = "6761707076925830";
+db.Cards.AddOrUpdate(c => c.CardID, c36);
+
+Card c37 = new Card();
+c37.Type = Card.CardType.Visa;
+c37.CardNumber = "4590566912856230";
+db.Cards.AddOrUpdate(c => c.CardID, c37);
+
+Card c38 = new Card();
+c38.Type = Card.CardType.AmericanExpress;
+c38.CardNumber = "168073130658754";
+db.Cards.AddOrUpdate(c => c.CardID, c38);
+
+Card c39 = new Card();
+c39.Type = Card.CardType.Discover;
+c39.CardNumber = "6167268833061390";
+db.Cards.AddOrUpdate(c => c.CardID, c39);
+
+Card c40 = new Card();
+c40.Type = Card.CardType.Mastercard;
+c40.CardNumber = "5432667042375460";
+db.Cards.AddOrUpdate(c => c.CardID, c40);
+
+Card c41 = new Card();
+c41.Type = Card.CardType.Discover;
+c41.CardNumber = "6465504285538790";
+db.Cards.AddOrUpdate(c => c.CardID, c41);
+
+Card c42 = new Card();
+c42.Type = Card.CardType.Visa;
+c42.CardNumber = "4368667972354250";
+db.Cards.AddOrUpdate(c => c.CardID, c42);
+
+Card c43 = new Card();
+c43.Type = Card.CardType.AmericanExpress;
+c43.CardNumber = "351777302204025";
+db.Cards.AddOrUpdate(c => c.CardID, c43);
+
+Card c44 = new Card();
+c44.Type = Card.CardType.Discover;
+c44.CardNumber = "6589854795728270";
+db.Cards.AddOrUpdate(c => c.CardID, c44);
+
+Card c45 = new Card();
+c45.Type = Card.CardType.Visa;
+c45.CardNumber = "4579224077662870";
+db.Cards.AddOrUpdate(c => c.CardID, c45);
+
+Card c46 = new Card();
+c46.Type = Card.CardType.AmericanExpress;
+c46.CardNumber = "238153423810050";
+db.Cards.AddOrUpdate(c => c.CardID, c46);
+
+Card c47 = new Card();
+c47.Type = Card.CardType.Discover;
+c47.CardNumber = "6270385324417050";
+db.Cards.AddOrUpdate(c => c.CardID, c47);
+
+Card c48 = new Card();
+c48.Type = Card.CardType.Mastercard;
+c48.CardNumber = "5448275652910170";
+db.Cards.AddOrUpdate(c => c.CardID, c48);
+
+Card c49 = new Card();
+c49.Type = Card.CardType.Discover;
+c49.CardNumber = "6294260418333300";
+db.Cards.AddOrUpdate(c => c.CardID, c49);
+
+
