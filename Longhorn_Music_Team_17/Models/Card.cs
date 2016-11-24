@@ -12,7 +12,7 @@ namespace Longhorn_Music_Team_17.Models
 
         public Int32 CardID { get; set; }
 
-        public String AppUserId { get; set; }
+        public String AppUserId { get; set; }   //get rid of this later
 
         public enum CardType  //list of cards
         {
@@ -37,7 +37,9 @@ namespace Longhorn_Music_Team_17.Models
 
         public string ExpDate { get; set; }
         
-        public virtual List<AppUser> AppUsers { get; set; } //i added this back in temporarily
+
+        public virtual AppUser Owner { get; set; }
+
         public Int32 CVV { get; set; }
     }
 }

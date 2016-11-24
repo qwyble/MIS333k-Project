@@ -14,8 +14,6 @@ namespace Longhorn_Music_Team_17.Migrations
 
         protected override void Seed(Longhorn_Music_Team_17.Models.AppDbContext context)
         {
-            SeedAppUsers.AddAppUsers();
-
             
 
 

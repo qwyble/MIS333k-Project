@@ -41,9 +41,11 @@ namespace Longhorn_Music_Team_17.Controllers
 
         // GET: Customer
         public ActionResult Index()
-        {
+        {   
+            
             return View();
         }
+
         public ActionResult Details(string ID)
         {
             var user = db.Users.Single(u => u.Id == ID);
