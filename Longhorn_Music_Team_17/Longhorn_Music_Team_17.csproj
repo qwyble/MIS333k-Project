@@ -213,6 +213,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EmailMessaging.cs" />
+    <Compile Include="Migrations\201611240610475_CardModelUpdate.cs" />
+    <Compile Include="Migrations\201611240610475_CardModelUpdate.Designer.cs">
+      <DependentUpon>201611240610475_CardModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611240621528_HopeThisWorks.cs" />
+    <Compile Include="Migrations\201611240621528_HopeThisWorks.Designer.cs">
+      <DependentUpon>201611240621528_HopeThisWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611240623478_cardModelUpdated.cs" />
+    <Compile Include="Migrations\201611240623478_cardModelUpdated.Designer.cs">
+      <DependentUpon>201611240623478_cardModelUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -389,7 +401,6 @@
     <Content Include="Views\AppUsers\Edit.cshtml" />
     <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Account\CardEdit.cshtml" />
     <Content Include="Views\Albums\Create.cshtml" />
     <Content Include="Views\Albums\Delete.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
@@ -414,6 +425,7 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\Account\AddCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -426,6 +438,15 @@
     <Folder Include="Content\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611240610475_CardModelUpdate.resx">
+      <DependentUpon>201611240610475_CardModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611240621528_HopeThisWorks.resx">
+      <DependentUpon>201611240621528_HopeThisWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611240623478_cardModelUpdated.resx">
+      <DependentUpon>201611240623478_cardModelUpdated.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </EmbeddedResource>

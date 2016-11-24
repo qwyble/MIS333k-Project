@@ -1,4 +1,5 @@
 ﻿//Change the using statement here to match your project's name
+using Longhorn_Music_Team_17.ViewModels;
 using Longhorn_Music_Team_17.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -183,6 +184,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -200,6 +202,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // POST: /Account/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -221,8 +224,12 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: /Account/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        [Authorize]
+        public ActionResult Index(ManageMessageId? message)
         {
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
+            
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -232,114 +239,116 @@ namespace Longhorn_Music_Team_17.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
-            var user = UserManager.FindById(userId);
-            //get the credit cards
-            var cardQuery = from c in user.Cards
-                            from cd in db.Cards
-                            where cd.CardID == c.CardID
-                            select cd;
-            var Cards = cardQuery.ToList();
-            List<string> CardsList = new List<string>();
-            //mask the cardnumber and add to viewbag        
-            foreach (Card c in Cards)
-            {
-                string cardNumString = c.CardNumber.ToString();
-                CardsList.Add(c.Type.ToString());
-                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
-            }
-            ViewBag.CardInfo = CardsList;
             //create user viewmodel
-            var model = new IndexViewModel
+            var model = new CustomerViewModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                StreetAddress = user.StreetAddress,
-                ZipCode = user.ZipCode,
-                Orders = user.Orders,
-
-                HasPassword = HasPassword(),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                CustomerDetails = new UserModel()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    City = user.City,
+                    State = user.State,
+                    EmailAddress = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    StreetAddress = user.StreetAddress,
+                    UserModelID = user.Id,
+                    ZipCode = user.ZipCode
+                },
+                Cards = user.Cards
             };
 
             return View(model);
         }
 
         // get: edit account details
-
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             var userId = User.Identity.GetUserId();
             var user = UserManager.FindById(userId);
-            //get the credit cards
-            var cardQuery = from c in user.Cards
-                            from cd in db.Cards
-                            where cd.CardID == c.CardID
-                            select cd;
-            var Cards = cardQuery.ToList();
-            List<string> CardsList = new List<string>();
-            //mask the cardnumber and add to viewbag
 
-            foreach (Card c in Cards)
-            {
-                string cardNumString = c.CardNumber.ToString();
-                CardsList.Add(c.Type.ToString());
-                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
-            }
-            ViewBag.CardInfo = CardsList;
             //set up the view model
-            var model = new IndexViewModel
+            var model = new UserModel()
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email,
+                City = user.City,
+                State = user.State,
+                EmailAddress = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 StreetAddress = user.StreetAddress,
-                ZipCode = user.ZipCode,
-                Orders = user.Orders,
-
-                HasPassword = HasPassword()
+                UserModelID = user.Id,
+                ZipCode = user.ZipCode   
             };
+
             return View(model);
         }
 
         // post: edit account details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,StreetAddress,ZipCode")] IndexViewModel @IndexViewModel)
+        [Authorize]
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,EmailAddress,PhoneNumber,StreetAddress,City,State,ZipCode")] UserModel @UserModel)
         {
-            @IndexViewModel.HasPassword = HasPassword();
             if (ModelState.IsValid)
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
-                user.FirstName = IndexViewModel.FirstName;
-                user.LastName = IndexViewModel.LastName;
-                user.Email = IndexViewModel.Email;
-                user.PhoneNumber = IndexViewModel.PhoneNumber;
-                user.StreetAddress = IndexViewModel.StreetAddress;
-                user.ZipCode = IndexViewModel.ZipCode;
+                user.FirstName = @UserModel.FirstName;
+                user.LastName = @UserModel.LastName;
+                user.Email = @UserModel.EmailAddress;
+                user.PhoneNumber = @UserModel.PhoneNumber;
+                user.StreetAddress = @UserModel.StreetAddress;
+                user.City = @UserModel.City;
+                user.State = @UserModel.State;
+                user.ZipCode = @UserModel.ZipCode;
 
                 var result = await UserManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
                     AddErrors(result);
-                    return RedirectToAction("Edit");
+                    return View(@UserModel);
 
                 }
                 return RedirectToAction("Index");
             }
-            return View(@IndexViewModel);
+            return View(@UserModel);
         }
 
-        //method to edit card information
-        public ActionResult CardEdit()
+        [Authorize]
+        public ActionResult AddCard()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            return View();
+            if (user.Cards.Count() > 1)
+            {
+                ViewBag.CardsMaxed = true;
+                ViewBag.ErrorMessage = "Only two credit cards are allowed per account.";
+                return RedirectToAction("Index");
+            }
+            var model = new Card();
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddCard([Bind(Include = "CardNumber,CVV,Type,ExpDate")] Card @card)
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user.Cards.Count() > 1)
+            {
+                ViewBag.CardsMaxed = true;
+                ViewBag.ErrorMessage = "Only two credit cards are allowed per account.";
+                return RedirectToAction("Index");
+            }
+            if (ModelState.IsValid)
+            {
+                @card.AppUserId = user.Id;
+                db.Cards.Add(@card);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+                
+            }
+            
+            return View(@card);
         }
 
 

@@ -30,6 +30,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: AppUsers/Details/5
         public ActionResult Details(string id)
         {
+  
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

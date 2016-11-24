@@ -1,4 +1,4 @@
-﻿@model Longhorn_Music_Team_17.Models.IndexViewModel
+﻿@model Longhorn_Music_Team_17.Models.UserModel
 @{
     ViewBag.Title = "Edit Account";
 }
@@ -7,7 +7,6 @@
 @using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
         <h4></h4>
@@ -25,8 +24,8 @@
             </dd>
             <dt>Email:</dt>
             <dd>
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
             </dd>
             <dt>Phone:</dt>
             <dd>
@@ -38,6 +37,16 @@
                 @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
             </dd>
+            <dt>City:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </dd>
+            <dt>State:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </dd>
             <dt>ZipCode:</dt>
             <dd>
                 @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
@@ -45,16 +54,7 @@
             </dd>
             <dt>Password:</dt>
             <dd>
-                [
-                @if (Model.HasPassword)
-                {
                     @Html.ActionLink("Change your password", "ChangePassword")
-                }
-                else
-                {
-                    @Html.ActionLink("Create", "SetPassword")
-                }
-                ]
             </dd>
             
         </dl>
