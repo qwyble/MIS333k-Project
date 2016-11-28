@@ -12,7 +12,7 @@ namespace Longhorn_Music_Team_17.Models
 
         public Int32 CardID { get; set; }
 
-        public String AppUserId { get; set; }
+        public String AppUserId { get; set; }   //get rid of this later
 
         public enum CardType  //list of cards
         {
@@ -37,6 +37,7 @@ namespace Longhorn_Music_Team_17.Models
 
         [Display(Name = "Expiration Date")]
         public string ExpDate { get; set; }
+        
 
         [RegularExpression(@"^\d{3}$", ErrorMessage = "Enter a valid CVV (3 digit numeric data)")]
         public string CVV { get; set; }

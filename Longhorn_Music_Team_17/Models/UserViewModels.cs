@@ -152,4 +152,56 @@ namespace Longhorn_Music_Team_17.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
+
+    public class RegisterEmployeeViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "First name is required.")]
+        [Display(Name = "First Name")]
+        public String FirstName { get; set; }
+
+        [StringLength(1)]
+        [Display(Name = "Middle Initial")]
+        public String MiddleInitial { get; set; }
+
+        [Required(ErrorMessage = "Last name is required.")]
+        [Display(Name = "Last Name")]
+        public String LastName { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public String PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Please enter street address.")]
+        [Display(Name = "Street Address")]
+        public String StreetAddress { get; set; }
+
+        [Required(ErrorMessage = "Please enter city.")]
+        public String City { get; set; }
+
+        [Required(ErrorMessage = "Please enter state.")]
+        public String State { get; set; }
+
+        [Required(ErrorMessage = "Please enter zip code.")]
+        [Display(Name = "Zip Code")]
+        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
+        public String ZipCode { get; set; }
+    }
 }
+

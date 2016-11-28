@@ -167,12 +167,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -212,16 +212,28 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EmailMessaging.cs" />
-    <Compile Include="Migrations\201611162212496_users1.cs" />
-    <Compile Include="Migrations\201611162212496_users1.Designer.cs">
+    <Compile Include="Migrations\201611240610475_CardModelUpdate.cs" />
+    <Compile Include="Migrations\201611240610475_CardModelUpdate.Designer.cs">
+      <DependentUpon>201611240610475_CardModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611240621528_HopeThisWorks.cs" />
+    <Compile Include="Migrations\201611240621528_HopeThisWorks.Designer.cs">
+      <DependentUpon>201611240621528_HopeThisWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611240623478_cardModelUpdated.cs" />
+    <Compile Include="Migrations\201611240623478_cardModelUpdated.Designer.cs">
+      <DependentUpon>201611240623478_cardModelUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
+    <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611210116471_thomas1.cs" />
-    <Compile Include="Migrations\201611210116471_thomas1.Designer.cs">
+    <Compile Include="Migrations\old migrations\201611210116471_thomas1.cs" />
+    <Compile Include="Migrations\old migrations\201611210116471_thomas1.Designer.cs">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611220253208_Thomas2.cs" />
-    <Compile Include="Migrations\201611220253208_Thomas2.Designer.cs">
+    <Compile Include="Migrations\old migrations\201611220253208_Thomas2.cs" />
+    <Compile Include="Migrations\old migrations\201611220253208_Thomas2.Designer.cs">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201611272329264_Thomas8.cs" />
@@ -273,9 +285,8 @@
     <Content Include="Views\AppUsers\Delete.cshtml" />
     <Content Include="Views\AppUsers\Details.cshtml" />
     <Content Include="Views\AppUsers\Edit.cshtml" />
-    <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Account\CardEdit.cshtml" />
     <Content Include="Views\Albums\Create.cshtml" />
     <Content Include="Views\Albums\Delete.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
@@ -300,6 +311,10 @@
     <Content Include="Views\Account\SetPassword.cshtml" />
     <Content Include="Views\Account\Customers.cshtml" />
     <Content Include="Views\Account\Employees.cshtml" />
+    <Content Include="Views\Account\RegisterEmployee.cshtml" />
+    <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
+    <Content Include="Views\AppUsers\Index.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -313,13 +328,22 @@
     <Folder Include="Views\Shared\EditTemplates\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611162212496_users1.resx">
+    <EmbeddedResource Include="Migrations\201611240610475_CardModelUpdate.resx">
+      <DependentUpon>201611240610475_CardModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611240621528_HopeThisWorks.resx">
+      <DependentUpon>201611240621528_HopeThisWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611240623478_cardModelUpdated.resx">
+      <DependentUpon>201611240623478_cardModelUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611210116471_thomas1.resx">
+    <EmbeddedResource Include="Migrations\old migrations\201611210116471_thomas1.resx">
       <DependentUpon>201611210116471_thomas1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220253208_Thomas2.resx">
+    <EmbeddedResource Include="Migrations\old migrations\201611220253208_Thomas2.resx">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611272329264_Thomas8.resx">

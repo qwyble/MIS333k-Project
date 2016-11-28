@@ -8,7 +8,7 @@ namespace Longhorn_Music_Team_17.Models
 {
     public class UserModel
     {
-        [Required]   //does CustomerID need to be required?
+
         [Display(Name = "User ID")]
         public String UserModelID { get; set; } //account number in project data?
 
@@ -41,7 +41,7 @@ namespace Longhorn_Music_Team_17.Models
         [Required(ErrorMessage = "Please enter city.")]
         public String City { get; set; }
 
-        [Required(ErrorMessage = "Please enter state.")]
+        [Required(ErrorMessage = "Please enter state.")]       
         public String State { get; set; }
 
         [Required(ErrorMessage = "Please enter zip code.")]
