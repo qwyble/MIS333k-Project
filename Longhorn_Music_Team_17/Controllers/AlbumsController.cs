@@ -10,6 +10,7 @@ using Longhorn_Music_Team_17.Models;
 
 namespace Longhorn_Music_Team_17.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class AlbumsController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -21,6 +22,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: Albums/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

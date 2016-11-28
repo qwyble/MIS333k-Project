@@ -1,4 +1,6 @@
-﻿@model Longhorn_Music_Team_17.Models.IndexViewModel
+﻿@model Longhorn_Music_Team_17.Models.UserModel
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Edit Account";
 }
@@ -12,7 +14,16 @@
     <div>
         <h4></h4>
         <hr />
+        @Html.HiddenFor(model => model.UserModelID)
         <dl class="dl-horizontal">
+            @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Employee")
+            {
+                @Html.HiddenFor(model => model.FirstName)
+                @Html.HiddenFor(model => model.LastName)
+                @Html.HiddenFor(model => model.EmailAddress)
+            }
+            else
+            {
             <dt>First Name:</dt>
             <dd>
                 @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
@@ -25,9 +36,11 @@
             </dd>
             <dt>Email:</dt>
             <dd>
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
             </dd>
+
+            }
             <dt>Phone:</dt>
             <dd>
                 @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
@@ -38,6 +51,19 @@
                 @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
             </dd>
+
+            <dt>City:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </dd>
+
+            <dt>State:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </dd>
+
             <dt>ZipCode:</dt>
             <dd>
                 @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
@@ -48,16 +74,23 @@
                 [
                 @if (Model.HasPassword)
                 {
+                    if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
+                    {
+                        @Html.ActionLink("Set Password", "SetPassword")
+                    }
+                    else
+                    {
                     @Html.ActionLink("Change your password", "ChangePassword")
+                    }
                 }
                 else
                 {
-                    @Html.ActionLink("Create", "SetPassword")
+                    @Html.ActionLink("Set Password", "SetPassword")
                 }
                 ]
             </dd>
             
         </dl>
     </div>
-<input type="submit" />
+<input type="submit" value="Submit" />
 }

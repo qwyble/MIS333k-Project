@@ -15,6 +15,8 @@ namespace Longhorn_Music_Team_17.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: Songs
+
+        [Authorize(Roles="Manager")]
         public ActionResult Index()
         {
             return View(db.Songs.ToList());
@@ -36,6 +38,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: Songs/Create
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // POST: Songs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
@@ -59,6 +63,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: Songs/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +81,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // POST: Songs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
@@ -90,6 +96,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: Songs/Delete/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +112,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // POST: Songs/Delete/5
+        [Authorize(Roles = "Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

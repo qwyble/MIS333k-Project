@@ -1,4 +1,5 @@
-﻿@model Longhorn_Music_Team_17.Models.IndexViewModel
+﻿@model Longhorn_Music_Team_17.Models.UserModel
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Account Details";
 }
@@ -18,7 +19,7 @@
         </dd>
         <dt>Email:</dt>
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.EmailAddress)
         </dd>
         <dt>Phone:</dt>
         <dd>
@@ -28,41 +29,64 @@
         <dd>
             @Html.DisplayFor(model => model.StreetAddress)
         </dd>
-        <dt>ZipCode:</dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode):
+        </dt>
+
         <dd>
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
+      
         <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
+                {
+                    @Html.ActionLink("Set Password", "SetPassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Change your password", "ChangePassword")
+                }
             }
             else
             {
-                @Html.ActionLink("Create", "SetPassword")
+                @Html.ActionLink("Set Password", "SetPassword")
             }
             ]
         </dd>
-        <dt>Credit Cards:</dt>
-        <dd>
-            @if (@ViewBag.CardInfo != null)
-            {
-                <i>@ViewBag.CardInfo[0]</i> @:  ************@ViewBag.CardInfo[1]
-            }
-        </dd>
-        <dd>
-            @if (ViewBag.CardInfo.Count > 2)
-            {
-            <i>@ViewBag.CardInfo[2]</i> @:  ************@ViewBag.CardInfo[3]
-            }
-    </dd>
-    <dd>
-        [
-        @Html.ActionLink("Add/Remove", "CardEdit")
-        ]
-    </dd>
-    <dt>@Html.ActionLink("Edit", "Edit")</dt>
-</dl>
+
+    <dt>@Html.ActionLink("Edit", "Edit", new { id = Model.UserModelID })</dt>
+</dl>  
+    <br />
+    @if (Model.Role == "Customer")
+    {
+        <h4>Credit Cards</h4>
+
+        @Html.DisplayFor(model => model.Cards, "Card")
+        if (Model.Cards.Count() < 2)
+        {
+            @Html.ActionLink("Add Credit Card", "AddCard", new { id = Model.UserModelID })
+        }
+    }
+
 </div>

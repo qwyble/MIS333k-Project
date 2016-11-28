@@ -203,7 +203,6 @@
     <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -225,6 +224,14 @@
     <Compile Include="Migrations\201611220253208_Thomas2.Designer.cs">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611272329264_Thomas8.cs" />
+    <Compile Include="Migrations\201611272329264_Thomas8.Designer.cs">
+      <DependentUpon>201611272329264_Thomas8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611280032071_Thomas9.cs" />
+    <Compile Include="Migrations\201611280032071_Thomas9.Designer.cs">
+      <DependentUpon>201611280032071_Thomas9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AppUsersSeed.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -245,7 +252,6 @@
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
-    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
@@ -288,9 +294,12 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Card.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\UserModel.cshtml" />
-    <Content Include="Views\Shared\EditTemplates\UserModel.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Account\AddCard.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\SetPassword.cshtml" />
+    <Content Include="Views\Account\Customers.cshtml" />
+    <Content Include="Views\Account\Employees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -301,6 +310,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\NewFolder1\" />
+    <Folder Include="Views\Shared\EditTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611162212496_users1.resx">
@@ -311,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611220253208_Thomas2.resx">
       <DependentUpon>201611220253208_Thomas2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611272329264_Thomas8.resx">
+      <DependentUpon>201611272329264_Thomas8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611280032071_Thomas9.resx">
+      <DependentUpon>201611280032071_Thomas9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

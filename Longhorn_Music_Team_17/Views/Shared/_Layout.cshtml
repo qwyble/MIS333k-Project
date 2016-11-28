@@ -1,53 +1,121 @@
 ﻿@using Microsoft.AspNet.Identity
 
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@ViewBag.Title - Longhorn Music</title>
+
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>    
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
+
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 </head>
+
 <body style="background-color:#fdfdfd">
+
     <div class="navbar navbar-inverse navbar-fixed-top">
+
         <div class="container">
+
             <div class="navbar-header">
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
                     <span class="icon-bar"></span>
+
                     <span class="icon-bar"></span>
+
                     <span class="icon-bar"></span>
+
                 </button>
+
                 @Html.ActionLink("Longhorn Music", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Songs", "Index", "Songs", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+
+                @if (User.IsInRole("Manager"))
+
                 {
-                    @Html.ActionLink("My Account", "Details", "Customer", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Songs", "Index", "Songs", new { area = "" }, new { @class = "navbar-brand" })
+
+                    @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
+
+                    @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
                 }
+
+                @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+
+                {
+                    @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
+
+                }
+
+                @if (User.IsInRole("Manager"))
+                {
+
+                    @Html.ActionLink("Employees", "Employees", "Account", new { area = "" }, new { @class = "navbar-brand" })
+
+                }
+
+                @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+
+                {
+
+                    @Html.ActionLink("Customers", "Customers", "Account", new { area = "" }, new { @class = "navbar-brand" })
+
+                }
+
+                @if (User.Identity.IsAuthenticated)
+
+                {
+
+                    @Html.ActionLink("My Account", "Index", "Account", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
+
+                }
+
             </div>
+
             <div class="navbar-collapse collapse">
+
                 <ul class="nav navbar-nav"></ul>
+
                 @Html.Partial("_LoginPartial")
+
             </div>
+
         </div>
+
     </div>
 
     <div class="container body-content">
+
         @RenderBody()
+
         <hr />
+
         <footer>
-            <p>&copy; @DateTime.Now.Date - Longhorn Music</p>            
+
+            <p>&copy; @DateTime.Now.ToString("yyyy") - Longhorn Music</p>
+
         </footer>
+
     </div>
 
-   
 </body>
+
 </html>

@@ -50,6 +50,13 @@ namespace Longhorn_Music_Team_17.Models
         public String ZipCode { get; set; }
 
 
+        public string Role { get; set; }
+
+        public bool HasPassword { get; set; }
+
+        [UIHint("Card")]
+        public IEnumerable<Card> Cards { get; set; }
+        public List<Order> Orders { get; set; }
 
 
     }

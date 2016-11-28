@@ -8,6 +8,7 @@ using Longhorn_Music_Team_17.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Text;
 
 namespace Longhorn_Music_Team_17.Controllers
 {
@@ -18,7 +19,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
         private AppSignInManager _signInManager;
         private AppUserManager _userManager;
-        
+
 
         public CheckoutController()
         {
@@ -131,67 +132,76 @@ namespace Longhorn_Music_Team_17.Controllers
             var order = new Order();
 
 
-            try
+            //order.Username = User.Identity.Name;
+            order.OrderDate = DateTime.Now;
+
+            //Save Order
+            db.Orders.Add(order);
+            db.SaveChanges();
+            order.AppUserId = User.Identity.GetUserId();
+            //Process the order
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var listOfItems = GetListOfPurchasedItem(cart.GetCartItems());
+
+            order = cart.CreateOrder(order);
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (string.IsNullOrEmpty(model.GiftEmail))
             {
-
-
-                //order.Username = User.Identity.Name;
-                order.OrderDate = DateTime.Now;
-
-                //Save Order
-                db.Orders.Add(order);
-                db.SaveChanges();
-                order.AppUserId = User.Identity.GetUserId();
-                //Process the order
-                var cart = ShoppingCart.GetCart(this.HttpContext);
-
-                order = cart.CreateOrder(order);
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-               if (string.IsNullOrEmpty(model.GiftEmail))
-                {
-                    SendEmailToUser();
-                }
-                else
-                {
-                    SendEmailToGiftReciever(model.GiftEmail);
-                    SendEmailToGiftPurchaser();
-                }
-
-                return RedirectToAction("Complete",
-                    new { id = order.OrderID });
-
+                SendEmailToUser(user, listOfItems);
             }
-            catch
+            else
             {
-                //Invalid - redisplay with errors
-                return View(order);
+                SendEmailToGiftReciever(model.GiftEmail, user, listOfItems);
+                SendEmailToGiftPurchaser(user);
             }
+
+            return RedirectToAction("Complete",
+                new { id = order.OrderID });
 
             return View(model);
         }
 
-        private void SendEmailToGiftPurchaser()
+        private void SendEmailToGiftPurchaser(AppUser user)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var body = $@"Dear {user.FirstName}, Thanks for ordering! Your gift has been sent.";
+
+            var body = $@"Dear {user.FirstName}, thanks for ordering! Your gift has been sent.";
             EmailMessaging.SendEmail(user.Email, "Order Confirmation", body);
         }
 
-        private void SendEmailToGiftReciever(string giftEmail)
+        private string GetListOfPurchasedItem(List<Cart> cartItem)
         {
-            var user = UserManager.FindByEmail(giftEmail);
-            var body = $@"Dear {user.FirstName}, You have recieved a gift.";
-            EmailMessaging.SendEmail(user.Email, "You have recieved a gift.", body);
+            var body = new StringBuilder();
+            foreach (var item in cartItem)
+            {
+                body.Append(((item.AlbumID != null) ? item.Album.AlbumTitle : item.Song.SongTitle));
+                if (cartItem.IndexOf(item) < cartItem.Count() - 1)
+                {
+                    body.Append(", ");
+                }
+            }
+            return body.ToString();
         }
 
-        private void SendEmailToUser()
+        private void SendEmailToGiftReciever(string giftEmail, AppUser user, string listOfItem)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());          
-            var body = $@"Dear {user.FirstName}, Thanks for ordering!";
-            EmailMessaging.SendEmail(user.Email, "Order Confirmation", body);
+            var giftReceiver = UserManager.FindByEmail(giftEmail);
+            var body = new StringBuilder();
+            body.AppendLine($@"Dear {giftReceiver.FirstName},<br/><br/>You have recieved the following gift from {user.FirstName}:<br/>");
+            body.AppendLine(listOfItem);
+
+            EmailMessaging.SendEmail(giftReceiver.Email, "You have recieved a gift from Longhorn Music.", body.ToString());
+        }
+
+        private void SendEmailToUser(AppUser user, string listOfItem)
+        {
 
 
+            var body = new StringBuilder();
+            body.AppendLine($@"Dear {user.FirstName},<br/><br/>Thanks for ordering! You have purchased the following items:<br/>");
+            body.AppendLine(listOfItem);
+            EmailMessaging.SendEmail(user.Email, "Order Confirmation", body.ToString());
 
         }
 

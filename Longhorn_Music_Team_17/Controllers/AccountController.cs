@@ -23,6 +23,8 @@ namespace Longhorn_Music_Team_17.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            DetailsChangeSuccess,
+            CardDeleteSuccess,
             Error
         }
 
@@ -129,7 +131,6 @@ namespace Longhorn_Music_Team_17.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
-
                 if (result.Succeeded) //user was created successfully
                 {
 
@@ -196,119 +197,239 @@ namespace Longhorn_Music_Team_17.Controllers
             return View(model);
         }
 
-        // GET: /Account/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        // GET: /Account/SetPassword
+        public ActionResult SetPassword(string id)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var userId = User.Identity.GetUserId();
-            var user = UserManager.FindById(userId);
-            //get the credit cards
-            var cardQuery = from c in user.Cards
-                            from cd in db.Cards
-                            where cd.CardID == c.CardID
-                            select cd;
-            var Cards = cardQuery.ToList();
-            List<string> CardsList = new List<string>();
-            //mask the cardnumber and add to viewbag        
-            foreach (Card c in Cards)
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
             {
-                string cardNumString = c.CardNumber.ToString();
-                CardsList.Add(c.Type.ToString());
-                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
+                userId = User.Identity.GetUserId();
             }
-            ViewBag.CardInfo = CardsList;
-            //create user viewmodel
-            var model = new IndexViewModel
+            var model = new SetPasswordViewModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                StreetAddress = user.StreetAddress,
-                ZipCode = user.ZipCode,
-                Orders = user.Orders,
-
-                HasPassword = HasPassword(),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                UserID = userId
             };
 
             return View(model);
         }
 
-        // get: edit account details
 
-        public ActionResult Edit(int? id)
+        // POST: /Account/SetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
-            var userId = User.Identity.GetUserId();
-            var user = UserManager.FindById(userId);
-            //get the credit cards
-            var cardQuery = from c in user.Cards
-                            from cd in db.Cards
-                            where cd.CardID == c.CardID
-                            select cd;
-            var Cards = cardQuery.ToList();
-            List<string> CardsList = new List<string>();
-            //mask the cardnumber and add to viewbag
-
-            foreach (Card c in Cards)
+            if (!ModelState.IsValid)
             {
-                string cardNumString = c.CardNumber.ToString();
-                CardsList.Add(c.Type.ToString());
-                CardsList.Add(cardNumString.Substring(cardNumString.Length - 4));
+                return View(model);
             }
-            ViewBag.CardInfo = CardsList;
-            //set up the view model
-            var model = new IndexViewModel
+            var result = await UserManager.AddPasswordAsync(model.UserID, model.NewPassword);
+            if (result.Succeeded)
             {
+                var user = await UserManager.FindByIdAsync(model.UserID);
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+        // GET: /Account/Index
+        public async Task<ActionResult> Index(string id, ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Password has been changed successfully."
+                : message == ManageMessageId.SetPasswordSuccess ? "Password has been set successfully."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.DetailsChangeSuccess ? "Account Details have been changed successfully."
+                 : message == ManageMessageId.CardDeleteSuccess ? "Card was deleted successfully."
+                : "";
+
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                userId = User.Identity.GetUserId();
+            }
+            var user = db.Users.SingleOrDefault(u => u.Id == userId);
+
+            var model = new UserModel()
+            {
+
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email,
+                City = user.City,
+                State = user.State,
+                EmailAddress = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 StreetAddress = user.StreetAddress,
+                UserModelID = user.Id,
                 ZipCode = user.ZipCode,
-                Orders = user.Orders,
-
-                HasPassword = HasPassword()
+                HasPassword = (user.PasswordHash != null),
+                Cards = user.Cards
             };
+
+            if (UserManager.IsInRole(user.Id, "Manager"))
+            {
+                model.Role = "Manager";
+            }
+            else if
+            (UserManager.IsInRole(user.Id, "Employee"))
+            {
+                model.Role = "Employee";
+            }
+            else
+            {
+                model.Role = "Customer";
+            }
+
+            return View(model);
+
+        }
+
+        // get: edit account details
+
+        public ActionResult Edit(string id)
+        {
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                userId = User.Identity.GetUserId();
+            }
+            var user = db.Users.SingleOrDefault(u => u.Id == userId);
+
+            var model = new UserModel()
+            {
+
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                City = user.City,
+                State = user.State,
+                EmailAddress = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                StreetAddress = user.StreetAddress,
+                UserModelID = user.Id,
+                ZipCode = user.ZipCode,
+                HasPassword = (user.PasswordHash != null),
+                Cards = user.Cards
+            };
+
+            if (UserManager.IsInRole(user.Id, "Manager"))
+            {
+                model.Role = "Manager";
+            }
+            else if
+            (UserManager.IsInRole(user.Id, "Employee"))
+            {
+                model.Role = "Employee";
+            }
+            else
+            {
+                model.Role = "Customer";
+            }
+
             return View(model);
         }
 
         // post: edit account details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,StreetAddress,ZipCode")] IndexViewModel @IndexViewModel)
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,EmailAddress,PhoneNumber,StreetAddress,ZipCode,City,State,UserModelID")] UserModel model)
         {
-            @IndexViewModel.HasPassword = HasPassword();
+
             if (ModelState.IsValid)
             {
-                var user = UserManager.FindById(User.Identity.GetUserId());
-                user.FirstName = IndexViewModel.FirstName;
-                user.LastName = IndexViewModel.LastName;
-                user.Email = IndexViewModel.Email;
-                user.PhoneNumber = IndexViewModel.PhoneNumber;
-                user.StreetAddress = IndexViewModel.StreetAddress;
-                user.ZipCode = IndexViewModel.ZipCode;
+
+                var user = UserManager.FindById(model.UserModelID);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.EmailAddress;
+                user.PhoneNumber = model.PhoneNumber;
+                user.StreetAddress = model.StreetAddress;
+                user.ZipCode = model.ZipCode;
+                user.City = model.City;
+                user.State = model.State;
 
                 var result = await UserManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
                     AddErrors(result);
-                    return RedirectToAction("Edit");
+                    return RedirectToAction("Edit", new { Id = model.UserModelID });
 
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Id = model.UserModelID, message = ManageMessageId.DetailsChangeSuccess });
             }
-            return View(@IndexViewModel);
+            return View(model);
+        }
+
+        [Authorize(Roles="Employee, Manager")]    
+        public ActionResult Customers()
+        {
+            var role = db.Roles.FirstOrDefault(x => x.Name == "Customer");
+            var users = db.Users
+            .Where(x => x.Roles.Any(y => y.RoleId.Equals(role.Id)))
+            .ToList();
+
+            return View(users);
+        }
+
+        [Authorize(Roles = "Manager")]
+        public ActionResult Employees()
+        {
+            var role = db.Roles.FirstOrDefault(x => x.Name == "Employee");
+            var users = db.Users
+            .Where(x => x.Roles.Any(y => y.RoleId.Equals(role.Id)))
+            .ToList();
+
+            return View(users);
+        }
+
+
+        [Authorize]
+        public ActionResult AddCard(string Id)
+        {
+
+            var model = new Card() { AppUserId = Id };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")]Card card)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Cards.Add(card);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = card.AppUserId });
+            }
+
+            return View(card);
+        }
+
+        [Authorize]
+        public ActionResult DeleteCard(int Id)
+        {
+            var card = db.Cards.SingleOrDefault(c => c.CardID == Id);
+
+            if (card != null)
+            {
+                var userID = card.AppUserId;
+                db.Cards.Remove(card);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = userID, message = ManageMessageId.CardDeleteSuccess });
+            }
+
+            return RedirectToAction("Index", new { id = User.Identity.GetUserId() });
+
         }
 
         //method to edit card information
@@ -317,7 +438,6 @@ namespace Longhorn_Music_Team_17.Controllers
             var user = UserManager.FindById(User.Identity.GetUserId());
             return View();
         }
-
 
 
         private bool HasPassword()
@@ -375,5 +495,25 @@ namespace Longhorn_Music_Team_17.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        private bool AuthorizedToEdit(string id)
+        {
+
+            if (id != User.Identity.GetUserId())
+            {
+                if (UserManager.IsInRole(id, "Customer") && !(User.IsInRole("Employee") || User.IsInRole("Manager")))
+                {
+                    return false;
+                }
+                else if (UserManager.IsInRole(id, "Employee") && !User.IsInRole("Manager"))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        
     }
 }
