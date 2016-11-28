@@ -6,41 +6,54 @@ namespace Longhorn_Music_Team_17
 {
     public class EmailMessaging
     {
+
         private const string _emailServiceLogin = "longhornmusicteam17@gmail.com";
-        private const string _emailServicePassword = "Password123!";
+        private const string _emailServicePassword = "Pssword123!";
         private const string _senderEmail = "noreplay@longhornmusic.com";
         public static void SendEmail(String toEmailAddress, String emailSubject, String emailBody)
 
         {
-            //Create an email client to send the emails
 
-            var client = new SmtpClient("smtp.gmail.com", 587)
-
+            try
             {
-                Credentials = new NetworkCredential(_emailServiceLogin, _emailServicePassword),
-                EnableSsl = true
-            };
+                //Create an email client to send the emails
 
-            var finalMessage = emailBody + "\n\n This is a disclaimer that will be on all    messages. ";
+                var client = new SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(_emailServiceLogin, _emailServicePassword);
 
-            //Create an email address object for the sender address
 
-            var senderEmail = new MailAddress(_senderEmail, "Long Horn Music");
 
-            var mm = new MailMessage();
+                var finalMessage = emailBody + "<br/><br/>Thank you<!<br/><br/>Longhorn Music Team 17";
 
-            mm.Subject = emailSubject;
+                //Create an email address object for the sender address
 
-            mm.Sender = senderEmail;
+                var senderEmail = new MailAddress(_senderEmail, "Longhorn Music");
 
-            mm.From = senderEmail;
+                var mm = new MailMessage();
 
-            mm.To.Add(new MailAddress(toEmailAddress));
+                mm.Subject = emailSubject;
 
-            mm.Body = finalMessage; //adds a footer
+                mm.Sender = senderEmail;
 
-            client.Send(mm);
+                mm.From = senderEmail;
 
+                mm.To.Add(new MailAddress(toEmailAddress));
+
+                mm.Body = finalMessage; //adds a footer
+
+                mm.IsBodyHtml = true;
+
+                client.Send(mm);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }

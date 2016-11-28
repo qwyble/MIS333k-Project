@@ -1,81 +1,92 @@
-﻿@model Longhorn_Music_Team_17.ViewModels.CustomerViewModel
-
+﻿@model Longhorn_Music_Team_17.Models.UserModel
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Account Details";
 }
 <h2>@ViewBag.Title.</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">
-    <div class="col-md-4">
-        <h4></h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>First Name:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.FirstName)
-            </dd>
-            <dt>Last Name:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.LastName)
-            </dd>
-            <dt>Email:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.EmailAddress)
-            </dd>
-            <dt>Phone:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.PhoneNumber)
-            </dd>
-            <dt>Address:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.StreetAddress)
-            </dd>
-            <dt>City:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.City)
-            </dd>
-            <dt>State:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.State)
-            </dd>
-            <dt>ZipCode:</dt>
-            <dd>
-                @Html.DisplayFor(model => model.CustomerDetails.ZipCode)
-            </dd>
-            <dt>Password:</dt>
-            <dd>
-                [@Html.ActionLink("Change your password", "ChangePassword")]
-            </dd>
-            <dt>@Html.ActionLink("Edit", "Edit")</dt>
-        </dl>
-    </div>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>First Name:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>Last Name:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>Email:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+        <dt>Phone:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber, "{0:###-##-####}")
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
 
-    <div class="col-md-6">
-        <h4></h4>
-        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.City):
+        </dt>
 
-        <table class="table" style="width:60%">
-            @foreach (var item in Model.Cards)
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+      
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
             {
-            <tr>
-                <td>@Html.DisplayFor(m => item.CardNumber)</td>
-                <td>@Html.DisplayFor(m => item.Type)</td>
-                <td>@Html.ActionLink("Remove", "DeleteCard", new { id = item.CardID })</td>
-            </tr>
-            }
-            
-                @if (Model.Cards.Count() < 2)
+                if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
                 {
-                    <tr>
-                        <td>@Html.ActionLink("Add Card", "AddCard")</td>
-                    </tr>  
+                    @Html.ActionLink("Set Password", "SetPassword")
                 }
-            
-        </table>
-        @if (ViewBag.CardsMaxed == true)
-        {
-            @ViewBag.ErrorMessage
-        }
+                else
+                {
+                    @Html.ActionLink("Change your password", "ChangePassword")
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Set Password", "SetPassword")
+            }
+            ]
+        </dd>
 
-    </div>
+    <dt>@Html.ActionLink("Edit", "Edit", new { id = Model.UserModelID })</dt>
+</dl>  
+    <br />
+    @if (Model.Role == "Customer")
+    {
+        <h4>Credit Cards</h4>
+
+        @Html.DisplayFor(model => model.Cards, "Card")
+        if (Model.Cards.Count() < 2)
+        {
+            @Html.ActionLink("Add Credit Card", "AddCard", new { id = Model.UserModelID })
+        }
+    }
+
 </div>

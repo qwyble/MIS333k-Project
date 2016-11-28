@@ -93,6 +93,22 @@ namespace Longhorn_Music_Team_17.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class SetPasswordViewModel
+    {
+        public string UserID { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [Display(Name = "New password")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm new password")]
+        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+    }
+
     public class IndexViewModel
     {
         [Required]
@@ -125,7 +141,7 @@ namespace Longhorn_Music_Team_17.Models
 
         [Required(ErrorMessage = "Please enter zip code.")]
         [Display(Name = "Zip Code")]
-        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]  
+        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]
         public String ZipCode { get; set; }
 
         public virtual List<Order> Orders { get; set; }

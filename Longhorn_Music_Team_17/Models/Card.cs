@@ -35,11 +35,14 @@ namespace Longhorn_Music_Team_17.Models
 
         }
 
+        [Display(Name = "Expiration Date")]
         public string ExpDate { get; set; }
         
 
-        public virtual AppUser Owner { get; set; }
+        [RegularExpression(@"^\d{3}$", ErrorMessage = "Enter a valid CVV (3 digit numeric data)")]
+        public string CVV { get; set; }
 
-        public Int32 CVV { get; set; }
+        public virtual AppUser AppUser { get; set; } //each card can have one user
+
     }
 }

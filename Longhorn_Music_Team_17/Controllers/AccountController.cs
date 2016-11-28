@@ -1,5 +1,4 @@
 ﻿//Change the using statement here to match your project's name
-using Longhorn_Music_Team_17.ViewModels;
 using Longhorn_Music_Team_17.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -24,6 +23,8 @@ namespace Longhorn_Music_Team_17.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            DetailsChangeSuccess,
+            CardDeleteSuccess,
             Error
         }
 
@@ -129,12 +130,20 @@ namespace Longhorn_Music_Team_17.Controllers
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                await UserManager.AddToRoleAsync(user.Id, "Customer"); //adds user to role called "Customer"
 
                 if (result.Succeeded) //user was created successfully
                 {
-                    //sign the user in
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    if (User.IsInRole("Manager"))
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Employee");
+                    }
+                    else
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Customer");
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+
 
                     //send them to the home page
                     return RedirectToAction("Index", "Home");
@@ -146,45 +155,11 @@ namespace Longhorn_Music_Team_17.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        //register employees
-        [HttpPost]
-        [Authorize(Roles = "Manager")]
-        public async Task<ActionResult> RegisterEmployee(RegisterEmployeeViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                //TODO: Add fields to user here so they will be saved to the database
-                //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, PhoneNumber = model.PhoneNumber, StreetAddress = model.StreetAddress, ZipCode = model.ZipCode };
-
-                //Add the new user to the database
-                var result = await UserManager.CreateAsync(user, model.Password);
-
-                //TODO: Once you get roles working, you may want to add users to roles upon creation
-                await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
-
-                if (result.Succeeded) //user was created successfully
-                {
-
-                    //send them to the home page
-                    return RedirectToAction("Index", "Home");
-                }
-
-                //if there was a problem, add the error messages to what we will display
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-
         }
 
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -202,7 +177,6 @@ namespace Longhorn_Music_Team_17.Controllers
         // POST: /Account/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -223,53 +197,70 @@ namespace Longhorn_Music_Team_17.Controllers
             return View(model);
         }
 
-        // GET: /Account/Index
-        [Authorize]
-        public ActionResult Index(ManageMessageId? message)
+        // GET: /Account/SetPassword
+        public ActionResult SetPassword(string id)
         {
-            var userId = User.Identity.GetUserId();
-            var user = UserManager.FindById(userId);
-            
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            //create user viewmodel
-            var model = new CustomerViewModel
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
             {
-                CustomerDetails = new UserModel()
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    City = user.City,
-                    State = user.State,
-                    EmailAddress = user.Email,
-                    PhoneNumber = user.PhoneNumber,
-                    StreetAddress = user.StreetAddress,
-                    UserModelID = user.Id,
-                    ZipCode = user.ZipCode
-                },
-                Cards = user.Cards
+                userId = User.Identity.GetUserId();
+            }
+            var model = new SetPasswordViewModel
+            {
+                UserID = userId
             };
 
             return View(model);
         }
 
-        // get: edit account details
-        [Authorize]
-        public ActionResult Edit(int? id)
-        {
-            var userId = User.Identity.GetUserId();
-            var user = UserManager.FindById(userId);
 
-            //set up the view model
+        // POST: /Account/SetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await UserManager.AddPasswordAsync(model.UserID, model.NewPassword);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(model.UserID);
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+        // GET: /Account/Index
+        public async Task<ActionResult> Index(string id, ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Password has been changed successfully."
+                : message == ManageMessageId.SetPasswordSuccess ? "Password has been set successfully."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.DetailsChangeSuccess ? "Account Details have been changed successfully."
+                 : message == ManageMessageId.CardDeleteSuccess ? "Card was deleted successfully."
+                : "";
+
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                userId = User.Identity.GetUserId();
+            }
+            var user = db.Users.SingleOrDefault(u => u.Id == userId);
+
             var model = new UserModel()
             {
+
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 City = user.City,
@@ -278,8 +269,69 @@ namespace Longhorn_Music_Team_17.Controllers
                 PhoneNumber = user.PhoneNumber,
                 StreetAddress = user.StreetAddress,
                 UserModelID = user.Id,
-                ZipCode = user.ZipCode   
+                ZipCode = user.ZipCode,
+                HasPassword = (user.PasswordHash != null),
+                Cards = user.Cards
             };
+
+            if (UserManager.IsInRole(user.Id, "Manager"))
+            {
+                model.Role = "Manager";
+            }
+            else if
+            (UserManager.IsInRole(user.Id, "Employee"))
+            {
+                model.Role = "Employee";
+            }
+            else
+            {
+                model.Role = "Customer";
+            }
+
+            return View(model);
+
+        }
+
+        // get: edit account details
+
+        public ActionResult Edit(string id)
+        {
+            var userId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                userId = User.Identity.GetUserId();
+            }
+            var user = db.Users.SingleOrDefault(u => u.Id == userId);
+
+            var model = new UserModel()
+            {
+
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                City = user.City,
+                State = user.State,
+                EmailAddress = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                StreetAddress = user.StreetAddress,
+                UserModelID = user.Id,
+                ZipCode = user.ZipCode,
+                HasPassword = (user.PasswordHash != null),
+                Cards = user.Cards
+            };
+
+            if (UserManager.IsInRole(user.Id, "Manager"))
+            {
+                model.Role = "Manager";
+            }
+            else if
+            (UserManager.IsInRole(user.Id, "Employee"))
+            {
+                model.Role = "Employee";
+            }
+            else
+            {
+                model.Role = "Customer";
+            }
 
             return View(model);
         }
@@ -287,70 +339,105 @@ namespace Longhorn_Music_Team_17.Controllers
         // post: edit account details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,EmailAddress,PhoneNumber,StreetAddress,City,State,ZipCode")] UserModel @UserModel)
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,EmailAddress,PhoneNumber,StreetAddress,ZipCode,City,State,UserModelID")] UserModel model)
         {
+
             if (ModelState.IsValid)
             {
-                var user = UserManager.FindById(User.Identity.GetUserId());
-                user.FirstName = @UserModel.FirstName;
-                user.LastName = @UserModel.LastName;
-                user.Email = @UserModel.EmailAddress;
-                user.PhoneNumber = @UserModel.PhoneNumber;
-                user.StreetAddress = @UserModel.StreetAddress;
-                user.City = @UserModel.City;
-                user.State = @UserModel.State;
-                user.ZipCode = @UserModel.ZipCode;
+
+                var user = UserManager.FindById(model.UserModelID);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.EmailAddress;
+                user.PhoneNumber = model.PhoneNumber;
+                user.StreetAddress = model.StreetAddress;
+                user.ZipCode = model.ZipCode;
+                user.City = model.City;
+                user.State = model.State;
 
                 var result = await UserManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
                     AddErrors(result);
-                    return View(@UserModel);
+                    return RedirectToAction("Edit", new { Id = model.UserModelID });
 
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Id = model.UserModelID, message = ManageMessageId.DetailsChangeSuccess });
             }
-            return View(@UserModel);
+            return View(model);
         }
 
-        [Authorize]
-        public ActionResult AddCard()
+        [Authorize(Roles="Employee, Manager")]    
+        public ActionResult Customers()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user.Cards.Count() > 1)
-            {
-                ViewBag.CardsMaxed = true;
-                ViewBag.ErrorMessage = "Only two credit cards are allowed per account.";
-                return RedirectToAction("Index");
-            }
-            var model = new Card();
+            var role = db.Roles.FirstOrDefault(x => x.Name == "Customer");
+            var users = db.Users
+            .Where(x => x.Roles.Any(y => y.RoleId.Equals(role.Id)))
+            .ToList();
+
+            return View(users);
+        }
+
+        [Authorize(Roles = "Manager")]
+        public ActionResult Employees()
+        {
+            var role = db.Roles.FirstOrDefault(x => x.Name == "Employee");
+            var users = db.Users
+            .Where(x => x.Roles.Any(y => y.RoleId.Equals(role.Id)))
+            .ToList();
+
+            return View(users);
+        }
+
+
+        [Authorize]
+        public ActionResult AddCard(string Id)
+        {
+
+            var model = new Card() { AppUserId = Id };
             return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddCard([Bind(Include = "CardNumber,CVV,Type,ExpDate")] Card @card)
+        [ValidateAntiForgeryToken]
+
+        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")]Card card)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user.Cards.Count() > 1)
-            {
-                ViewBag.CardsMaxed = true;
-                ViewBag.ErrorMessage = "Only two credit cards are allowed per account.";
-                return RedirectToAction("Index");
-            }
+
             if (ModelState.IsValid)
             {
-                @card.AppUserId = user.Id;
-                db.Cards.Add(@card);
+                db.Cards.Add(card);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-                
+                return RedirectToAction("Index", new { id = card.AppUserId });
             }
-            
-            return View(@card);
+
+            return View(card);
         }
 
+        [Authorize]
+        public ActionResult DeleteCard(int Id)
+        {
+            var card = db.Cards.SingleOrDefault(c => c.CardID == Id);
+
+            if (card != null)
+            {
+                var userID = card.AppUserId;
+                db.Cards.Remove(card);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = userID, message = ManageMessageId.CardDeleteSuccess });
+            }
+
+            return RedirectToAction("Index", new { id = User.Identity.GetUserId() });
+
+        }
+
+        //method to edit card information
+        public ActionResult CardEdit()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View();
+        }
 
 
         private bool HasPassword()
@@ -408,5 +495,25 @@ namespace Longhorn_Music_Team_17.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        private bool AuthorizedToEdit(string id)
+        {
+
+            if (id != User.Identity.GetUserId())
+            {
+                if (UserManager.IsInRole(id, "Customer") && !(User.IsInRole("Employee") || User.IsInRole("Manager")))
+                {
+                    return false;
+                }
+                else if (UserManager.IsInRole(id, "Employee") && !User.IsInRole("Manager"))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        
     }
 }
