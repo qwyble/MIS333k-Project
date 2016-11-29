@@ -15,12 +15,14 @@ namespace Longhorn_Music_Team_17.Models
         public String AlbumTitle { get; set; }
 
         [Display(Name = "Album Price")]
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+       // [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public Decimal AlbumPrice { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Discount Amount")]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public Decimal DiscountAmount { get; set; }
 
+        [Display(Name = "Discounted Price")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public Decimal DiscountedPrice { get { return AlbumPrice - DiscountAmount; } private set { } }

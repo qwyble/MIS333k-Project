@@ -89,7 +89,7 @@
                     {
                         <tr>
                             <td width="50%">
-                                @Html.ActionLink(item.ArtistName ?? "-unknown-", "Details", "Artists", new { id = item.ArtistID })  <!--should be updated when page is added-->
+                                @Html.ActionLink(item.ArtistName ?? "-unknown-", "Details", "Artists", new { id = item.ArtistID }, null)  <!--should be updated when page is added-->
                             </td>
                             <td width="50%">
                                 @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore)      <!--change to rating-->

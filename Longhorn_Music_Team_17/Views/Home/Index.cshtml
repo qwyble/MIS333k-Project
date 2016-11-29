@@ -1,10 +1,37 @@
-﻿
+﻿@model Longhorn_Music_Team_17.ViewModels.CustomerWelcomeViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h1>Welcome to Longhorn Music</h1>
-<h3>Get Hooked!</h3>
+@if (User.IsInRole("Customer")) 
+{
+    <div class="jumbotron">
+        <h2>Welcome back @Model.CustomerName! </h2>
+        <p>Our featured song/album of the day is:</p>
+        <br /> 
+        @if (Model.FeaturedSong.SongID != 0)
+        {
+        <a href="@Url.Action("Details", "Songs", new { id = Model.FeaturedSong.SongID })" class="well well-lg">@Model.FeaturedSong.SongTitle</a>
+        }
+        @if (Model.FeaturedAlbum.AlbumID != 0)
+        {
+        <a href="@Url.Action("Details", "Albums", new { id = Model.FeaturedAlbum.AlbumID })" class="well well-lg">@Model.FeaturedAlbum.AlbumTitle</a>
+        }
+        @if (Model.FeaturedArtist.ArtistID != 0)
+        {
+        <a href="@Url.Action("Details", "Artists", new { id = Model.FeaturedArtist.ArtistID })" class="well well-lg">@Model.FeaturedArtist.ArtistName</a>
+        }
+    </div>
+}
+
+else
+
+{
+    <h1>Welcome to Longhorn Music</h1>
+    <h3>Get Hooked!</h3>
+}
+
 
 @using (Html.BeginForm("Search", "Search"))
 {

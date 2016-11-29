@@ -77,29 +77,22 @@
                 <td>
                     @if (item.AlbumID != null)
                     {
-                        foreach (var rating in item.Album.Ratings)
+                        if (item.Album.Ratings.ToList().Any())
                         {
-                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Album.Ratings.IndexOf(rating) < item.Album.Ratings.Count - 1)
-                            {
-                                <span> &amp;</span> <br />
-                            }
+                            @item.Album.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
                         }
 
                     }
                     else
                     {
-                        foreach (var rating in item.Song.Ratings)
-
+                        if (item.Song.Ratings.ToList().Any())
                         {
-                            @Html.DisplayFor(modelitem => rating.RatingScore)  if (item.Song.Ratings.IndexOf(rating) < item.Song.Ratings.Count - 1)
-                            {
-                                <span> &amp;</span> <br />
-                            }
+                            @item.Song.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
                         }
                     }
                 </td>
 
-             
+      
                 <td id="item-count-@item.RecordID">
                     @item.Count
                 </td>

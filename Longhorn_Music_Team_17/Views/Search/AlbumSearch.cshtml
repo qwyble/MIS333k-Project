@@ -100,8 +100,7 @@
                     {
                         <tr>
                             <td class="filterable-cell" , width="40%">
-                                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Albums", new { id = item.AlbumID })  <!--should be updated when page is added-->
-                            </td>
+                                @Html.ActionLink(item.AlbumTitle ?? "-untitled-", "Details", "Albums", new { id = item.AlbumID }, null)
                             <td class="filterable-cell" , width="30%">
                                 @foreach (var artist in item.Artists)
                                  {
