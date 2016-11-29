@@ -17,9 +17,11 @@ namespace Longhorn_Music_Team_17.Models
         [Display(Name = "Song Price")]
         public Decimal SongPrice { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Discount Amount")]
+       // [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public Decimal DiscountAmount { get; set; }
 
+        [Display(Name = "Discounted Price")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public Decimal DiscountedPrice { get { return SongPrice - DiscountAmount; } private set { } }
@@ -29,18 +31,19 @@ namespace Longhorn_Music_Team_17.Models
 
         //navigation properties
 
-        [Display(Name = "Artist")]
+        [Display(Name = "Artist(s)")]
         public virtual List<Artist> Artists { get; set; }
 
-        [Display(Name = "Album")]
+        [Display(Name = "Album(s)")]
         public virtual List<Album> Albums { get; set; }
 
-        [Display(Name = "Genre")]
+        [Display(Name = "Genre(s)")]
         public virtual List<Genre> Genres { get; set; }
 
-        [Display(Name = "Rating")]
+        
         public virtual List<Review> Reviews { get; set; }
-      
+
+        [Display(Name = "Rating")]
         public virtual List<Rating> Ratings { get; set; }
     }
 }

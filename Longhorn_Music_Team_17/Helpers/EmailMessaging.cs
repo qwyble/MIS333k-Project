@@ -28,7 +28,7 @@ namespace Longhorn_Music_Team_17
 
 
 
-                var finalMessage = emailBody + "<br/><br/>Thank you<!<br/><br/>Longhorn Music Team 17";
+                var finalMessage = emailBody + "<br/><br/>Thank you!<br/><br/>Longhorn Music Team 17";
 
                 //Create an email address object for the sender address
 

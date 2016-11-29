@@ -29,10 +29,11 @@ namespace Longhorn_Music_Team_17.Models
 
         }
 
+        [Display(Name = "Expiration Date")]
         public string ExpDate { get; set; }
 
-
-        public Int32 CVV { get; set; }
+        [RegularExpression(@"^\d{3}$", ErrorMessage = "Enter a valid CVV (3 digit numeric data)")]
+        public string CVV { get; set; }
 
         public decimal Subtotal { get; set; }
 
@@ -40,10 +41,13 @@ namespace Longhorn_Music_Team_17.Models
 
         public decimal Total { get; set; }
 
+        [Display(Name = "Is this a gift?")]
         public bool IsGift { get; set; }
 
+        [Display(Name = "Gift Email")]
         public string GiftEmail { get; set; }
 
+        [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
 
