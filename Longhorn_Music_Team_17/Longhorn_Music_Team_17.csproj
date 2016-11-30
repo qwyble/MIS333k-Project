@@ -325,6 +325,10 @@
     <Compile Include="Migrations\201611302209481_ReviewsUpdate2.Designer.cs">
       <DependentUpon>201611302209481_ReviewsUpdate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611302240105_reviews3.cs" />
+    <Compile Include="Migrations\201611302240105_reviews3.Designer.cs">
+      <DependentUpon>201611302240105_reviews3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -417,11 +421,6 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
-    <Content Include="Views\Reviews\Create.cshtml" />
-    <Content Include="Views\Reviews\Delete.cshtml" />
-    <Content Include="Views\Reviews\Details.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
@@ -430,6 +429,11 @@
     <Content Include="Views\Library\ArtistSearch.cshtml" />
     <Content Include="Views\Library\SongSearch.cshtml" />
     <Content Include="Views\Checkout\AddCard.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -481,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611302209481_ReviewsUpdate2.resx">
       <DependentUpon>201611302209481_ReviewsUpdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611302240105_reviews3.resx">
+      <DependentUpon>201611302240105_reviews3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
