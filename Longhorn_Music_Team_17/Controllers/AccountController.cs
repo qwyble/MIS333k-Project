@@ -279,7 +279,7 @@ namespace Longhorn_Music_Team_17.Controllers
                     {
 
                         await UserManager.AddToRoleAsync(user.Id, "Employee");
-
+                        SendEmployeeEmail(user);
                     }
 
                     else
@@ -1044,6 +1044,19 @@ namespace Longhorn_Music_Team_17.Controllers
             sb.AppendLine("Welcome to Longhorn Music!");
             EmailMessaging.SendEmail(user.Email, "Welcome to Longhorn Music", sb.ToString());
 
+        }
+
+        private void SendRegisterEmail(AppUser user)
+        {
+
+            var body = $@"Dear {user.FirstName}, <br></br><br></br>Thanks for registering at Longhorn Music. Hope you enjoy your time here!";
+            EmailMessaging.SendEmail(user.Email, "LHM Registration Confirmation", body);
+        }
+        private void SendEmployeeEmail(AppUser user)
+        {
+
+            var body = $@"Dear {user.FirstName}, you have been registered as an employee";
+            EmailMessaging.SendEmail(user.Email, "LHM Employee Registration Confirmation", body);
         }
 
     }
