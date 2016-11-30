@@ -137,10 +137,12 @@ namespace Longhorn_Music_Team_17.Controllers
                     if (User.IsInRole("Manager"))
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Employee");
+                        SendEmployeeEmail(user);
                     }
                     else
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Customer");
+                        SendRegisterEmail(user);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
@@ -238,7 +240,7 @@ namespace Longhorn_Music_Team_17.Controllers
         }
 
         // GET: /Account/Index
-        public async Task<ActionResult> Index(string id, ManageMessageId? message)
+        public ActionResult Index(string id, ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Password has been changed successfully."
@@ -514,6 +516,18 @@ namespace Longhorn_Music_Team_17.Controllers
             return true;
         }
 
-        
+        private void SendRegisterEmail(AppUser user)
+        {
+
+            var body = $@"Dear {user.FirstName}, <br></br><br></br>Thanks for registering at Longhorn Music. Hope you enjoy your time here!";
+            EmailMessaging.SendEmail(user.Email, "LHM Registration Confirmation", body);
+        }
+        private void SendEmployeeEmail(AppUser user)
+        {
+
+            var body = $@"Dear {user.FirstName}, you have been registered as an employee";
+            EmailMessaging.SendEmail(user.Email, "LHM Employee Registration Confirmation", body);
+        }
+
     }
 }
