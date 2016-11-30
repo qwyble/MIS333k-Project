@@ -18,5 +18,6 @@ namespace Longhorn_Music_Team_17.Models
         public virtual List<Artist> Artists { get; set; }
         public virtual List<Album> Albums { get; set; }
         public virtual List<Song> Songs { get; set; }
+
     }
 }
