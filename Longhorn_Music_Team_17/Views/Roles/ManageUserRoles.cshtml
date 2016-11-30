@@ -16,7 +16,9 @@
 
     <p>
         Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+        Rolename : @if (User.IsInRole("Manager"))
+        {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")}
+        else {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.CustomerRoles, "Select ...")}
 
     </p>
 
