@@ -32,8 +32,14 @@ namespace Longhorn_Music_Team_17.Models
 
         //navigation properties
         public virtual List<Song> Songs { get; set; }  //an album has >1 song
+
+        [Display(Name = "Artist(s)")]
         public virtual List<Artist> Artists { get; set; } //an album can have many artists
+
+        [Display(Name = "Genre(s)")]
         public virtual List<Genre> Genres { get; set; }  //an album can have many artists genre; do these properties need to have same/different names in different classes?
+
+        [Display(Name = "Rating")]
         public virtual List<Rating> Ratings { get; set; } //an album can have many ratings
     }
 }

@@ -205,7 +205,6 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
@@ -229,9 +228,9 @@
     <Compile Include="Migrations\201611290238502_Thomas11.Designer.cs">
       <DependentUpon>201611290238502_Thomas11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611300005097_empseed.cs" />
-    <Compile Include="Migrations\201611300005097_empseed.Designer.cs">
-      <DependentUpon>201611300005097_empseed.cs</DependentUpon>
+    <Compile Include="Migrations\201611292242376_Thomas13.cs" />
+    <Compile Include="Migrations\201611292242376_Thomas13.Designer.cs">
+      <DependentUpon>201611292242376_Thomas13.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201611300315037_DataAnnotations.cs" />
     <Compile Include="Migrations\201611300315037_DataAnnotations.Designer.cs">
@@ -328,10 +327,6 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -357,8 +352,8 @@
     <EmbeddedResource Include="Migrations\201611290238502_Thomas11.resx">
       <DependentUpon>201611290238502_Thomas11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611300005097_empseed.resx">
-      <DependentUpon>201611300005097_empseed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611292242376_Thomas13.resx">
+      <DependentUpon>201611292242376_Thomas13.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611300315037_DataAnnotations.resx">
       <DependentUpon>201611300315037_DataAnnotations.cs</DependentUpon>

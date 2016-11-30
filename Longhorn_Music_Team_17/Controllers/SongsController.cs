@@ -50,7 +50,7 @@ namespace Longhorn_Music_Team_17.Controllers
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
+        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong,DiscountAmount")] Song song)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Longhorn_Music_Team_17.Controllers
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong")] Song song)
+        public ActionResult Edit([Bind(Include = "SongID,SongTitle,SongPrice,FeaturedSong,DiscountAmount")] Song song)
         {
             if (ModelState.IsValid)
             {
