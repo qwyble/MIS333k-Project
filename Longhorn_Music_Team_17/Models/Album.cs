@@ -41,5 +41,8 @@ namespace Longhorn_Music_Team_17.Models
 
         [Display(Name = "Rating")]
         public virtual List<Rating> Ratings { get; set; } //an album can have many ratings
+
+        [Display(Name = "Review")]
+        public virtual List<Review> Reviews { get; set; } //an album can have many reviews
     }
 }
