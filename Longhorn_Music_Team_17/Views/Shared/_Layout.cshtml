@@ -63,6 +63,8 @@
                 {
                     @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
 
+                    @Html.ActionLink("My Music", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
+
                 }
 
                 @if (User.IsInRole("Manager"))
@@ -83,7 +85,7 @@
                 @if (User.Identity.IsAuthenticated)
 
                 {
-
+                    
                     @Html.ActionLink("My Account", "Index", "Account", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
 
                 }
