@@ -24,10 +24,13 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         [Display(Name = "Type of Card")]
+        [Required(ErrorMessage = "Please specify your card type")]
         public CardType Type { get; set; }
 
 
         [Display(Name = "Card Number")]
+        [RegularExpression(@"^\d{15,16}$", ErrorMessage = "Invalid Card Number")]
+        [Required(ErrorMessage = "Card Number is required")]
         public string CardNumber
         {
             get { return (string.IsNullOrEmpty(_CardNumber)) ? string.Empty : string.Concat(string.Empty.PadLeft(_CardNumber.Length - 4, '*'), _CardNumber.Substring(_CardNumber.Length - 4)); }

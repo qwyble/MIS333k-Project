@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201611292242376_Thomas13.Designer.cs">
       <DependentUpon>201611292242376_Thomas13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611300315037_DataAnnotations.cs" />
+    <Compile Include="Migrations\201611300315037_DataAnnotations.Designer.cs">
+      <DependentUpon>201611300315037_DataAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -350,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611292242376_Thomas13.resx">
       <DependentUpon>201611292242376_Thomas13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300315037_DataAnnotations.resx">
+      <DependentUpon>201611300315037_DataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>

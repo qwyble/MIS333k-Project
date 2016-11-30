@@ -288,9 +288,9 @@ namespace Longhorn_Music_Team_17.Controllers
 
                         await UserManager.AddToRoleAsync(user.Id, "Customer");
 
-                        SendToEmail(user);
+                        SendRegisterEmail(user);
 
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     }
 
@@ -635,7 +635,7 @@ namespace Longhorn_Music_Team_17.Controllers
             }
 
             var user = db.Users.SingleOrDefault(u => u.Id == userId);
-
+        
 
 
 
@@ -1037,7 +1037,7 @@ namespace Longhorn_Music_Team_17.Controllers
             return true;
         }
 
-        private void SendToEmail(AppUser user)
+        private void SendRegisterEmail(AppUser user)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Dear {user.FirstName},<br/><br/>");
@@ -1046,12 +1046,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
         }
 
-        private void SendRegisterEmail(AppUser user)
-        {
-
-            var body = $@"Dear {user.FirstName}, <br></br><br></br>Thanks for registering at Longhorn Music. Hope you enjoy your time here!";
-            EmailMessaging.SendEmail(user.Email, "LHM Registration Confirmation", body);
-        }
+        
         private void SendEmployeeEmail(AppUser user)
         {
 
