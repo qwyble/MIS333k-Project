@@ -133,3 +133,19 @@
         }
 </table>
 
+<table class="table table-bordered">
+    <tr>
+        <th>
+            
+        </th>
+
+    </tr>
+    @foreach (var item in Model.Songs)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.SongTitle, "Details", "Songs", new { id = item.SongID }, null)</td>
+        </tr>
+    }
+</table>
+
+

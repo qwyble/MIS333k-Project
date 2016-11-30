@@ -10,7 +10,7 @@ using Longhorn_Music_Team_17.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-
+using Longhorn_Music_Team_17.ViewModels;
 namespace Longhorn_Music_Team_17.Controllers
 {
     [Authorize(Roles = "Manager")]
@@ -33,6 +33,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Album album = db.Albums.Find(id);
+
             if (album == null)
             {
                 return HttpNotFound();

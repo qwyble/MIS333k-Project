@@ -313,6 +313,14 @@
     <Compile Include="Migrations\201611302006019_somestuff.Designer.cs">
       <DependentUpon>201611302006019_somestuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611302125001_AlbumReviews.cs" />
+    <Compile Include="Migrations\201611302125001_AlbumReviews.Designer.cs">
+      <DependentUpon>201611302125001_AlbumReviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611302134091_reviews.cs" />
+    <Compile Include="Migrations\201611302134091_reviews.Designer.cs">
+      <DependentUpon>201611302134091_reviews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -460,6 +468,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611302006019_somestuff.resx">
       <DependentUpon>201611302006019_somestuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611302125001_AlbumReviews.resx">
+      <DependentUpon>201611302125001_AlbumReviews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611302134091_reviews.resx">
+      <DependentUpon>201611302134091_reviews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>

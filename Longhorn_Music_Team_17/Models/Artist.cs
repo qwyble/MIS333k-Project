@@ -21,5 +21,6 @@ namespace Longhorn_Music_Team_17.Models
         public virtual List<Album> Albums { get; set; }
         public virtual List<Song> Songs { get; set; }
         public virtual List<Rating> Ratings { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }
