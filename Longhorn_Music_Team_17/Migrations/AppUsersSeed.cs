@@ -33,7 +33,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "8176593544"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "tj2222"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -56,7 +56,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2148475583"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "ricearoni"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -79,7 +79,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5126978613"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "ingram45"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -125,7 +125,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2105788965"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "marty"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -148,7 +148,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5124678821"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "longhorns"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -171,7 +171,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5124653365"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "smitty"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -194,7 +194,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5129457399"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "tanman"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -217,7 +217,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2102449976"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "countryrhodes"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -240,7 +240,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2105344627"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "stewboy"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -263,7 +263,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2106983548"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "lisssa"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -286,7 +286,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5124748138"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "swansong"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -309,7 +309,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5124579845"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "lottery"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -332,7 +332,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "8174955201"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "123456"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -355,7 +355,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "8178746718"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "monty3"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -378,7 +378,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "8177458615"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "hecktour"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -401,7 +401,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "5122926966"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "rankmary"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -424,7 +424,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2143125897"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "walkamile"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -447,7 +447,7 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2103450925"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "changalang"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
@@ -470,11 +470,10 @@ namespace Longhorn_Music_Team_17.Migrations
                     PhoneNumber = "2142345566"
                 };
                 AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "BU9563"); userToAdd = userManager.FindByName(email); }
+                if (userToAdd == null) { userManager.Create(userToInsert, "gg2003"); userToAdd = userManager.FindByName(email); }
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-
 
 
         }
