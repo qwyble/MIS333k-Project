@@ -177,11 +177,20 @@ namespace Longhorn_Music_Team_17.Controllers
         private string ValidateModelAndGetErrorMessage(CheckoutViewModel model)
         {
             var errorMessage = string.Empty;
-            var giftEmail = model.GiftEmail;
-            var giftReceiver = UserManager.FindByEmail(giftEmail);
-            if (giftReceiver == null)
+
+            if (model.IsGift == true)
             {
-               errorMessage = $"No user record was found with the email : {model.GiftEmail}";
+                if (model.GiftEmail == null)
+                {
+                    errorMessage = $"Please enter the recipient's email";
+                }
+                else
+                {
+                    var giftEmail = model.GiftEmail;
+                    var giftReceiver = UserManager.FindByEmail(giftEmail);
+                    if (giftReceiver == null) { errorMessage = $"No user record was found with the email : {model.GiftEmail}"; }
+                }
+               
             }
             return errorMessage;
         }
@@ -253,12 +262,11 @@ namespace Longhorn_Music_Team_17.Controllers
             order.OrderDate = DateTime.Now;
 
             //Save Order
+            order.AppUserId = User.Identity.GetUserId();
 
             db.Orders.Add(order);
 
             db.SaveChanges();
-
-            order.AppUserId = User.Identity.GetUserId();
 
             //Process the order
 
