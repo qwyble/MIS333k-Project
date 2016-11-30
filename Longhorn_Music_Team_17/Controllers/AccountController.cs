@@ -304,7 +304,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 userId = User.Identity.GetUserId();
             }
             var user = db.Users.SingleOrDefault(u => u.Id == userId);
-
+        
             var model = new UserModel()
             {
 
