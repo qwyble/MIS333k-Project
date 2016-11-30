@@ -205,6 +205,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
@@ -323,6 +324,10 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\AppUsers\ManagerEdit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,10 +12,11 @@
         </li>
 @*@if (User.IsInRole("Manager")) *@
     @*    { *@ 
+        <li>@Html.ActionLink("Manage Roles", "Index", "Roles")</li>
         <li>@Html.ActionLink("Manage Roles", "Index", "RoleAdmin")</li>
  @*      }  *@  
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+    </ul> 
     }
 }
 else
