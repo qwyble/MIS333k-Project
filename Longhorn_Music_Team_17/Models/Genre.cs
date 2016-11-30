@@ -11,6 +11,7 @@ namespace Longhorn_Music_Team_17.Models
         public Int32 GenreID { get; set; }
 
         [Display(Name = "Genre Name")]
+        [Required(ErrorMessage = "Genre name is required")]
         public string GenreName { get; set; }
 
         //navigational properties

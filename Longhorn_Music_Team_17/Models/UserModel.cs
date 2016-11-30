@@ -10,7 +10,7 @@ namespace Longhorn_Music_Team_17.Models
     {
 
         [Display(Name = "User ID")]
-        public String UserModelID { get; set; } //account number in project data?
+        public String UserModelID { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -24,13 +24,15 @@ namespace Longhorn_Music_Team_17.Models
         public String MiddleInitial { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address.")] //why the two different error messages?
+        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         [Display(Name = "Email Address")]
         public String EmailAddress { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Phone Number Required!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
         [DisplayFormat(DataFormatString = "{0:###-###-####}", ApplyFormatInEditMode = true)] //this doesn't seem to ensure that a proper phone number is entered
         public String PhoneNumber { get; set; }
 
@@ -46,7 +48,7 @@ namespace Longhorn_Music_Team_17.Models
 
         [Required(ErrorMessage = "Please enter zip code.")]
         [Display(Name = "Zip Code")]
-        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
+        [RegularExpression(@"^([0-9]{5})([\-]{1}[0-9]{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
         public String ZipCode { get; set; }
 
 

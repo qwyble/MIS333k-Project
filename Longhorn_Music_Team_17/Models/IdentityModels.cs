@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 //Change the namespace here to match your project's name
 namespace Longhorn_Music_Team_17.Models
@@ -16,10 +17,14 @@ namespace Longhorn_Music_Team_17.Models
     {
         //TODO: Put any additional fields that you need for your users here
         //For example:
+        [Required]
         public String FirstName { get; set; }
         public String MiddleInitial { get; set; }
+        [Required]
         public String LastName { get; set; }
+        [Required]
         public String StreetAddress { get; set; }
+        [Required]
         public String ZipCode { get; set; }
         public String City { get; set; }
         public String State { get; set; }

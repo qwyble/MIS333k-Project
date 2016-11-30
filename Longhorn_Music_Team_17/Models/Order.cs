@@ -14,6 +14,7 @@ namespace Longhorn_Music_Team_17.Models
 
         public Int32 CardID { get; set; }
 
+        [Required]
         public String AppUserId { get; set; }
 
 
@@ -45,6 +46,8 @@ namespace Longhorn_Music_Team_17.Models
         public bool IsGift { get; set; }
 
         [Display(Name = "Gift Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string GiftEmail { get; set; }
 
         [Display(Name = "Order Date")]
