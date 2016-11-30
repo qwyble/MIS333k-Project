@@ -190,6 +190,7 @@ namespace Longhorn_Music_Team_17.Models
                     Quantity = item.Count
                 };
 
+
                 // Set the order total of the shopping cart
                 orderTotal += (item.Count * ((item.AlbumID != null) ? item.Album.DiscountedPrice : item.Song.DiscountedPrice));
 
