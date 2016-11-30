@@ -12,7 +12,6 @@ namespace Longhorn_Music_Team_17.Models
         public Int32 ReviewID { get; set; }
 
         //public Int32 Rating { get; set; }
-        [Required(ErrorMessage = "If you don't have anything to say, you can just leave a rating.")]
         public String Comment { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -25,7 +24,7 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         //navigation properties
-        [Required]
+        [Required(ErrorMessage = "Rate before posting a review")]
         public virtual Rating rating { get; set; }
         public virtual Song SongReview { get; set; }  //each review is for one song
         public virtual Album AlbumReview { get; set; }  //each review is for one album
