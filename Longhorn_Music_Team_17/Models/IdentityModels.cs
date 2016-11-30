@@ -31,7 +31,7 @@ namespace Longhorn_Music_Team_17.Models
 
         //navigational properties 
         //TODO: DO THESE GO HERE?
-        //public virtual List<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
         public virtual List<Order> Orders { get; set; }
         public virtual List<Card> Cards { get; set; }
 

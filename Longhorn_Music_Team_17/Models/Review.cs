@@ -15,12 +15,22 @@ namespace Longhorn_Music_Team_17.Models
         [Required(ErrorMessage = "If you don't have anything to say, you can just leave a rating.")]
         public String Comment { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (rating == null && Comment != null)
+            {
+                yield return new ValidationResult
+                 ("Rate the item before posting a review");
+            }
+        }
+
         //navigation properties
         [Required]
         public virtual Rating rating { get; set; }
         public virtual Song SongReview { get; set; }  //each review is for one song
         public virtual Album AlbumReview { get; set; }  //each review is for one album
-        public virtual Artist ArtistReview { get; set; } //each review is for one artist 
+        public virtual Artist ArtistReview { get; set; } //each review is for one artist
+        public virtual AppUser Owner { get; set; }
 
 
     }
