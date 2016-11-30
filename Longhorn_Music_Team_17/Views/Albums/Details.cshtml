@@ -70,28 +70,31 @@
             {
         <strike>@Html.DisplayFor(model => model.AlbumPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
              }
-    else
-    {
-        @Html.DisplayFor(model => model.AlbumPrice)
-    }
-</dd>
- @if (Model.AlbumPrice != Model.DiscountedPrice)
- {
-    <dt>
-        Savings
-    </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DiscountAmount)
+            else
+            {
+                @Html.DisplayFor(model => model.AlbumPrice)
+            }
         </dd>
+         @if (Model.AlbumPrice != Model.DiscountedPrice)
+         {
+            <dt>
+                Savings
+            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DiscountAmount)
+                </dd>
 
-        @*<dt>
-        @Html.DisplayNameFor(model => model.FeaturedAlbum)
-    </dt>
+                @*<dt>
+                @Html.DisplayNameFor(model => model.FeaturedAlbum)
+            </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.FeaturedAlbum)
-    </dd> *@
- }
+            <dd>
+                @Html.DisplayFor(model => model.FeaturedAlbum)
+            </dd> *@
+         }
+         <dd>
+             (@Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID }, null)
+         </dd>
 
     </dl>
 </div>
