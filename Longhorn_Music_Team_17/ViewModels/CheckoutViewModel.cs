@@ -12,7 +12,7 @@ namespace Longhorn_Music_Team_17.ViewModels
     {
         private String _CardNumber;
 
-        public String SelectedCardNumber { get; set; }
+        public string SelectedCardNumber { get; set; }
 
         public String CardOption { get; set; }
 

@@ -7,8 +7,8 @@
 @if (User.IsInRole("Customer")) 
 {
     <div class="jumbotron">
-        <h2>Welcome back @Model.CustomerName! </h2>
-        <p>Our featured song/album of the day is:</p>
+        <h2>Welcome @Model.CustomerName! </h2>
+        <p>Featured Today:</p>
         <br /> 
         @if (Model.FeaturedSong.SongID != 0)
         {
