@@ -17,7 +17,7 @@ namespace Longhorn_Music_Team_17.Controllers
     public class RolesController : Controller
     {
         
-        AppDbContext context = new AppDbContext();
+        AppDbContext db = new AppDbContext();
         private AppSignInManager _signInManager;
         private AppUserManager _userManager;
 
@@ -59,7 +59,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: /Roles/
         public ActionResult Index()
         {
-            var roles = context.Roles.ToList();
+            var roles = db.Roles.ToList();
             return View(roles);
         }
 
@@ -77,11 +77,11 @@ namespace Longhorn_Music_Team_17.Controllers
         {
             try
             {
-                context.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+                db.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
                 {
                     Name = collection["RoleName"]
                 });
-                context.SaveChanges();
+                db.SaveChanges();
                 ViewBag.ResultMessage = "Role created successfully !";
                 return RedirectToAction("Index");
             }
@@ -95,7 +95,7 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: /Roles/Edit/5
         public ActionResult Edit(string roleName)
         {
-            var thisRole = context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var thisRole = db.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
             return View(thisRole);
         }
@@ -108,8 +108,8 @@ namespace Longhorn_Music_Team_17.Controllers
         {
             try
             {
-                context.Entry(role).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+                db.Entry(role).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -123,16 +123,23 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: /Roles/Delete/5
         public ActionResult Delete(string RoleName)
         {
-            var thisRole = context.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-            context.Roles.Remove(thisRole);
-            context.SaveChanges();
+            var thisRole = db.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            db.Roles.Remove(thisRole);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+                
         public ActionResult ManageUserRoles()
         {
-            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            //for managers
+            var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
+
+            //for employees
+            var customerList = db.Roles.Where(x => x.Name == "Customer" || x.Name == "DisabledCustomer").ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.CustomerRoles = customerList;
+                        
             return View();
         }
 
@@ -140,15 +147,14 @@ namespace Longhorn_Music_Team_17.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
-            AppUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-
-            //IdentityResult deletionResult = UserManager.RemoveFromRole(user.Id, RoleName);            
+            AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                               
             UserManager.AddToRole(user.Id, RoleName);
 
             ViewBag.ResultMessage = "Role created successfully !";
 
             // prepopulat roles for the view dropdown
-            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
             ModelState.Clear();
@@ -161,13 +167,15 @@ namespace Longhorn_Music_Team_17.Controllers
         {
             if (!string.IsNullOrWhiteSpace(UserName))
             {
-                AppUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
                 
                 ViewBag.RolesForThisUser = UserManager.GetRoles(user.Id);
 
                 // prepopulat roles for the view dropdown
-                var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+                var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = list;
+
+                
             }
 
             ModelState.Clear();
@@ -178,7 +186,7 @@ namespace Longhorn_Music_Team_17.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {            
-            AppUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
             if (UserManager.IsInRole(user.Id, RoleName))
             {
@@ -190,11 +198,12 @@ namespace Longhorn_Music_Team_17.Controllers
                 ViewBag.ResultMessage = "This user doesn't belong to selected role.";
             }
             // prepopulat roles for the view dropdown
-            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
             ModelState.Clear();
             return View("ManageUserRoles");
         }
+
     }
 }

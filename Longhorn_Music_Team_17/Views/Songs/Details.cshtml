@@ -14,7 +14,9 @@
     @Html.DisplayNameFor(model => model.SongTitle)
 </dt>
 <dd>       
-    @Html.DisplayFor(model => model.SongTitle) (@Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null))
+    @Html.DisplayFor(model => model.SongTitle) 
+    @if (User.IsInRole("Customer"))
+    { @Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null)}
 </dd>
 <dt>
     @Html.DisplayNameFor(model => model.Artists)
