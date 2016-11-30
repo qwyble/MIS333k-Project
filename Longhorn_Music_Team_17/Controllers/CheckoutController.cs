@@ -151,7 +151,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
         [ValidateAntiForgeryToken]
 
-        public ActionResult NewOrder(CheckoutViewModel model)
+        public ActionResult NewOrder(CheckoutViewModel model, string CardOption)
 
         {
 
@@ -160,6 +160,19 @@ namespace Longhorn_Music_Team_17.Controllers
                 PopulateViewModel(model);
                 return View(model);
             }
+            /*
+            if (CardOption == "NewCard")
+            {
+                Card card = new Card();
+                card.AppUser = db.Users.Find(model.AppUserId);
+                card.AppUserId = model.AppUserId;
+                card.CardNumber = model.CardNumber;
+                card.CVV = model.CVV;
+                card.ExpDate = model.ExpDate;
+                card.Type = model.Type;
+
+            }
+            */
             var errorMessage = ValidateModelAndGetErrorMessage(model);
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -172,6 +185,28 @@ namespace Longhorn_Music_Team_17.Controllers
 
             return RedirectToAction("Review");
 
+        }
+
+        [Authorize]
+        public ActionResult AddCard()
+        {
+            AppUser user = UserManager.FindById(User.Identity.GetUserId());
+            var model = new Card() { AppUserId = user.Id, AppUser = user };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")]Card card)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Cards.Add(card);
+                db.SaveChanges();
+                return RedirectToAction("NewOrder");
+            }
+            return View(card);
         }
 
         private string ValidateModelAndGetErrorMessage(CheckoutViewModel model)

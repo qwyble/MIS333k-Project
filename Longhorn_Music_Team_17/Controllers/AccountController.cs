@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 //Change the namespace here to match your project's name
 
@@ -829,14 +830,13 @@ namespace Longhorn_Music_Team_17.Controllers
 
         [Authorize]
 
-        public ActionResult AddCard(string Id)
+        public ActionResult AddCard()
 
         {
 
 
-
-
-            var model = new Card() { AppUserId = Id };
+            AppUser user = UserManager.FindById(User.Identity.GetUserId());
+            var model = new Card() { AppUserId = user.Id, AppUser = user };
 
             return View(model);
 
@@ -857,20 +857,13 @@ namespace Longhorn_Music_Team_17.Controllers
         public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")]Card card)
 
         {
-
-
-
-
+         
             if (ModelState.IsValid)
-
             {
 
                 db.Cards.Add(card);
-
                 db.SaveChanges();
-
                 return RedirectToAction("Index", new { id = card.AppUserId });
-
             }
 
 

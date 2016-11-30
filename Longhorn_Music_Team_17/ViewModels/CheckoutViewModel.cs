@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace Longhorn_Music_Team_17.ViewModels
 {
@@ -23,10 +24,42 @@ namespace Longhorn_Music_Team_17.ViewModels
 
 
         [Display(Name = "Card Number")]
+        [RegularExpression(@"^.{5,}$", ErrorMessage = "Invalid card number")]
         public string CardNumber
         {
             get { return (string.IsNullOrEmpty(_CardNumber)) ? string.Empty : string.Concat(string.Empty.PadLeft(_CardNumber.Length - 4, '*'), _CardNumber.Substring(_CardNumber.Length - 4)); }
             set { _CardNumber = value; }
+
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (!Regex.IsMatch(_CardNumber, @"^[0-9]{15,16}$"))
+            {
+                yield return new ValidationResult
+                 ("Card number is invalid", new[] { "CardNumber" });
+            }
+
+            if (_CardNumber.Length == 15 && Type != Card.CardType.AmericanExpress)
+            {
+                yield return new ValidationResult
+                    ("Card number does not match card type.");
+            }
+            if (_CardNumber.Substring(0, 2) != "54" && Type == Card.CardType.Mastercard)
+            {
+                yield return new ValidationResult
+                    ("Card number does not match card type.");
+            }
+            if (_CardNumber.Substring(0, 1) != "4" && Type == Card.CardType.Visa)
+            {
+                yield return new ValidationResult
+                    ("Card number does not match card type.");
+            }
+            if (_CardNumber.Substring(0, 1) != "6" && Type == Card.CardType.Discover)
+            {
+                yield return new ValidationResult
+                    ("Card number does not match card type.");
+            }
 
         }
 
