@@ -85,7 +85,7 @@
         @Html.DisplayFor(model => model.Cards, "Card")
         if (Model.Cards.Count() < 2)
         {
-            @Html.ActionLink("Add Credit Card", "AddCard", new { id = Model.UserModelID })
+            @Html.ActionLink("Add Credit Card", "AddCard")
         }
     }
 
