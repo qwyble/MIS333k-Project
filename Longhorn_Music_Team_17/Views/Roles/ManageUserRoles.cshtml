@@ -19,7 +19,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <p class="text-success">@ViewBag.ResultMessage</p>
+    <p class="text-success">@ViewBag.AddResultMessage</p>
 
     <p>
         Username : @Html.TextBox("UserName")
@@ -44,7 +44,7 @@
 
 @if (ViewBag.RolesForThisUser != null)
 {
-    <div style="background-color:yellow;">
+    <div style="background-color:darkorange;">
         <h3>Roles for this user </h3>
         <ol>
             @foreach (string s in ViewBag.RolesForThisUser)
@@ -62,11 +62,14 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <p class="text-success">@ViewBag.ResultMessage</p>
+    <p class="text-success">@ViewBag.DeleteResultMessage</p>
 
     <p>
         Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+        Role Name: @if (User.IsInRole("Manager"))
+        {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")}
+        else
+        {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.CustomerRoles, "Select ...")}
         <input type="submit" value="Delete this user from Role" />
     </p>
 
