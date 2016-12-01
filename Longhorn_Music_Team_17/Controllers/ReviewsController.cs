@@ -39,7 +39,6 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: Reviews/Create
         public ActionResult Create()
         {
-            ViewBag.Rating = new SelectList(db.Ratings, "RatingID", "RatingID");
             return View();
         }
 
@@ -48,8 +47,12 @@ namespace Longhorn_Music_Team_17.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Rating,Comment")] Review review)
+        public ActionResult Create([Bind(Include = "RateNum,Comment")] Review review)
         {
+            if (review.RateNum == 0)
+            {
+                review.RateNum = null;
+            }
             if (ModelState.IsValid)
             {
                 db.Reviews.Add(review);
@@ -57,7 +60,6 @@ namespace Longhorn_Music_Team_17.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Rating = new SelectList(db.Ratings, "RatingID", "RatingID", review.ReviewID);
             return View(review);
         }
 

@@ -24,7 +24,7 @@ namespace Longhorn_Music_Team_17.Models
         }
 
         [Required(ErrorMessage = "Please rate before reviewing")]
-        public RateEnum RateNum { get; set; }
+        public RateEnum? RateNum { get; set; }
 
         //navigation properties
         public virtual Rating rating { get; set; }
