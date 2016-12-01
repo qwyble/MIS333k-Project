@@ -12,7 +12,7 @@
         </li>
 @if (User.IsInRole("Manager"))
         {          
-        <li>@Html.ActionLink("Manage Roles", "ManageUserRoles", "Roles")</li>
+        <li>@Html.ActionLink("Manage Roles", "Index", "Roles")</li>
         }    
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul> 
