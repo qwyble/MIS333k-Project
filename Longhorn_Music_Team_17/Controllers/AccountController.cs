@@ -10,6 +10,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System;
 
 //Change the namespace here to match your project's name
 
@@ -132,11 +133,18 @@ namespace Longhorn_Music_Team_17.Controllers
                 return View(model);
             }
 
-            AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
-
-            if (await UserManager.IsInRoleAsync(userLoggingIn.Id, "DisabledEmployee"))
+            try
             {
-                return View("Error", new string[] { "Your employee account has been disabled." });
+                AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
+
+                if (await UserManager.IsInRoleAsync(userLoggingIn.Id, "DisabledEmployee"))
+                {
+                    return View("Error", new string[] { "Your employee account has been disabled." });
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                new ApplicationException("Invalid Email", e);
             }
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
