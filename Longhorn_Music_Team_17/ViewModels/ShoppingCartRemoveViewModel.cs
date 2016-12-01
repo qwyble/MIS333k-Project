@@ -13,6 +13,8 @@ namespace Longhorn_Music_Team_17.ViewModels
         public int CartCount { get; set; }
         public int ItemCount { get; set; }
         public int DeleteId { get; set; }
+        public decimal Tax { get; set; }
+        public decimal Total { get; set; }
     }
 }
 

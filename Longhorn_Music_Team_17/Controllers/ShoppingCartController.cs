@@ -89,6 +89,8 @@ namespace Longhorn_Music_Team_17.Controllers
                     " has been removed from your shopping cart.",
 
                 CartTotal = cart.GetTotal(),
+                Tax = cart.GetTax(),
+                Total = cart.GrandTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
 

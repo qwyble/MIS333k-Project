@@ -23,6 +23,8 @@
                             $('#item-count-' + data.DeleteId).text(data.ItemCount);
                         }
                         $('#cart-total').text(data.CartTotal);
+                        $('#cart-tax').text(data.Tax);
+                        $('#cart-grandtotal').text(data.Total);
                         $('#update-message').text(data.Message);
                         $('#cart-status').text('Cart (' + data.CartCount + ')');
                     });
@@ -59,10 +61,10 @@
                 Rating
             </th>                 
             <th>
-                Price (each)
+                Quantity
             </th>
             <th>
-                Quantity
+               Price (each)
             </th>
             <th></th>
             <th></th>
@@ -142,11 +144,11 @@
                 <td>
                     @if (item.AlbumID != null)
                     {
-                        @(item.Album.DiscountedPrice * item.Count)
+                        @item.Album.DiscountedPrice
                     }
                     else
                     {
-                        @(item.Song.DiscountedPrice * @item.Count)
+                        @item.Song.DiscountedPrice
                     }
                 </td>
 
@@ -173,7 +175,7 @@
                 Tax
             </td>
           
-            <td id="cart-total">
+            <td id="cart-tax">
                 @Model.Tax
             </td>
             <td></td>
@@ -183,7 +185,7 @@
                 <strong>Total</strong>
             </td>
      
-            <td id="cart-total">
+            <td id="cart-grandtotal">
                 <strong>@Model.Total</strong>
             </td>
             <td></td>

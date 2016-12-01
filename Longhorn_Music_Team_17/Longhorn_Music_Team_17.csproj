@@ -329,6 +329,14 @@
     <Compile Include="Migrations\201611302240105_reviews3.Designer.cs">
       <DependentUpon>201611302240105_reviews3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612010235379_Thomas24.cs" />
+    <Compile Include="Migrations\201612010235379_Thomas24.Designer.cs">
+      <DependentUpon>201612010235379_Thomas24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612010319019_Thomas25.cs" />
+    <Compile Include="Migrations\201612010319019_Thomas25.Designer.cs">
+      <DependentUpon>201612010319019_Thomas25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -488,6 +496,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611302240105_reviews3.resx">
       <DependentUpon>201611302240105_reviews3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010235379_Thomas24.resx">
+      <DependentUpon>201612010235379_Thomas24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010319019_Thomas25.resx">
+      <DependentUpon>201612010319019_Thomas25.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
