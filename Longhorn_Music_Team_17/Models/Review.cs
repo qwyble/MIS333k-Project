@@ -14,17 +14,19 @@ namespace Longhorn_Music_Team_17.Models
         //public Int32 Rating { get; set; }
         public String Comment { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public enum RateEnum
         {
-            if (rating == null && Comment != null)
-            {
-                yield return new ValidationResult
-                 ("Rate the item before posting a review");
-            }
+            one = 1,
+            two = 2,
+            three = 3,
+            four = 4,
+            five = 5
         }
 
+        [Required(ErrorMessage = "Please rate before reviewing")]
+        public RateEnum RateNum { get; set; }
+
         //navigation properties
-        [Required(ErrorMessage = "Rate before posting a review")]
         public virtual Rating rating { get; set; }
         public virtual Song SongReview { get; set; }  //each review is for one song
         public virtual Album AlbumReview { get; set; }  //each review is for one album
