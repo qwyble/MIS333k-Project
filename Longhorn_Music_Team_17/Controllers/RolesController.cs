@@ -156,10 +156,24 @@ namespace Longhorn_Music_Team_17.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
-            AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            if (String.IsNullOrEmpty(RoleName) || (String.IsNullOrEmpty(UserName)))
+            {               
+                return RedirectToAction("ManageUserRoles");
+            }
+            else
+            {
+                AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                if (user == null)
+                {                   
+                    return RedirectToAction("ManageUserRoles");
+                }
+                else
+                {
+                    UserManager.AddToRole(user.Id, RoleName);
+                    ViewBag.AddResultMessage = "Role added to user successfully!";
+                }
 
-            UserManager.AddToRole(user.Id, RoleName);
-            ViewBag.ResultMessage = "Role created successfully !";
+            }
 
             // prepopulat roles for the view dropdown
             var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
@@ -180,8 +194,15 @@ namespace Longhorn_Music_Team_17.Controllers
             if (!string.IsNullOrWhiteSpace(UserName))
             {
                 AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-                
-                ViewBag.RolesForThisUser = UserManager.GetRoles(user.Id);
+                if (user == null)
+                {                   
+                    return RedirectToAction("ManageUserRoles");
+                }
+                else
+                {
+
+                    ViewBag.RolesForThisUser = UserManager.GetRoles(user.Id);
+                }
 
                 // prepopulat roles for the view dropdown
                 var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
@@ -189,9 +210,10 @@ namespace Longhorn_Music_Team_17.Controllers
                 //for employees
                 var customerList = db.Roles.Where(x => x.Name == "Customer" || x.Name == "DisabledCustomer").ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.CustomerRoles = customerList;
-
-
-
+            }
+            else
+            {
+                return RedirectToAction("ManageUserRoles");
             }
 
             ModelState.Clear();
@@ -202,18 +224,28 @@ namespace Longhorn_Music_Team_17.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {
-            AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            if (String.IsNullOrEmpty(RoleName) || (String.IsNullOrEmpty(UserName)))
+            {               
+                return RedirectToAction("ManageUserRoles");
 
-
-
-            if (UserManager.IsInRole(user.Id, RoleName))
-            {
-                UserManager.RemoveFromRole(user.Id, RoleName);
-                ViewBag.ResultMessage = "Role removed from this user successfully !";
             }
             else
             {
-                ViewBag.ResultMessage = "This user doesn't belong to selected role.";
+                AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+                if (user == null)
+                {                  
+                    return RedirectToAction("ManageUserRoles");
+                }
+                else if (UserManager.IsInRole(user.Id, RoleName))
+                {
+                    UserManager.RemoveFromRole(user.Id, RoleName);
+                    ViewBag.DeleteResultMessage = "Role removed from this user successfully!";
+                }
+                else
+                {
+                    ViewBag.DeleteResultMessage = "This user doesn't belong to selected role.";
+                }
             }
 
             // prepopulat roles for the view dropdown
