@@ -1,28 +1,35 @@
 ﻿
+
 @{
     ViewBag.Title = "ManageUserRoles";
 }
 
 <h2>Manage User Roles</h2>
-@Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+@if (User.IsInRole("Manager"))
+{
+<div>@Html.ActionLink("Create New Role", "Create")</div>  
+<div>@Html.ActionLink("User List", "Index", "RoleAdmin")</div>
+}
 <hr />
 
-<h2>Role Add to User</h2>
+
+<h2>Add Role to User</h2>
 
 @using (Html.BeginForm("RoleAddToUser", "Roles"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <p class="text-success">@ViewBag.ResultMessage</p>
 
     <p>
         Username : @Html.TextBox("UserName")
         Rolename : @if (User.IsInRole("Manager"))
         {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")}
         else {@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.CustomerRoles, "Select ...")}
-
+        <input type="submit" value="Save" />
     </p>
 
-    <input type="submit" value="Save" />
+    
 }
 <hr />
 <h3>Get Roles for a User</h3>
@@ -55,12 +62,13 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <p class="text-success">@ViewBag.ResultMessage</p>
 
     <p>
         Username : @Html.TextBox("UserName")
         Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
-
+        <input type="submit" value="Delete this user from Role" />
     </p>
 
-    <input type="submit" value="Delete this user from Role" />
+    
 }
