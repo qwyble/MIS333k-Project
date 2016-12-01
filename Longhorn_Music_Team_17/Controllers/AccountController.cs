@@ -82,133 +82,74 @@ namespace Longhorn_Music_Team_17.Controllers
 
 
         public AppSignInManager SignInManager
-
         {
-
             get
-
             {
-
                 return _signInManager ?? HttpContext.GetOwinContext().Get<AppSignInManager>();
-
             }
-
             private set
-
             {
-
                 _signInManager = value;
-
             }
-
         }
-
-
-
 
         public AppUserManager UserManager
-
         {
-
             get
-
             {
-
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-
             }
-
             private set
-
             {
-
                 _userManager = value;
-
             }
-
         }
 
 
-
-
         //
-
         // GET: /Account/Login
-
         [AllowAnonymous]
-
         public ActionResult Login(string returnUrl)
-
         {
-
             if (HttpContext.User.Identity.IsAuthenticated)//NOTE: User has been re-directed here from a page they're not authorized to see
-
             {
-
                 return View("Error", new string[] { "Access Denied" });
-
             }
-
             AuthenticationManager.SignOut();  //this removes any old cookies hanging around
-
             ViewBag.ReturnUrl = returnUrl;
-
             return View();
-
         }
 
-
-
-
         //
-
         // POST: /Account/Login
-
         [HttpPost]
-
         [AllowAnonymous]
-
         [ValidateAntiForgeryToken]
-
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-
         {
-
             if (!ModelState.IsValid)
-
             {
-
                 return View(model);
-
             }
 
+            AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
 
-
-
-            // This doesn't count login failures towards account lockout
-
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            if (await UserManager.IsInRoleAsync(userLoggingIn.Id, "DisabledEmployee"))
+            {
+                return View("Error", new string[] { "Your employee account has been disabled." });
+            }
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
             switch (result)
-
             {
-
                 case SignInStatus.Success:
-
                     return RedirectToLocal(returnUrl);
-
                 case SignInStatus.Failure:
-
                 default:
-
                     ModelState.AddModelError("", "Invalid login attempt.");
-
                     return View(model);
-
             }
-
         }
 
 
