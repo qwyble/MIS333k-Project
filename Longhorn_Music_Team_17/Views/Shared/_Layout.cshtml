@@ -58,7 +58,7 @@
                     @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
                 }
 
-                @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+                @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
 
                 {
                     @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
