@@ -54,7 +54,13 @@ namespace Longhorn_Music_Team_17.Controllers
                 _userManager = value;
             }
         }
-
+        private AppRoleManager RoleManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppRoleManager>();
+            }
+        }
 
         // GET: /Roles/
         public ActionResult Index()
@@ -81,6 +87,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 {
                     Name = collection["RoleName"]
                 });
+                IdentityResult result = RoleManager.Create(new AppRole(collection["RoleName"]));
                 db.SaveChanges();
                 ViewBag.ResultMessage = "Role created successfully !";
                 return RedirectToAction("Index");
@@ -156,6 +163,10 @@ namespace Longhorn_Music_Team_17.Controllers
             // prepopulat roles for the view dropdown
             var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
+            //for employees
+            var customerList = db.Roles.Where(x => x.Name == "Customer" || x.Name == "DisabledCustomer").ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.CustomerRoles = customerList;
+
 
             ModelState.Clear();
             return View("ManageUserRoles");
@@ -174,8 +185,12 @@ namespace Longhorn_Music_Team_17.Controllers
                 // prepopulat roles for the view dropdown
                 var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = list;
+                //for employees
+                var customerList = db.Roles.Where(x => x.Name == "Customer" || x.Name == "DisabledCustomer").ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+                ViewBag.CustomerRoles = customerList;
 
-                
+
+
             }
 
             ModelState.Clear();
@@ -200,6 +215,10 @@ namespace Longhorn_Music_Team_17.Controllers
             // prepopulat roles for the view dropdown
             var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
+            //for employees
+            var customerList = db.Roles.Where(x => x.Name == "Customer" || x.Name == "DisabledCustomer").ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.CustomerRoles = customerList;
+
 
             ModelState.Clear();
             return View("ManageUserRoles");
