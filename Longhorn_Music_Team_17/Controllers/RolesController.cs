@@ -11,6 +11,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Security;
+using System.Net;
 
 namespace Longhorn_Music_Team_17.Controllers
 {
@@ -155,9 +157,8 @@ namespace Longhorn_Music_Team_17.Controllers
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
             AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-                               
-            UserManager.AddToRole(user.Id, RoleName);
 
+            UserManager.AddToRole(user.Id, RoleName);
             ViewBag.ResultMessage = "Role created successfully !";
 
             // prepopulat roles for the view dropdown
@@ -200,8 +201,10 @@ namespace Longhorn_Music_Team_17.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
-        {            
+        {
             AppUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+
 
             if (UserManager.IsInRole(user.Id, RoleName))
             {
@@ -212,6 +215,7 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 ViewBag.ResultMessage = "This user doesn't belong to selected role.";
             }
+
             // prepopulat roles for the view dropdown
             var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
