@@ -442,7 +442,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
         // GET: /Account/Index
 
-        public async Task<ActionResult> Index(string id, ManageMessageId? message)
+        public ActionResult Index(string id, ManageMessageId? message)
 
         {
 

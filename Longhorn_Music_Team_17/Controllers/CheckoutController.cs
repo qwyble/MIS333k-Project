@@ -337,7 +337,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
             return RedirectToAction("Complete", new { id = order.OrderID });
 
-            return View(model);
+            //return View(model);
 
         }
 
