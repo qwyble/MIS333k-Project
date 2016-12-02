@@ -32,6 +32,8 @@ namespace Longhorn_Music_Team_17.ViewModels
 
         }
 
+       
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!Regex.IsMatch(_CardNumber, @"^[0-9]{15,16}$"))

@@ -97,7 +97,7 @@
                     @item.Count
                 </td>
                 <td>
-                    @if (item.AlbumID != null)
+                    $@if (item.AlbumID != null)
                     {
                         @item.Album.DiscountedPrice
                     }
@@ -152,6 +152,7 @@
 
             <dt>
                 @Html.DisplayNameFor(model => model.CardNumber)
+               
             </dt>
 
             <dd>
@@ -162,13 +163,17 @@
             {
                 <dt>
                     @Html.DisplayNameFor(model => model.GiftEmail)
+                   
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.GiftEmail)
-                    @Html.HiddenFor(model => model.GiftEmail)
+                   
                 </dd>
             }
+            @Html.HiddenFor(model => model.GiftEmail)
+            @Html.HiddenFor(model => model.IsGift)
+            @Html.HiddenFor(model => model.CardNumber)
 
         </dl>
 

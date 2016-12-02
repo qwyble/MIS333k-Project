@@ -125,6 +125,10 @@
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebIcons, Version=1.0.0.0, Culture=en-GB, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebIcons.1.0.1.0\lib\net20\WebIcons.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -208,9 +212,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Padding.css" />
     <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />
     <Content Include="employee.txt" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -225,6 +233,11 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -263,6 +276,7 @@
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -345,6 +359,14 @@
     <Compile Include="Migrations\201612011723577_rate2.Designer.cs">
       <DependentUpon>201612011723577_rate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612020028316_Thomas61.cs" />
+    <Compile Include="Migrations\201612020028316_Thomas61.Designer.cs">
+      <DependentUpon>201612020028316_Thomas61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612020449117_Thomas70.cs" />
+    <Compile Include="Migrations\201612020449117_Thomas70.Designer.cs">
+      <DependentUpon>201612020449117_Thomas70.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -385,11 +407,13 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AlbumReportViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\CustomerWelcomeViewModel.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="ViewModels\SongReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -451,6 +475,9 @@
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\Report\SongReport.cshtml" />
+    <Content Include="Views\Report\AlbumReport.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -517,6 +544,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612011723577_rate2.resx">
       <DependentUpon>201612011723577_rate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612020028316_Thomas61.resx">
+      <DependentUpon>201612020028316_Thomas61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612020449117_Thomas70.resx">
+      <DependentUpon>201612020449117_Thomas70.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>

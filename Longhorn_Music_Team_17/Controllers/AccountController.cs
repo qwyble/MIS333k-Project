@@ -383,7 +383,6 @@ namespace Longhorn_Music_Team_17.Controllers
             var model = new SetPasswordViewModel
 
             {
-
                 UserID = userId
 
             };
@@ -394,11 +393,6 @@ namespace Longhorn_Music_Team_17.Controllers
             return View(model);
 
         }
-
-
-
-
-
 
 
         // POST: /Account/SetPassword
@@ -418,6 +412,7 @@ namespace Longhorn_Music_Team_17.Controllers
                 return View(model);
 
             }
+            UserManager.RemovePassword(model.UserID);
 
             var result = await UserManager.AddPasswordAsync(model.UserID, model.NewPassword);
 
@@ -519,7 +514,10 @@ namespace Longhorn_Music_Team_17.Controllers
 
                 HasPassword = (user.PasswordHash != null),
 
-                Cards = user.Cards
+                Cards = user.Cards,
+
+                Orders = user.Orders.OrderByDescending(x => x.OrderDate).ToList()
+
 
             };
 

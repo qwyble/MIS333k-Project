@@ -87,6 +87,26 @@
         {
             @Html.ActionLink("Add Credit Card", "AddCard")
         }
+
+        <h4>Order History</h4>
+        <table class="table">
+            <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Credit Card</th>
+                <th>Purchase Amount</th>
+            </tr>
+            @foreach (var item in Model.Orders)
+            {
+            <tr>
+                <td>@item.OrderID</td>
+                <td>@item.OrderDate.ToString("MMM dd, yyyy")</td>
+                <td>@item.CardNumber</td>
+                <td>$@item.Total</td>
+            </tr>
+            }
+        </table>
+
     }
 
 </div>

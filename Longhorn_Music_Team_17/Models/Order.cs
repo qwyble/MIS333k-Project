@@ -9,8 +9,7 @@ namespace Longhorn_Music_Team_17.Models
     public class Order
     {
         public int OrderID { get; set; }
-
-        private String _CardNumber;
+       
 
         public Int32 CardID { get; set; }
 
@@ -25,9 +24,8 @@ namespace Longhorn_Music_Team_17.Models
         [Display(Name = "Card Number")]
         public string CardNumber
         {
-            get { return (string.IsNullOrEmpty(_CardNumber)) ? string.Empty : string.Concat(string.Empty.PadLeft(_CardNumber.Length - 4, '*'), _CardNumber.Substring(_CardNumber.Length - 4)); }
-            set { _CardNumber = value; }
-
+            get;
+            set;
         }
 
         [Display(Name = "Expiration Date")]

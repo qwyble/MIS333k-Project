@@ -16,7 +16,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumTitle) (@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))
+
+            @Html.DisplayFor(model => model.AlbumTitle) 
+            @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+            {
+                <span>(@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))</span>
+            }
         </dd>
 
         <dt>
@@ -31,12 +36,13 @@
                     <span> &amp;</span> <br />
                 }
             }
-        </dd>  
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Genres)
         </dt>
-      
+
+
         <dd>
             @foreach (var genre in Model.Genres)
             {
@@ -93,7 +99,7 @@
             </dd> *@
          }
          <dd>
-             (@Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID }, null)
+             (@Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID }, null))
          </dd>
 
     </dl>

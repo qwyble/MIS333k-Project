@@ -15,8 +15,10 @@
 </dt>
 <dd>       
     @Html.DisplayFor(model => model.SongTitle) 
-    @if (User.IsInRole("Customer"))
-    { @Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null)}
+    @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+    { 
+        <span>(@Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null))</span>
+    }
 </dd>
 <dt>
     @Html.DisplayNameFor(model => model.Artists)

@@ -187,8 +187,9 @@ namespace Longhorn_Music_Team_17.Models
                     SongID = item.SongID,
                     OrderID = order.OrderID,
                     UnitPrice = ((item.AlbumID != null) ? item.Album.DiscountedPrice : item.Song.DiscountedPrice),
-                    Quantity = item.Count
-                };
+                    Quantity = item.Count,
+                    Subtotal = (item.Count * ((item.AlbumID != null) ? item.Album.DiscountedPrice : item.Song.DiscountedPrice))
+            };
 
 
                 // Set the order total of the shopping cart

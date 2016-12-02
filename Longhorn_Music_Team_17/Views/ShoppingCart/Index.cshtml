@@ -37,8 +37,12 @@
 <h3>
     Review your cart:
 </h3>
+@if (Model.CartItems != null && Model.CartItems.Any())
+{
 
-@if (User.IsInRole("Customer"))
+
+
+if (User.IsInRole("Customer"))
 {
     <p class="button">
         @Html.ActionLink("Checkout", "NewOrder", "Checkout")
@@ -157,9 +161,10 @@
                 </td>
 
                 <td>
+                    
                     <a href="#" class="RemoveLink"
                        data-id="@item.RecordID">
-                        Remove from cart
+                        <span class="fa fa-trash-o"></span>
                     </a>
                 </td>
             </tr>
@@ -196,3 +201,8 @@
         </tr>
     </table>
  </div>
+}
+else
+{
+<p>Your shopping cart is empty. Click @Html.ActionLink("here", "Index", "Home") to continue shopping.</p>
+}

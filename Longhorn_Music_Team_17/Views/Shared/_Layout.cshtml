@@ -11,12 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@ViewBag.Title - Longhorn Music</title>
+   
+     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+   
+     <link href="~/Content/Padding.css" rel="stylesheet" />
+   
+     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
@@ -46,58 +50,67 @@
 
                 </button>
 
-                @Html.ActionLink("Longhorn Music", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               
 
-                @if (User.IsInRole("Manager"))
 
-                {
-                    @Html.ActionLink("Songs", "Index", "Songs", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
-                }
-
-                @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
-
-                {
-                    @Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.ActionLink("My Music", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
-
-                }
-
-                @if (User.IsInRole("Manager"))
-                {
-
-                    @Html.ActionLink("Employees", "Employees", "Account", new { area = "" }, new { @class = "navbar-brand" })
-
-                }
-
-                @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
-
-                {
-
-                    @Html.ActionLink("Customers", "Customers", "Account", new { area = "" }, new { @class = "navbar-brand" })
-
-                }
-
-                @if (User.Identity.IsAuthenticated)
-
-                {
-                    
-                    @Html.ActionLink("My Account", "Index", "Account", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })
-
-                }
 
             </div>
 
             <div class="navbar-collapse collapse">
 
-                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Longhorn Music", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
 
+                                                                                @if (User.IsInRole("Manager"))
+
+                                                                                {
+
+                                                                                    <li> @Html.ActionLink("Songs", "Index", "Songs", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+                                                                                    <li>
+                                                                                        @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
+                                                                                    </li>
+
+                                                                                    <li>
+                                                                                        @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
+                                                                                    </li>
+                                                                                }
+
+                        @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
+
+                        {
+
+
+                            <li> @Html.ActionLink("My Music", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })</li>
+
+                        }
+
+                        @if (User.IsInRole("Manager"))
+                        {
+
+                            <li> @Html.ActionLink("Employees", "Employees", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+                        }
+
+                        @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+
+                        {
+
+                            <li>@Html.ActionLink("Customers", "Customers", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Reports", "Index", "Report", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+
+                        {
+
+                            <li>@Html.ActionLink("My Account", "Index", "Account", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })</li>
+
+                        }
+</ul>
                 @Html.Partial("_LoginPartial")
-
+               
             </div>
 
         </div>

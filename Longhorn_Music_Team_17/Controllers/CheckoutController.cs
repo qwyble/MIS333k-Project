@@ -258,7 +258,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
             {
 
-                viewModel.CardNumber = model.CardNumber;
+                viewModel.CardNumber = model.CardNumber + " " + model.Type;
 
             }
 
@@ -298,8 +298,12 @@ namespace Longhorn_Music_Team_17.Controllers
 
             //Save Order
             order.AppUserId = User.Identity.GetUserId();
+            order.CardNumber = model.CardNumber;
+            order.IsGift = model.IsGift;
+            order.GiftEmail = model.GiftEmail;
 
-            db.Orders.Add(order);
+            
+                db.Orders.Add(order);
 
             db.SaveChanges();
 
@@ -337,7 +341,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
             return RedirectToAction("Complete", new { id = order.OrderID });
 
-            //return View(model);
+           //return View(model);
 
         }
 

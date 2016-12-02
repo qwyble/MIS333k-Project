@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Longhorn_Music_Team_17.ViewModels.AlbumReportViewModel>
+
+@{
+    ViewBag.Title = "AlbumReport";
+}
+
+<h2>Albums Report</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Album Title
+        </th>
+        
+        <th>
+            Number of Purchase
+        </th>
+        <th>
+           Revenue
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlbumTitle)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPurchase)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.Revenue)
+        </td>
+       
+    </tr>
+}
+
+</table>

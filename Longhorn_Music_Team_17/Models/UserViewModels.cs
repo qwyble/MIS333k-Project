@@ -202,6 +202,8 @@ namespace Longhorn_Music_Team_17.Models
         [Display(Name = "Zip Code")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
         public String ZipCode { get; set; }
+
+        
     }
 }
 
