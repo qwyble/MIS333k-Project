@@ -225,6 +225,8 @@ namespace Longhorn_Music_Team_17.Controllers
                     review.Owner = db.Users.Find(User.Identity.GetUserId());
                     db.Reviews.Add(review);
                     db.SaveChanges();
+                    AlbumToRate.Ratings.Add(review.rating);
+                    db.SaveChanges();
                     return RedirectToAction("Details", "Albums", new { id = id });
                 }
             }
@@ -243,6 +245,8 @@ namespace Longhorn_Music_Team_17.Controllers
                     review.Owner = db.Users.Find(User.Identity.GetUserId());
                     db.Reviews.Add(review);
                     db.SaveChanges();
+                    SongToRate.Ratings.Add(review.rating);
+                    db.SaveChanges();
                     return RedirectToAction("Details", "Songs", new { id = id });
                 }
             }
@@ -260,6 +264,8 @@ namespace Longhorn_Music_Team_17.Controllers
                 {
                     review.Owner = db.Users.Find(User.Identity.GetUserId());
                     db.Reviews.Add(review);
+                    db.SaveChanges();
+                    ArtistToRate.Ratings.Add(review.rating);
                     db.SaveChanges();
                     return RedirectToAction("Details", "Artists", new { id = id });
                 }

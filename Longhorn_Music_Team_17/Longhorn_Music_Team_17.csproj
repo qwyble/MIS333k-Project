@@ -349,6 +349,10 @@
     <Compile Include="Migrations\201612020007049_ReviewFinal.Designer.cs">
       <DependentUpon>201612020007049_ReviewFinal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612020019225_fix.cs" />
+    <Compile Include="Migrations\201612020019225_fix.Designer.cs">
+      <DependentUpon>201612020019225_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -524,6 +528,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612020007049_ReviewFinal.resx">
       <DependentUpon>201612020007049_ReviewFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612020019225_fix.resx">
+      <DependentUpon>201612020019225_fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
