@@ -92,15 +92,18 @@
                 @Html.DisplayFor(model => model.FeaturedAlbum)
             </dd> *@
          }
-         <dd>
-             (@Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID }, null)
-         </dd>
+         <dt>
+             @Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID, name = "albumReview" }, null)
+         </dt>
+        <dd>
+            @ViewBag.ReviewError
+        </dd>
 
     </dl>
 </div>
 <p>@if (User.IsInRole("Manager"))
    {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID } ) 
    }
 </p>
 
@@ -136,17 +139,26 @@
 <table class="table table-bordered">
     <tr>
         <th>
+            Users
+        </th>
+        <th>
             Reviews
+        </th>
+        <th>
+            Ratings
         </th>
 
     </tr>
     @foreach (var item in Model.Reviews)
     {
-        <tr>
-            <td>@item.Owner.UserName</td>
-            <td>@item.Comment</td>
-            <td>@item.rating</td>
-        </tr>
+        if (item.Comment != null && item.Comment != "")
+        {
+            <tr>
+                <td>@item.Owner.UserName</td>
+                <td>@item.Comment</td>
+                <td>@((int)item.RateNum)</td>
+            </tr>
+        }
     }
 </table>
 

@@ -345,6 +345,10 @@
     <Compile Include="Migrations\201612011723577_rate2.Designer.cs">
       <DependentUpon>201612011723577_rate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612020007049_ReviewFinal.cs" />
+    <Compile Include="Migrations\201612020007049_ReviewFinal.Designer.cs">
+      <DependentUpon>201612020007049_ReviewFinal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -517,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612011723577_rate2.resx">
       <DependentUpon>201612011723577_rate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612020007049_ReviewFinal.resx">
+      <DependentUpon>201612020007049_ReviewFinal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
