@@ -33,6 +33,7 @@ namespace Longhorn_Music_Team_17.Controllers
         public ActionResult BandReport()
         {
 
+
             /*var query = from g in db.Genres
                         select g.GenreID;
 
