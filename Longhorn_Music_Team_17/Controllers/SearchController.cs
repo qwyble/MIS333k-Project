@@ -138,10 +138,13 @@ namespace Longhorn_Music_Team_17.Controllers
                     query = query.Intersect(query3);
                 }
 
-                // search by rating
 
                 // order by search parameters
-                if (SelectedOrderType != null)
+                if (SelectedOrderType == null)
+                {
+                    SongResults = query.ToList();
+                }
+                else
                 {
                     //order by song title
                     if (SelectedOrderType == OrderType.Title)
@@ -154,9 +157,10 @@ namespace Longhorn_Music_Team_17.Controllers
                         {
                             query = query.OrderBy(s => s.SongTitle);
                         }
+                        SongResults = query.ToList();
                     }
                     // order by artist name
-                    
+
                     else if (SelectedOrderType == OrderType.Artist)
                     {
                         if (SelectedSortOrder == SortOrder.Descending)
@@ -167,25 +171,44 @@ namespace Longhorn_Music_Team_17.Controllers
                         {
                             query = from s in query from ar in s.Artists orderby ar.ArtistName select s;
                         }
+                        SongResults = query.ToList();
                     }
-                    
-
-                    // order by rating
-                    /*
-                    else if (SelectedOrderType == OrderType.Rating)
-                    {
-                        if (SelectedSortOrder == SortOrder.Descending)
-                        {
-                            var OrderedSongs = SongResults.OrderByDescending(s => s.AverageRating);
-                        }
-                        else
-                        {
-                            var OrderedSongs = SongResults.OrderBy(s => s.AverageRating);
-                        }
-                    }
-                    */
                 }
-                SongResults = query.ToList();
+                if (SelectedRating != null)
+                {
+                    int rate = Int32.Parse(SelectedRating);
+
+                    List<Song> songsList = new List<Song>();
+                    if (RatingSort == ABRating.Above)
+                    {
+                        query = query.Where(s => s.Ratings.Count() > 0);
+                        foreach (Song s in query)
+                        {
+                            if(s.Ratings.ToList().Average(x => x.RatingScore) >= rate)
+                            {
+                                songsList.Add(s);
+                            }                             
+                        }
+                        SongResults = songsList;
+                    }
+
+                    else if (RatingSort == ABRating.Below)
+                    {
+                        foreach (Song s in query)
+                        {
+                            if(s.Ratings.Count() == 0)
+                            {
+                                songsList.Add(s);
+                            }
+                            else if (s.Ratings.ToList().Average(x => x.RatingScore) <= rate)
+                            {
+                                songsList.Add(s);
+                            }
+                        }
+                        SongResults = songsList;
+                    }
+                }
+                
                 ViewBag.numResults = SongResults.Count();
                 return View("SongSearch", SongResults);
             }
@@ -233,9 +256,43 @@ namespace Longhorn_Music_Team_17.Controllers
                             query = query.OrderBy(a => a.ArtistName);
                         }
                     }
-                    //order by rating
                  }
                 ArtistResults = query.ToList();
+                if (SelectedRating != null)
+                {
+                    int rate = Int32.Parse(SelectedRating);
+
+                    List<Artist> artistList = new List<Artist>();
+                    if (RatingSort == ABRating.Above)
+                    {
+                        query = query.Where(s => s.Ratings.Count() > 0);
+                        foreach (Artist s in query)
+                        {
+                            if (s.Ratings.ToList().Average(x => x.RatingScore) >= rate)
+                            {
+                                artistList.Add(s);
+                            }
+                        }
+                        ArtistResults = artistList;
+                    }
+
+                    else if (RatingSort == ABRating.Below)
+                    {
+                        foreach (Artist s in query)
+                        {
+                            if (s.Ratings.Count() == 0)
+                            {
+                                artistList.Add(s);
+                            }
+                            else if (s.Ratings.ToList().Average(x => x.RatingScore) <= rate)
+                            {
+                                artistList.Add(s);
+                            }
+                        }
+                        ArtistResults = artistList;
+                    }
+                }
+
                 ViewBag.numResults = ArtistResults.Count();
                 return View("ArtistSearch", ArtistResults);
             }
@@ -299,23 +356,42 @@ namespace Longhorn_Music_Team_17.Controllers
                         query = from a in query from ar in a.Artists orderby ar.ArtistName select a;
                     }
                 }
-                //order by rating
-                /*
-                else if (SelectedOrderType == OrderType.Artist)
+                AlbumResults = query.ToList();
+                if (SelectedRating != null)
                 {
-                    if (SelectedSortOrder == SortOrder.Descending)
+                    int rate = Int32.Parse(SelectedRating);
+
+                    List<Album> albumList = new List<Album>();
+                    if (RatingSort == ABRating.Above)
                     {
-                        var OrderedResults = AlbumResults.OrderByDescending(a => a.AlbumTitle);
-                        AlbumResults = OrderedResults.ToList();
+                        query = query.Where(s => s.Ratings.Count() > 0);
+                        foreach (Album s in query)
+                        {
+                            if (s.Ratings.ToList().Average(x => x.RatingScore) >= rate)
+                            {
+                                albumList.Add(s);
+                            }
+                        }
+                        AlbumResults = albumList;
                     }
-                    else
+
+                    else if (RatingSort == ABRating.Below)
                     {
-                        var OrderedResults = AlbumResults.OrderBy(a => a.AlbumTitle);
-                        AlbumResults = OrderedResults.ToList();
+                        foreach (Album s in query)
+                        {
+                            if (s.Ratings.Count() == 0)
+                            {
+                                albumList.Add(s);
+                            }
+                            else if (s.Ratings.ToList().Average(x => x.RatingScore) <= rate)
+                            {
+                                albumList.Add(s);
+                            }
+                        }
+                        AlbumResults = albumList;
                     }
                 }
-                */
-                AlbumResults = query.ToList();
+
                 ViewBag.numResults = AlbumResults.Count();
                 return View("AlbumSearch", AlbumResults);
 
