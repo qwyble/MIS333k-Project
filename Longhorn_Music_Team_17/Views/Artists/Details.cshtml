@@ -1,4 +1,5 @@
 ﻿@model Longhorn_Music_Team_17.Models.Artist
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -39,13 +40,14 @@
         <dd>
             @ViewBag.ReviewError
         </dd>
-        
+
     </dl>
 </div>
-<p>@if (User.IsInRole("Manager"))
-    {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtistID })   
-    }
+<p>
+    @if (User.IsInRole("Manager"))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtistID })
+}
 </p>
 
 <table class="table table-bordered">
@@ -63,21 +65,21 @@
 </table>
 
 <table class="table table-bordered">
-    <tr>            
+    <tr>
         <th>
             Songs
         </th>
-                           
+
     </tr>
-  @foreach (var item in Model.Songs)
-  {
-        <tr>          
+    @foreach (var item in Model.Songs)
+    {
+        <tr>
             <td>
                 @Html.ActionLink(item.SongTitle, "Details", "Songs", new { id = item.SongID }, null)
-            </td>             
+            </td>
         </tr>
-  }
-    </table>
+    }
+</table>
 <table class="table table-bordered">
     <tr>
         <th>
@@ -93,14 +95,18 @@
     </tr>
     @foreach (var item in Model.Reviews)
     {
-        if (item.Comment != null && item.Comment != "")
-        {
-            <tr>
-                <td>@item.Owner.UserName</td>
-                <td>@item.Comment</td>
-                <td>@((int)item.RateNum)</td>
-            </tr>
-        }
+
+        <tr>
+            <td>@item.Owner.UserName</td>
+            <td>@item.Comment</td>
+            <td>@((int)item.RateNum)</td>
+            @if (User.Identity.GetUserId() == item.Owner.Id || User.IsInRole("Manager") || User.IsInRole("Employee"))
+                {
+                <td>@Html.ActionLink("Edit", "Edit", "Reviews", new { id = item.ArtistReview.ArtistID, ReviewID = item.ReviewID, name = "artistReview" }, null)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Reviews", new { id = item.ArtistReview.ArtistID, ReviewID = item.ReviewID, name = "artistReview" }, null)</td>
+            }
+        </tr>
+
     }
 </table>
-    
+

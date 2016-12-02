@@ -1,4 +1,5 @@
 ﻿@model Longhorn_Music_Team_17.Models.Song
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -11,89 +12,84 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-    @Html.DisplayNameFor(model => model.SongTitle)
-</dt>
-<dd>       
-    @Html.DisplayFor(model => model.SongTitle) 
-    @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
-    { 
-        <span>(@Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null))</span>
-    }
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Artists)
-</dt>
-<dd>
-    @foreach (var artist in Model.Artists)
-    {
-        @Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null)  if (Model.Artists.IndexOf(artist) < Model.Artists.Count - 1)
-        {
-            <span> &amp;</span> <br />
-        }
-    }
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Albums)
-</dt>
-<dd>
-   @foreach (var album in Model.Albums)
-   {
-    @Html.ActionLink(album.AlbumTitle, "Details", "Albums", new { id = album.AlbumID }, null)  if (Model.Albums.IndexOf(album) < Model.Albums.Count - 1)
-       {
-        <span> &amp;</span> <br />
-       }
-   }
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Genres)
-</dt>
-<dd>
-   
-    @foreach (var genre in Model.Genres)
-    {
-        @Html.DisplayFor(model => genre.GenreName)  if (Model.Genres.IndexOf(genre) < Model.Genres.Count - 1)
-        {
-            <span> &amp;</span> <br />
-        }
-    }
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Ratings)
-</dt>
-<dd>
-    @if (Model.Ratings.ToList().Any())
-    {
-        @Model.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
-    }
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.SongPrice)
-</dt>
-
-<dd>
-    @if (Model.SongPrice != Model.DiscountedPrice)
-            {
-        <strike>@Html.DisplayFor(model => model.SongPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
-    }
-    else
-    {
-        @Html.DisplayFor(model => model.SongPrice)
-    }
-</dd>
-@if (Model.SongPrice != Model.DiscountedPrice)
-{
-    <dt>
-        Savings
-    </dt>
+            @Html.DisplayNameFor(model => model.SongTitle)
+        </dt>
         <dd>
-            @Html.DisplayFor(model => model.DiscountAmount)
+            @Html.DisplayFor(model => model.SongTitle)
+            @if (User.IsInRole("Customer"))
+            { @Html.ActionLink("Add to Cart", "AddSongToCart", "ShoppingCart", new { id = Model.SongID }, null)}
         </dd>
-} 
         <dt>
-            @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
+            @Html.DisplayNameFor(model => model.Artists)
+        </dt>
+        <dd>
+            @foreach (var artist in Model.Artists)
             {
-                @Html.ActionLink("Review This Song", "Create", "Reviews", new { id = Model.SongID, name = "songReview" }, null)
+                @Html.ActionLink(artist.ArtistName, "Details", "Artists", new { id = artist.ArtistID }, null)  if (Model.Artists.IndexOf(artist) < Model.Artists.Count - 1)
+                {
+                    <span> &amp;</span> <br />
+                }
             }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Albums)
+        </dt>
+        <dd>
+            @foreach (var album in Model.Albums)
+            {
+                @Html.ActionLink(album.AlbumTitle, "Details", "Albums", new { id = album.AlbumID }, null)  if (Model.Albums.IndexOf(album) < Model.Albums.Count - 1)
+                {
+                    <span> &amp;</span> <br />
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+        <dd>
+
+            @foreach (var genre in Model.Genres)
+            {
+                @Html.DisplayFor(model => genre.GenreName)  if (Model.Genres.IndexOf(genre) < Model.Genres.Count - 1)
+                {
+                    <span> &amp;</span> <br />
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratings)
+        </dt>
+        <dd>
+            @if (Model.Ratings.ToList().Any())
+            {
+                @Model.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SongPrice)
+        </dt>
+
+        <dd>
+            @if (Model.SongPrice != Model.DiscountedPrice)
+            {
+                <strike>@Html.DisplayFor(model => model.SongPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.SongPrice)
+            }
+        </dd>
+        @if (Model.SongPrice != Model.DiscountedPrice)
+        {
+            <dt>
+                Savings
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DiscountAmount)
+            </dd>
+        }
+        <dt>
+            @Html.ActionLink("Review This Song", "Create", "Reviews", new { id = Model.SongID, name = "songReview" }, null)
         </dt>
         <dd>
             @ViewBag.ReviewError
@@ -129,9 +125,9 @@
 </table>
 
 <p>
-@if (User.IsInRole("Manager"))
+    @if (User.IsInRole("Manager"))
     {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SongID })     
+        @Html.ActionLink("Edit", "Edit", new { id = Model.SongID })
     }
 </p>
 
@@ -150,13 +146,16 @@
     </tr>
     @foreach (var item in Model.Reviews)
     {
-        if (item.Comment != null && item.Comment != "")
-        {
-            <tr>
-                <td>@item.Owner.UserName</td>
-                <td>@item.Comment</td>
-                <td>@((int)item.RateNum)</td>
-            </tr>
-        }
+
+        <tr>
+            <td>@item.Owner.UserName</td>
+            <td>@item.Comment</td>
+            <td>@((int)item.RateNum)</td>
+            @if (User.Identity.GetUserId() == item.Owner.Id || User.IsInRole("Manager") || User.IsInRole("Employee"))
+                {
+                <td>@Html.ActionLink("Edit", "Edit", "Reviews", new { id = item.SongReview.SongID, ReviewID = item.ReviewID, name = "songReview" }, null)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Reviews", new { id = item.SongReview.SongID, ReviewID = item.ReviewID, name = "songReview" }, null)</td>
+            }
+        </tr>
     }
 </table>
