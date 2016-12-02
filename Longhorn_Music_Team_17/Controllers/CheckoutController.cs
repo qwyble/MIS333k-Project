@@ -308,6 +308,7 @@ namespace Longhorn_Music_Team_17.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             var listOfItems = GetListOfPurchasedItem(cart.GetCartItems());
+            var listOfRecommend = GetListOfRecommendation(cart.GetCartItems());
 
             order = cart.CreateOrder(order);
 
@@ -321,7 +322,7 @@ namespace Longhorn_Music_Team_17.Controllers
 
             {
 
-                SendEmailToUser(user, listOfItems);
+                SendEmailToUser(user, listOfItems, listOfRecommend);
 
             }
 
@@ -340,6 +341,70 @@ namespace Longhorn_Music_Team_17.Controllers
             //return View(model);
 
         }
+
+        //TODO: WINNIE FIX TO LIST in Line 385
+        private string GetListOfRecommendation(List<Cart> cartItem)
+        {
+            var body = new StringBuilder();
+
+            //get random number
+            Random getrand = new Random();
+            int songrand = getrand.Next(0, cartItem.Count);
+            //identify one random song from the order
+            var item = cartItem[songrand];
+
+            object genre;
+            object band;
+            //get Genre of the item
+            if (!(item.AlbumID == null && item.SongID == null))
+            {
+                if (item.SongID != null)
+                {
+                    genre = from s in db.Songs
+                            where s.SongID == item.SongID
+                            select s.Genres.ToString();
+                    band = from b in db.Songs
+                           where b.SongID == item.SongID
+                           select b.Artists.ToString();
+                }
+                else
+                {
+                    genre = from s in db.Albums
+                            where s.AlbumID == item.AlbumID
+                            select s.Genres.ToString();
+                    band = from b in db.Albums
+                           where b.AlbumID == item.AlbumID
+                           select b.Artists.ToString();
+                }
+                //Select list of artist based on Genre
+                var artist = from a in db.Artists
+                             where a.Genres == genre
+                             orderby a.Ratings descending
+                             select a;
+
+                List<Artist> SelectedArtist = new List<Artist>();
+                SelectedArtist = artist.ToList();
+
+
+                if (SelectedArtist[0] != band)
+                {
+                    body.AppendLine(SelectedArtist[0].ToString());
+                }
+                else
+                {
+                    body.AppendLine(SelectedArtist[1].ToString());
+                }
+
+
+                return body.ToString();
+            }
+            //TODO: Winnie Add Viewbag
+            else
+            {
+                return ("Error");
+            }
+        }
+
 
         private void SendEmailToGiftPurchaser(AppUser user)
 
@@ -393,17 +458,18 @@ namespace Longhorn_Music_Team_17.Controllers
 
         }
 
-        private void SendEmailToUser(AppUser user, string listOfItem)
+        private void SendEmailToUser(AppUser user, string listOfItem, string listOfRecommend)
 
         {
-
-
 
             var body = new StringBuilder();
 
             body.AppendLine($@"Dear {user.FirstName},<br/><br/>Thanks for ordering! You have purchased the following items:<br/>");
 
             body.AppendLine(listOfItem);
+            body.AppendLine($@"<br></br><br><br>Other artists you may like: <br></br>");
+
+            body.AppendLine(listOfRecommend);
 
             EmailMessaging.SendEmail(user.Email, "Order Confirmation", body.ToString());
 
