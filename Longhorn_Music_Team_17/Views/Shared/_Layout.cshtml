@@ -59,20 +59,21 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Longhorn Music", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>
+                        <a  href="@Url.Action("Index", "Home")"><img width="50px" height="30px" src="~/Content/BevoLogo.png" />Longhorn Music</a></li>
 
                                                                                 @if (User.IsInRole("Manager"))
 
                                                                                 {
 
-                                                                                    <li> @Html.ActionLink("Songs", "Index", "Songs", new { area = "" }, new { @class = "navbar-brand" })</li>
+                                                                                    <li> @Html.ActionLink("Songs", "Index", "Songs")</li>
 
                                                                                     <li>
-                                                                                        @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, new { @class = "navbar-brand" })
+                                                                                        @Html.ActionLink("Albums", "Index", "Albums")
                                                                                     </li>
 
                                                                                     <li>
-                                                                                        @Html.ActionLink("Artists", "Index", "Artists", new { area = "" }, new { @class = "navbar-brand" })
+                                                                                        @Html.ActionLink("Artists", "Index", "Artists")
                                                                                     </li>
                                                                                 }
 
@@ -81,14 +82,14 @@
                         {
 
 
-                            <li> @Html.ActionLink("My Music", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })</li>
+                            <li> @Html.ActionLink("My Music", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new {})</li>
 
                         }
 
                         @if (User.IsInRole("Manager"))
                         {
 
-                            <li> @Html.ActionLink("Employees", "Employees", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li> @Html.ActionLink("Employees", "Employees", "Account")</li>
 
                         }
 
@@ -96,18 +97,12 @@
 
                         {
 
-                            <li>@Html.ActionLink("Customers", "Customers", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Reports", "Index", "Report", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Customers", "Customers", "Account")</li>
+                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
 
                         }
 
-                        @if (User.Identity.IsAuthenticated)
-
-                        {
-
-                            <li>@Html.ActionLink("My Account", "Index", "Account", new { area = "", ID = User.Identity.GetUserId() }, new { @class = "navbar-brand" })</li>
-
-                        }
+                       
 </ul>
                 @Html.Partial("_LoginPartial")
                
