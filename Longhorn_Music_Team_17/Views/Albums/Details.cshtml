@@ -13,11 +13,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AlbumTitle)
+            @Html.DisplayNameFor(model => model.AlbumTitle) 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumTitle) (@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))
+
+            @Html.DisplayFor(model => model.AlbumTitle) 
+            @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+            {
+                <span>(@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))</span>
+            }
         </dd>
 
         <dt>
@@ -37,6 +42,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.Genres)
         </dt>
+
 
         <dd>
             @foreach (var genre in Model.Genres)
@@ -64,49 +70,51 @@
         </dt>
 
         @*<dd>
-                @Html.DisplayFor(model => model.AlbumPrice)
-            </dd> *@
+            @Html.DisplayFor(model => model.AlbumPrice)
+        </dd> *@
         <dd>
             @if (Model.AlbumPrice != Model.DiscountedPrice)
             {
-                <strike>@Html.DisplayFor(model => model.AlbumPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
-            }
+        <strike>@Html.DisplayFor(model => model.AlbumPrice)</strike> <strong style="color:red">@Html.DisplayFor(model => model.DiscountedPrice)</strong>
+             }
             else
             {
                 @Html.DisplayFor(model => model.AlbumPrice)
             }
         </dd>
-        @if (Model.AlbumPrice != Model.DiscountedPrice)
-        {
+         @if (Model.AlbumPrice != Model.DiscountedPrice)
+         {
             <dt>
                 Savings
             </dt>
-            <dd>
-                @Html.DisplayFor(model => model.DiscountAmount)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.DiscountAmount)
+                </dd>
 
                 @*<dt>
-                        @Html.DisplayNameFor(model => model.FeaturedAlbum)
-                    </dt>
+                @Html.DisplayNameFor(model => model.FeaturedAlbum)
+            </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.FeaturedAlbum)
-                    </dd> *@
-        }
-        <dt>
-            @Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID, name = "albumReview" }, null)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FeaturedAlbum)
+            </dd> *@
+         }
+         <dt>
+             @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
+             {
+                 @Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID, name = "albumReview" }, null)
+             }
+         </dt>
         <dd>
             @ViewBag.ReviewError
         </dd>
 
     </dl>
 </div>
-<p>
-    @if (User.IsInRole("Manager"))
-{
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID })
-}
+<p>@if (User.IsInRole("Manager"))
+   {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID } ) 
+   }
 </p>
 
 <table class="table table-bordered">
@@ -124,18 +132,18 @@
 </table>
 
 <table class="table table-bordered">
-    <tr>
+    <tr>       
         <th>
             Album Songs and Information
         </th>
-
+                
     </tr>
-    @foreach (var item in Model.Songs)
-    {
-        <tr>
-            <td>@Html.ActionLink(item.SongTitle, "Details", "Songs", new { id = item.SongID }, null)</td>
+        @foreach (var item in Model.Songs)
+        {
+        <tr>                   
+                    <td>@Html.ActionLink(item.SongTitle, "Details", "Songs", new { id = item.SongID }, null)</td>           
         </tr>
-    }
+        }
 </table>
 
 <table class="table table-bordered">
