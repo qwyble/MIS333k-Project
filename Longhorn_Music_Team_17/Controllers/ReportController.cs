@@ -29,6 +29,12 @@ namespace Longhorn_Music_Team_17.Controllers
             var model = db.OrderDetails.Where(y => y.AlbumID != null && y.AlbumID != 0).GroupBy(o => new { AlbumID = o.Album.AlbumID, AlbumTitle = o.Album.AlbumTitle }).Select(g => new AlbumReportViewModel { AlbumID = g.Key.AlbumID, AlbumTitle = g.Key.AlbumTitle, Revenue = g.Sum(x => x.Subtotal), NumberOfPurchase = g.Sum(x => x.Quantity) });
             return View(model);
         }
+
+        public ActionResult BandReport()
+        {
+            return View();
+        }
+
     }
 
 }

@@ -376,6 +376,14 @@
     <Compile Include="Migrations\201612020019225_fix.Designer.cs">
       <DependentUpon>201612020019225_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612021013507_seedEmployeesAgain.cs" />
+    <Compile Include="Migrations\201612021013507_seedEmployeesAgain.Designer.cs">
+      <DependentUpon>201612021013507_seedEmployeesAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612021040221_mig2309.cs" />
+    <Compile Include="Migrations\201612021040221_mig2309.Designer.cs">
+      <DependentUpon>201612021040221_mig2309.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\old migrations\201611162212496_users1.cs" />
     <Compile Include="Migrations\old migrations\201611162212496_users1.Designer.cs">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>
@@ -417,6 +425,7 @@
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AlbumReportViewModel.cs" />
+    <Compile Include="ViewModels\BandReportViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\CustomerWelcomeViewModel.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
@@ -487,6 +496,7 @@
     <Content Include="Views\Report\SongReport.cshtml" />
     <Content Include="Views\Report\AlbumReport.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\BandReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -565,6 +575,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612020449117_Thomas70.resx">
       <DependentUpon>201612020449117_Thomas70.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612021013507_seedEmployeesAgain.resx">
+      <DependentUpon>201612021013507_seedEmployeesAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612021040221_mig2309.resx">
+      <DependentUpon>201612021040221_mig2309.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\old migrations\201611162212496_users1.resx">
       <DependentUpon>201611162212496_users1.cs</DependentUpon>

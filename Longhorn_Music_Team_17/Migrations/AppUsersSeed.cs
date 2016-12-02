@@ -14,7 +14,7 @@ namespace Longhorn_Music_Team_17.Migrations
         public static AppDbContext db = new AppDbContext();
         public static void AddAppUsers()
         {
-            email = "Jacobs@longhornsmusic.com";
+            email = "jacobs@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -37,7 +37,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Rice@longhornsmusic.com";
+            email = "rice@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -60,7 +60,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Ingram@longhornsmusic.com";
+            email = "ingram@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -83,7 +83,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Taylor@longhornsmusic.com";
+            email = "taylor@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -106,30 +106,8 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Martinez@longhornsmusic.com";
-            if (!(db.Users.Any(u => u.UserName == email)))
-            {
-                UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
-                AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
-                string roleName = "Employee";
-                if (roleManager.RoleExists(roleName) == false) { roleManager.Create(new AppRole(roleName)); }
-                var userToInsert = new AppUser()
-                {
-                    UserName = email,
-                    Email = email,
-                    LastName = "Martinez",
-                    FirstName = "Gregory",
-                    MiddleInitial = "R",
-                    StreetAddress = "8295 Sunset Blvd.",
-                    ZipCode = "78239",
-                    PhoneNumber = "2105788965"
-                };
-                AppUser userToAdd = userManager.FindByName(email);
-                if (userToAdd == null) { userManager.Create(userToInsert, "marty"); userToAdd = userManager.FindByName(email); }
-                if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
-                db.SaveChanges();
-            }
-            email = "Sheffield@longhornsmusic.com";
+
+            email = "sheffield@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -152,7 +130,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "MacLeod@longhornsmusic.com";
+            email = "macleod@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -175,7 +153,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Tanner@longhornsmusic.com";
+            email = "tanner@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -198,7 +176,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Rhodes@longhornsmusic.com";
+            email = "rhodes@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -221,7 +199,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Stuart@longhornsmusic.com";
+            email = "stuart@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -244,7 +222,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Chung@longhornsmusic.com";
+            email = "chung@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -267,7 +245,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Swanson@longhornsmusic.com";
+            email = "swanson@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -290,7 +268,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Loter@longhornsmusic.com";
+            email = "loter@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -313,7 +291,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "White@longhornsmusic.com";
+            email = "white@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -336,7 +314,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Montgomery@longhornsmusic.com";
+            email = "montgomery@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -359,7 +337,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Morales@longhornsmusic.com";
+            email = "morales@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -382,7 +360,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Rankin@longhornsmusic.com";
+            email = "rankin@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -405,7 +383,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Walker@longhornsmusic.com";
+            email = "walker@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -428,7 +406,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Chang@longhornsmusic.com";
+            email = "chang@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -451,7 +429,7 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-            email = "Gonzalez@longhornsmusic.com";
+            email = "gonzalez@longhornsmusic.com";
             if (!(db.Users.Any(u => u.UserName == email)))
             {
                 UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
@@ -474,7 +452,6 @@ namespace Longhorn_Music_Team_17.Migrations
                 if (userManager.IsInRole(userToAdd.Id, roleName) == false) { userManager.AddToRole(userToAdd.Id, roleName); }
                 db.SaveChanges();
             }
-
 
         }
     }
