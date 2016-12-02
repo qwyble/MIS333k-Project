@@ -1,4 +1,5 @@
 ﻿@model Longhorn_Music_Team_17.Models.Album
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -160,14 +161,17 @@
     </tr>
     @foreach (var item in Model.Reviews)
     {
-        if (item.Comment != null && item.Comment != "")
-        {
-            <tr>
-                <td>@item.Owner.UserName</td>
-                <td>@item.Comment</td>
-                <td>@((int)item.RateNum)</td>
-            </tr>
-        }
+        <tr>
+            <td>@item.Owner.UserName</td>
+            <td>@item.Comment</td>
+            <td>@((int)item.RateNum)</td>
+            @if (User.Identity.GetUserId() == item.Owner.Id || User.IsInRole("Manager") || User.IsInRole("Employee"))
+            {
+                <td>@Html.ActionLink("Edit", "Edit", "Reviews", new { id = item.AlbumReview.AlbumID, ReviewID = item.ReviewID, name = "albumReview" }, null)</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Reviews", new { id = item.AlbumReview.AlbumID, ReviewID = item.ReviewID, name = "albumReview" }, null)</td>
+            }
+        </tr>
+
     }
 </table>
 

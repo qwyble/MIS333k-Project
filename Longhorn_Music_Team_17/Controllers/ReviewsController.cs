@@ -18,7 +18,7 @@ namespace Longhorn_Music_Team_17.Controllers
         private AppSignInManager _signInManager;
         private AppUserManager _userManager;
         AppDbContext db = new AppDbContext();
-        public ReviewsController(){}
+        public ReviewsController() { }
         public ReviewsController(AppUserManager userManager, AppSignInManager signInManager)
         {
             UserManager = userManager;
@@ -71,6 +71,19 @@ namespace Longhorn_Music_Team_17.Controllers
         // GET: Reviews/Create
         public ActionResult Create(int? id, string name)
         {
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
             AppUser user = UserManager.FindById(User.Identity.GetUserId());
             if (name == "albumReview")
             {
@@ -127,7 +140,7 @@ namespace Longhorn_Music_Team_17.Controllers
                     var query3 = from od in query
                                  from so in db.Songs
                                  where od.SongID == so.SongID
-                                 select so;                    
+                                 select so;
                     var query5 = from s in query3
                                  from art in s.Artists
                                  select art;
@@ -166,9 +179,9 @@ namespace Longhorn_Music_Team_17.Controllers
                     var result1 = query2.ToList();
 
                     var query3 = from o in user.Orders
-                                from ord in db.OrderDetails
-                                where ord.OrderID == o.OrderID
-                                select ord;
+                                 from ord in db.OrderDetails
+                                 where ord.OrderID == o.OrderID
+                                 select ord;
                     var help = from al in SongToRate.Albums
                                select al;
                     var query4 = from od in query3
@@ -208,9 +221,23 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 review.RateNum = null;
             }
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
             //set rating
             review.rating = db.Ratings.Find((int)review.RateNum);
-
+            ViewBag.Controller = name;
+            ViewBag.Item = id;
             if (name == "albumReview")
             {
                 Album AlbumToRate = db.Albums.Find(id);
@@ -275,18 +302,61 @@ namespace Longhorn_Music_Team_17.Controllers
 
 
         // GET: Reviews/Edit/5
-        public ActionResult Edit(int? id)
+        [Authorize]
+        public ActionResult Edit(int? id, int? ReviewID, string name)
         {
-            if (id == null)
+            if (id == null || ReviewID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
+            Review review = db.Reviews.Find(ReviewID);
             if (review == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ReviewID = new SelectList(db.Ratings, "RatingID", "RatingID", review.ReviewID);
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
+            AppUser user = UserManager.FindById(User.Identity.GetUserId());
+            if (!UserManager.IsInRole(user.Id, "Manager") && !UserManager.IsInRole(user.Id, "Employee"))
+            {
+
+                //redirect the user if they do not have permission to edit the review
+                if (review.Owner.Id != user.Id)
+                {
+                    TempData["ReviewError"] = "You do not have permission to edit that review";
+                    if (name == "albumReview")
+                    {
+                        return RedirectToAction("Details", "Albums", new { id = id });
+                    }
+                    else if (name == "artistReview")
+                    {
+                        return RedirectToAction("Details", "Artists", new { id = id });
+                    }
+                    else if (name == "songReview")
+                    {
+                        return RedirectToAction("Details", "Songs", new { id = id });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            TempData["ReviewID"] = ReviewID;
+            TempData["name"] = name;
+            //user does have permission
+
             return View(review);
         }
 
@@ -295,41 +365,193 @@ namespace Longhorn_Music_Team_17.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewID,Comment")] Review review)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "RateNum,Comment")] Review review, int? id, string name)
         {
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
             if (ModelState.IsValid)
             {
-                db.Entry(review).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                review.rating = db.Ratings.Find((int)review.RateNum);
+                Review revToChange = db.Reviews.Find(TempData["ReviewID"]);
+                //if it's an artist review
+                if (name == "artistReview")
+                {
+                    Artist ArtistToRate = db.Artists.Find(revToChange.ArtistReview.ArtistID);
+                    //make sure item exists
+                    if (ArtistToRate == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    review.ArtistReview = ArtistToRate;
+                    review.Owner = db.Users.Find(User.Identity.GetUserId());
+                    ArtistToRate.Ratings.Remove(revToChange.rating);
+                    ArtistToRate.Ratings.Add(review.rating);
+                    db.Reviews.Add(review);
+                    db.Reviews.Remove(revToChange);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Artists", new { id = review.ArtistReview.ArtistID });
+                }
+                //if it's an album review
+                if (name == "albumReview")
+                {
+                    Album AlbumToRate = db.Albums.Find(revToChange.AlbumReview.AlbumID);
+                    //make sure item exists
+                    if (AlbumToRate == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    review.AlbumReview = AlbumToRate;
+                    review.Owner = db.Users.Find(User.Identity.GetUserId());
+                    AlbumToRate.Ratings.Remove(revToChange.rating);
+                    AlbumToRate.Ratings.Add(review.rating);
+                    db.Reviews.Add(review);
+                    db.Reviews.Remove(revToChange);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Albums", new { id = AlbumToRate.AlbumID });
+                }
+                //if it's a song review
+                if (name == "songReview")
+                {
+                    Song SongToRate = db.Songs.Find(revToChange.SongReview.SongID);
+                    //make sure item exists
+                    if (SongToRate == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    review.SongReview = SongToRate;
+                    review.Owner = db.Users.Find(User.Identity.GetUserId());
+                    SongToRate.Ratings.Remove(revToChange.rating);
+                    SongToRate.Ratings.Add(review.rating);
+                    db.Reviews.Add(review);
+                    db.Reviews.Remove(revToChange);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Songs", new { id = review.SongReview.SongID });
+                }
             }
-            ViewBag.ReviewID = new SelectList(db.Ratings, "RatingID", "RatingID", review.ReviewID);
             return View(review);
         }
 
         // GET: Reviews/Delete/5
-        public ActionResult Delete(int? id)
+        [Authorize]
+        public ActionResult Delete(int? id, int? ReviewID, string name)
         {
-            if (id == null)
+            if (id == null || ReviewID == null || name == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
+            Review review = db.Reviews.Find(ReviewID);
             if (review == null)
             {
                 return HttpNotFound();
             }
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
+            AppUser user = UserManager.FindById(User.Identity.GetUserId());
+            if (!UserManager.IsInRole(user.Id, "Manager") && !UserManager.IsInRole(user.Id, "Employee"))
+            {
+                //redirect the user if they do not have permission to edit the review
+                if (review.Owner.Id != user.Id)
+                {
+                    TempData["ReviewError"] = "You do not have permission to edit that review";
+                    if (name == "albumReview")
+                    {
+                        return RedirectToAction("Details", "Albums", new { id = id });
+                    }
+                    else if (name == "artistReview")
+                    {
+                        return RedirectToAction("Details", "Artists", new { id = id });
+                    }
+                    else if (name == "songReview")
+                    {
+                        return RedirectToAction("Details", "Songs", new { id = id });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+            }
+            TempData["ReviewID"] = ReviewID;
+            TempData["name"] = name;
             return View(review);
         }
 
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [Authorize]
+        public ActionResult DeleteConfirmed(int id, int? ReviewID, string name)
         {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
-            db.SaveChanges();
+            if (ReviewID == null || name == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (name == "artistReview")
+            {
+                ViewBag.Controller = "Artists";
+            }
+            if (name == "albumReview")
+            {
+                ViewBag.Controller = "Albums";
+            }
+            if (name == "songReview")
+            {
+                ViewBag.Controller = "Songs";
+            }
+            ViewBag.Item = id;
+            System.Diagnostics.Debug.WriteLine(id);
+            Review review = db.Reviews.Find(ReviewID);
+            if (review == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Rating ratingToRemove = db.Ratings.Find(review.rating.RatingID);
+            if (name == "artistReview")
+            {
+                review.ArtistReview.Ratings.Remove(ratingToRemove);
+                db.Reviews.Remove(review);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Artists", new { id = id });
+            }
+            if (name == "albumReview")
+            {
+                review.AlbumReview.Ratings.Remove(ratingToRemove);
+                db.Reviews.Remove(review);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Albums", new { id = id });
+            }
+            if (name == "songReview")
+            {
+                review.SongReview.Ratings.Remove(ratingToRemove);
+                db.Reviews.Remove(review);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Songs", new { id = id });
+            }
             return RedirectToAction("Index");
         }
 
