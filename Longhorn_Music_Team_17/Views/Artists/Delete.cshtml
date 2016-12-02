@@ -26,6 +26,9 @@
         <dd>
             @Html.DisplayFor(model => model.FeaturedArtist)
         </dd>
+        <dt>
+            (@Html.ActionLink("Review This Artist", "Create", "Reviews", new { id = Model.ArtistID, name = "artistReview" }, null)
+        </dt>
 
     </dl>
 

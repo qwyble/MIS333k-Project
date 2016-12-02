@@ -86,7 +86,13 @@
         <dd>
             @Html.DisplayFor(model => model.DiscountAmount)
         </dd>
-}
+} 
+        <dt>
+            @Html.ActionLink("Review This Song", "Create", "Reviews", new { id = Model.SongID, name = "songReview" }, null)
+        </dt>
+        <dd>
+            @ViewBag.ReviewError
+        </dd>
     </dl>
 </div>
 <table class="table table-bordered">
@@ -123,3 +129,29 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.SongID })     
     }
 </p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Users
+        </th>
+        <th>
+            Reviews
+        </th>
+        <th>
+            Ratings
+        </th>
+
+    </tr>
+    @foreach (var item in Model.Reviews)
+    {
+        if (item.Comment != null && item.Comment != "")
+        {
+            <tr>
+                <td>@item.Owner.UserName</td>
+                <td>@item.Comment</td>
+                <td>@((int)item.RateNum)</td>
+            </tr>
+        }
+    }
+</table>

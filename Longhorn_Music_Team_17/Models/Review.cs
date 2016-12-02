@@ -12,6 +12,7 @@ namespace Longhorn_Music_Team_17.Models
         public Int32 ReviewID { get; set; }
 
         //public Int32 Rating { get; set; }
+        [StringLength(100, ErrorMessage = "Reviews cannot exceed 100 characters.")]
         public String Comment { get; set; }
 
         public enum RateEnum
