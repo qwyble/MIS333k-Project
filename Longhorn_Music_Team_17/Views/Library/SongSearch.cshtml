@@ -126,6 +126,10 @@
                                     {
                                         <span> &amp;</span> <br />
                                     }
+                                    if (ViewBag.pAlbs.Contains(item.Albums.FirstOrDefault().AlbumID))
+                                    {
+                                        <span>(purchased)</span>
+                                    }
                                 }
                             </td>
                         </tr>
