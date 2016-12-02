@@ -16,7 +16,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumTitle) (@Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null))
+            @Html.DisplayFor(model => model.AlbumTitle) 
+            @if (User.IsInRole("Customer"))
+            { @Html.ActionLink("Add to Cart", "AddAlbumToCart", "ShoppingCart", new { id = Model.AlbumID }, null) }
         </dd>
 
         <dt>
@@ -93,7 +95,10 @@
             </dd> *@
          }
          <dt>
-             @Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID, name = "albumReview" }, null)
+             @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
+             {
+                 @Html.ActionLink("Review This Album", "Create", "Reviews", new { id = Model.AlbumID, name = "albumReview" }, null)
+             }
          </dt>
         <dd>
             @ViewBag.ReviewError

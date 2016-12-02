@@ -88,7 +88,10 @@
         </dd>
 } 
         <dt>
-            @Html.ActionLink("Review This Song", "Create", "Reviews", new { id = Model.SongID, name = "songReview" }, null)
+            @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
+            {
+                @Html.ActionLink("Review This Song", "Create", "Reviews", new { id = Model.SongID, name = "songReview" }, null)
+            }
         </dt>
         <dd>
             @ViewBag.ReviewError
