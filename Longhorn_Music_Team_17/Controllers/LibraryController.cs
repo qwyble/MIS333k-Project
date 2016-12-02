@@ -60,11 +60,14 @@ namespace Longhorn_Music_Team_17.Controllers
                          select sd;
             var query5 = from s in db.Songs
                          from sdd in query1
+                         where (s.SongID == sdd)
+                         select s;
+            var query6 = from s in db.Songs
                          from a in query3
                          from sd in a.Songs
-                         where ((s.SongID == sd.SongID) || (s.SongID == sdd))
+                         where ((s.SongID == sd.SongID))
                          select s;
-            var query = query5.Distinct();
+            var query = query5.Concat(query6).Distinct();
             return query;
         }
 

@@ -32,6 +32,20 @@ namespace Longhorn_Music_Team_17.Controllers
 
         public ActionResult BandReport()
         {
+
+            /*var query = from g in db.Genres
+                        select g.GenreID;
+
+            var query1 = from a in db.Artists
+                         select a;
+
+            var query2 = from g in 
+
+
+            var model = new BandReportViewModel
+            {
+
+            };*/
             return View();
         }
 
