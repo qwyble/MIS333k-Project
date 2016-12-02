@@ -85,6 +85,53 @@ namespace Longhorn_Music_Team_17.Controllers
             }
             ViewBag.Item = id;
             AppUser user = UserManager.FindById(User.Identity.GetUserId());
+            var querychk = from r in user.Reviews
+                        select r;
+            if (name == "albumReview")
+            {
+                var queryAl = from r in querychk
+                              select r.AlbumReview.AlbumID;
+                List<int> revAlbums = queryAl.ToList();
+
+                foreach (int i in revAlbums)
+                {
+                    if (i == id)
+                    {
+                        TempData["ReviewError"] = "You cannot review the same album twice.";
+                        return RedirectToAction("Details", "Albums", new { id = id });
+                    }
+                }
+            }
+            if (name == "artistReview")
+            {
+                var queryAr = from r in querychk
+                              select r.ArtistReview.ArtistID;
+                List<int> revArtists = queryAr.ToList();
+                foreach (int i in revArtists)
+                {
+                    if (i == id)
+                    {
+                        TempData["ReviewError"] = "You cannot review the same artist twice.";
+                        return RedirectToAction("Details", "Artists", new { id = id });
+                    }
+                }
+            }
+            if (name == "songReview")
+            {
+                var querySo = from r in querychk
+                              select r.SongReview.SongID;
+                List<int> revSongs = querySo.ToList();
+                foreach (int i in revSongs)
+                {
+                    if (i == id)
+                    {
+                        TempData["ReviewError"] = "You cannot review the same song twice.";
+                        return RedirectToAction("Details", "Songs", new { id = id });
+                    }
+                }
+            }
+
+
             if (name == "albumReview")
             {
                 Album AlbumToRate = db.Albums.Find(id);
