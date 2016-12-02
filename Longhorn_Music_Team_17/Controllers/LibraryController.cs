@@ -26,7 +26,13 @@ namespace Longhorn_Music_Team_17.Controllers
         public ActionResult Search()
         {
             ViewBag.GenreList = GetAllGenres();
-
+            var albumquery = formAlbumQuery().ToList();
+            List<int> pAlbs = new List<int>();
+            foreach (Album a in albumquery)
+            {
+                pAlbs.Add(a.AlbumID);
+            }
+            ViewBag.pAlbs = pAlbs;
             List<Song> SelectedSongs = new List<Song>();
 
             SelectedSongs = formQuery().ToList();
@@ -69,20 +75,30 @@ namespace Longhorn_Music_Team_17.Controllers
                          where od.OrderID == o.OrderID
                          select od;
             var query1 = from od in query0
-                         select od.SongID;
-            var query2 = from s in db.Songs
-                         from sd in query1
-                         where s.SongID == sd
-                         select s;
-            var query3 = from ad in query0
-                         select ad.AlbumID;
-            var query4 = from a in db.Albums
-                         from s in query2
-                         from sa in s.Albums
-                         from ad in query3
-                         where (a.AlbumID == ad || a.AlbumID == sa.AlbumID)
+                         select od.AlbumID;
+            var query2 = from a in db.Albums
+                         from ad in query1
+                         where a.AlbumID == ad
                          select a;
-            var query = query4.Distinct();
+
+            /* var query1 = from od in query0
+                          select od.SongID;
+             var query2 = from s in db.Songs
+                          from sd in query1
+                          where s.SongID == sd
+                          select s;
+             var query3 = from ad in query0
+                          select ad.AlbumID;
+             var query4 = from a in db.Albums
+                          from s in query2
+                          from sa in s.Albums
+                          from ad in query3
+                          where (a.AlbumID == ad || a.AlbumID == sa.AlbumID)
+                          select a;*/
+
+            
+
+            var query = query2.Distinct();
             return query;
         }
 
@@ -102,7 +118,13 @@ namespace Longhorn_Music_Team_17.Controllers
             if (btn1.Equals("Songs"))
             {
                 var query = formQuery();
-
+                var albumquery = formAlbumQuery().ToList();
+                List<int> pAlbs = new List<int>();
+                foreach(Album a in albumquery)
+                {
+                    pAlbs.Add(a.AlbumID);
+                }
+                ViewBag.pAlbs = pAlbs;
                 List<Song> SongResults = new List<Song>();
                 // search for song title (song-specific)
                 if (SearchSong != null && SearchSong != "")
