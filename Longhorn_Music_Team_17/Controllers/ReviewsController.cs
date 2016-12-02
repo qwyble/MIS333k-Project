@@ -427,11 +427,35 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 ViewBag.Controller = "Songs";
             }
+
             ViewBag.Item = id;
             if (ModelState.IsValid)
             {
                 review.rating = db.Ratings.Find((int)review.RateNum);
                 Review revToChange = db.Reviews.Find(TempData["ReviewID"]);
+
+                AppUser user = UserManager.FindById(User.Identity.GetUserId());
+                if (UserManager.IsInRole(user.Id, "Manager") || UserManager.IsInRole(user.Id, "Employee"))
+                {
+                    if (revToChange.RateNum != review.RateNum)
+                    {
+                        TempData["ReviewError"] = "You are not permitted to edit a user's rating.";
+                        if (name == "artistReview")
+                        {
+                            return RedirectToAction("Details", "Artists", new { id = id});
+                        }
+                        if (name == "albumReview")
+                        {
+                            return RedirectToAction("Details", "Albums", new { id = id });
+                        }
+                        if (name == "songReview")
+                        {
+                            return RedirectToAction("Details", "Songs", new { id = id });
+                        }
+                    }
+                }
+                    
+
                 //if it's an artist review
                 if (name == "artistReview")
                 {
