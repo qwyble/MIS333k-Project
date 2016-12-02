@@ -427,6 +427,7 @@
     <Compile Include="ViewModels\BandReportViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\CustomerWelcomeViewModel.cs" />
+    <Compile Include="ViewModels\ItemRatingVM.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />

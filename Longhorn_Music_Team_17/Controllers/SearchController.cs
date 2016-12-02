@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Longhorn_Music_Team_17.Models;
+using Longhorn_Music_Team_17.ViewModels;
 
 using System.Data.Entity;
 
@@ -137,12 +138,12 @@ namespace Longhorn_Music_Team_17.Controllers
                     }
                     query = query.Intersect(query3);
                 }
-
-
+                
+               
                 // order by search parameters
                 if (SelectedOrderType == null)
                 {
-                    SongResults = query.ToList();
+                    
                 }
                 else
                 {
@@ -157,7 +158,7 @@ namespace Longhorn_Music_Team_17.Controllers
                         {
                             query = query.OrderBy(s => s.SongTitle);
                         }
-                        SongResults = query.ToList();
+                       
                     }
                     // order by artist name
 
@@ -171,9 +172,10 @@ namespace Longhorn_Music_Team_17.Controllers
                         {
                             query = from s in query from ar in s.Artists orderby ar.ArtistName select s;
                         }
-                        SongResults = query.ToList();
+                       
                     }
                 }
+                SongResults = query.ToList();
                 if (SelectedRating != null)
                 {
                     int rate = Int32.Parse(SelectedRating);
@@ -208,7 +210,44 @@ namespace Longhorn_Music_Team_17.Controllers
                         SongResults = songsList;
                     }
                 }
-                
+              
+
+                if(SelectedOrderType == OrderType.Rating)
+                {
+                    List<ItemRatingVM> itemRatings = new List<ItemRatingVM>();
+                    foreach (Song s in SongResults)
+                    {
+                        if (s.Ratings.ToList().Count() == 0)
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                song = s,
+                                rating = 0.0,
+                            };
+                            itemRatings.Add(tmpVM);                           
+                        }
+                        else
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                song = s,
+                                rating = s.Ratings.ToList().Average(x => x.RatingScore),
+                            };
+                            itemRatings.Add(tmpVM);
+                        }                 
+                    }
+                 
+                    if (SelectedSortOrder == SortOrder.Descending)
+                    {
+                        itemRatings = itemRatings.OrderByDescending(o => o.rating).ToList();
+                        SongResults = itemRatings.Select(o => o.song).ToList();
+                    }
+                    else
+                    {
+                        itemRatings = itemRatings.OrderBy(o => o.rating).ToList();
+                        SongResults = itemRatings.Select(o => o.song).ToList();
+                    }        
+                }
                 ViewBag.numResults = SongResults.Count();
                 return View("SongSearch", SongResults);
             }
@@ -292,6 +331,44 @@ namespace Longhorn_Music_Team_17.Controllers
                         ArtistResults = artistList;
                     }
                 }
+
+                if (SelectedOrderTypeArtists == OrderTypeArtists.Rating)
+                {
+                    List<ItemRatingVM> itemRatings = new List<ItemRatingVM>();
+                    foreach (Artist s in ArtistResults)
+                    {
+                        if (s.Ratings.ToList().Count() == 0)
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                artist = s,
+                                rating = 0.0,
+                            };
+                            itemRatings.Add(tmpVM);
+                        }
+                        else
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                artist = s,
+                                rating = s.Ratings.ToList().Average(x => x.RatingScore),
+                            };
+                            itemRatings.Add(tmpVM);
+                        }
+                    }
+
+                    if (SelectedSortOrder == SortOrder.Descending)
+                    {
+                        itemRatings = itemRatings.OrderByDescending(o => o.rating).ToList();
+                        ArtistResults = itemRatings.Select(o => o.artist).ToList();
+                    }
+                    else
+                    {
+                        itemRatings = itemRatings.OrderBy(o => o.rating).ToList();
+                        ArtistResults = itemRatings.Select(o => o.artist).ToList();
+                    }
+                }
+
 
                 ViewBag.numResults = ArtistResults.Count();
                 return View("ArtistSearch", ArtistResults);
@@ -391,6 +468,46 @@ namespace Longhorn_Music_Team_17.Controllers
                         AlbumResults = albumList;
                     }
                 }
+
+                if (SelectedOrderType == OrderType.Rating)
+                {
+                    List<ItemRatingVM> itemRatings = new List<ItemRatingVM>();
+                    foreach (Album s in AlbumResults)
+                    {
+                        if (s.Ratings.ToList().Count() == 0)
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                album = s,
+                                rating = 0.0,
+                            };
+                            itemRatings.Add(tmpVM);
+                        }
+                        else
+                        {
+                            ItemRatingVM tmpVM = new ItemRatingVM
+                            {
+                                album = s,
+                                rating = s.Ratings.ToList().Average(x => x.RatingScore),
+                            };
+                            itemRatings.Add(tmpVM);
+                        }
+                    }
+
+                    if (SelectedSortOrder == SortOrder.Descending)
+                    {
+                        itemRatings = itemRatings.OrderByDescending(o => o.rating).ToList();
+                        AlbumResults = itemRatings.Select(o => o.album).ToList();
+                    }
+                    else
+                    {
+                        itemRatings = itemRatings.OrderBy(o => o.rating).ToList();
+                        AlbumResults = itemRatings.Select(o => o.album).ToList();
+                    }
+                }
+
+
+
 
                 ViewBag.numResults = AlbumResults.Count();
                 return View("AlbumSearch", AlbumResults);
