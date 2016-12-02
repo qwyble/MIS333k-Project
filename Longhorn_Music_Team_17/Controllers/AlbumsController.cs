@@ -38,6 +38,7 @@ namespace Longhorn_Music_Team_17.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReviewError = TempData["ReviewError"];
             return View(album);
         }
 
